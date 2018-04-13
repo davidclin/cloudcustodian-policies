@@ -6,7 +6,9 @@
 https://github.com/capitalone/cloud-custodian/pull/379 <br>
 https://github.com/capitalone/cloud-custodian/issues/1437
 
-## security-group schema
+## Schemas 
+
+### security-group
 
 <pre>
 (custodian) [hostname]$ custodian schema security-group
@@ -18,23 +20,7 @@ aws.security-group:
     not, or, stale, tag-count, unused, used, value]
 </pre>
 
-## Unused Security Group Artifact
-
-<pre>
-(custodian) [hostname]$ custodian run --dryrun -s . security-groups-unused.yml
-2018-04-13 20:02:01,043: custodian.policy:INFO policy: security-groups-unused resource:security-group region:us-east-1 count:29 time:0.30
-
-(custodian) [hostname]$ more ./security-groups-unused/resources.json | grep 'GroupName\|GroupId'
-    "GroupName": "security-group-name-1",
-    "GroupId": "sg-aaaaaaaa"
-    "GroupName": "security-group-name-2",
-    "GroupId": "sg-bbbbbbbb"
-    "GroupName": "security-group-name-3",
-    "GroupId": "sg-cccccccc"
-    etc.    
-</pre>
-
-## iam-user schema
+### iam-user
 
 <pre>
 (custodian) [ec2-user@ip-10-100-0-195 custodian]$ custodian schema iam-user
@@ -43,3 +29,27 @@ aws.iam-user:
   filters: [access-key, and, credential, event, group, mfa-device, not, or, policy,
     value]
 </pre>
+
+## Unused Security Group Artifact
+
+<pre>
+(custodian) [hostname]$ custodian run --dryrun -s . security-groups-unused.yml
+2018-04-13 20:02:01,043: custodian.policy:INFO policy: security-groups-unused resource:security-group region:us-east-1 count:29 time:0.30
+
+(custodian) [hostname]$ more ./security-groups-unused/resources.json | grep 'GroupName\|GroupId'
+(custodian) [ec2-user@ip-10-100-0-195 custodian]$ more ./security-groups-unused/resources.json | grep GroupName\"\:
+    "GroupName": "rds-launch-wizard-5",
+    "GroupName": "rds-launch-wizard",
+    "GroupName": "rds-launch-wizard-2",
+    "GroupName": "launch-wizard-17",
+    "GroupName": "launch-wizard-5",
+    "GroupName": "launch-wizard-7",
+    "GroupName": "launch-wizard-6",
+    "GroupName": "launch-wizard-1",
+    "GroupName": "rds-launch-wizard-4",
+    "GroupName": "launch-wizard-4",
+    "GroupName": "launch-wizard-2",
+    "GroupName": "launch-wizard-3",
+    etc.
+</pre>
+
