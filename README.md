@@ -34,8 +34,12 @@ aws.security-group:
     etc.    
 </pre>
 
-## iam0users schema
+## iam-user schema
 
 <pre>
-
+(custodian) [ec2-user@ip-10-100-0-195 custodian]$ custodian schema iam-user
+aws.iam-user:
+  actions: [delete, invoke-lambda, notify, put-metric, remove-keys]
+  filters: [access-key, and, credential, event, group, mfa-device, not, or, policy,
+    value]
 </pre>
