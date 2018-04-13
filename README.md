@@ -1,6 +1,6 @@
 # Cloud Custodian Examples
-Cloud Custodian policy that logs unused security groups based on regex
-Cloud Custodian policy that logs iam users based on regex
+1. Cloud Custodian policy that logs unused security groups based on regex <br>
+2. Cloud Custodian policy that logs iam users based on regex
 
 ## Resource(s)
 https://github.com/capitalone/cloud-custodian/pull/379 <br>
@@ -18,7 +18,7 @@ aws.security-group:
     not, or, stale, tag-count, unused, used, value]
 </pre>
 
-## Artifact
+## Unused Security Group Artifact
 
 <pre>
 (custodian) [hostname]$ custodian run --dryrun -s . security-groups-unused.yml
@@ -34,3 +34,8 @@ aws.security-group:
     etc.    
 </pre>
 
+## iam schema
+
+<pre>
+
+</pre>
