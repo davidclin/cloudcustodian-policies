@@ -2,4 +2,8 @@ policies:
    - name: security-groups-unused
      resource: security-group
      filters:
-       - unused
+       - unused 
+       - type: value
+         key: GroupName
+         op: regex
+         value: ".*wiz"
