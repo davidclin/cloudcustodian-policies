@@ -1,8 +1,10 @@
-# cloudcustodian-orphaned-security-groups
-Cloud Custodian policy that logs unused security groups
+# Cloud Custodian Examples
+Cloud Custodian policy that logs unused security groups based on regex
+Cloud Custodian policy that logs iam users based on regex
 
-## Resource
-https://github.com/capitalone/cloud-custodian/pull/379
+## Resource(s)
+https://github.com/capitalone/cloud-custodian/pull/379 <br>
+https://github.com/capitalone/cloud-custodian/issues/1437
 
 ## security-group schema
 
