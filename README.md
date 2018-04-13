@@ -1,6 +1,6 @@
 # Cloud Custodian Examples
-1. Cloud Custodian policy that logs unused security groups based on regex <br>
-2. Cloud Custodian policy that logs iam users based on regex
+1. Cloud Custodian policy that filters unused security groups based on regex <br>
+2. Cloud Custodian policy that filters iam users based on regex
 
 ## Resource(s)
 https://github.com/capitalone/cloud-custodian/pull/379 <br>
@@ -34,7 +34,7 @@ aws.security-group:
     etc.    
 </pre>
 
-## iam schema
+## iam0users schema
 
 <pre>
 
