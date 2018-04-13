@@ -7,7 +7,7 @@ https://github.com/capitalone/cloud-custodian/pull/379
 ## security-group schema
 
 <pre>
-(custodian) [ec2-user@ip-10-100-0-195 custodian]$ custodian schema security-group
+(custodian) [hostname]$ custodian schema security-group
 aws.security-group:
   actions: [auto-tag-user, delete, invoke-lambda, mark, mark-for-op, normalize-tag,
     notify, patch, put-metric, remove-permissions, remove-tag, rename-tag, tag, tag-trim,
