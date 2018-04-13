@@ -1,6 +1,9 @@
 # cloudcustodian-orphaned-security-groups
 Cloud Custodian policy that logs unused security groups
 
+## Resource
+https://github.com/capitalone/cloud-custodian/pull/379
+
 ## Artifact
 
 <pre>
