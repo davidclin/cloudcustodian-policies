@@ -23,15 +23,16 @@ aws.security-group:
 ### iam-user
 
 <pre>
-(custodian) [ec2-user@ip-10-100-0-195 custodian]$ custodian schema iam-user
+(custodian) [hostname]$ custodian schema iam-user
 aws.iam-user:
   actions: [delete, invoke-lambda, notify, put-metric, remove-keys]
   filters: [access-key, and, credential, event, group, mfa-device, not, or, policy,
     value]
 </pre>
 
-## Unused Security Group Artifact
+## Artifacts
 
+### security-groups-unused.yml
 <pre>
 (custodian) [hostname]$ custodian run --dryrun -s . security-groups-unused.yml
 2018-04-13 20:02:01,043: custodian.policy:INFO policy: security-groups-unused resource:security-group region:us-east-1 count:29 time:0.30
@@ -53,3 +54,11 @@ aws.iam-user:
     etc.
 </pre>
 
+### iam.yml
+<pre>
+(custodian) [ec2-user@ip-10-100-0-195 custodian]$ custodian run --dryrun -s . iam.yml
+2018-04-13 22:51:05,472: custodian.policy:INFO policy: iam-user-filter-policy resource:iam-user region:us-east-1 count:1 time:0.01
+
+(custodian) [hostname]$ more ./iam-user-filter-policy/resources.json | grep UserName\"\:
+    "UserName": "david.lin",
+</pre>
