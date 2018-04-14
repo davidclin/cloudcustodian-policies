@@ -2,7 +2,7 @@
 1. **security-groups-unused.yml** : Retrieves unused security groups using regex <br>
 2. **iam.yml**                    : Retrieves iam users using regex <br>
 3. **mfa.yml**                    : Retrieves iam users with MFA enabled <br>
-4. **roles.yml**                  : Retrieves unused roles on EC2, Lambda, and ECS only <br>
+4. **roles.yml**                  : Retrieves unused roles on EC2, Lambda, and ECS <br>
 5. **admin-group.yml**            : Retrieves users in the group named 'Administrators' <br>
 6. **mfa-unused.yml**             : Retrieves users who have MFA disabled in the group named 'Administrators' <br>
 
