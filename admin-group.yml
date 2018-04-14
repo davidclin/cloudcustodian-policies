@@ -1,7 +1,9 @@
 policies:
-   - name: iam-users-in-admin-group
-     resource: iam-user
-     filters:
-       - type: group
-         key: GroupName
-         value: Administrators
+  - name: iam-users-in-admin-group
+    resource: iam-user
+    description: |
+      Retrieve list of IAM users in the group named 'Administrators'.
+    filters:
+      - type: group
+        key: GroupName
+        value: Administrators

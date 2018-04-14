@@ -1,8 +1,10 @@
 policies:
-   - name: iam-user-filter-policy
-     resource: iam-user
-     filters:
-       - type: value
-         key: UserName
-         op: regex
-         value: "david.lin.ctr"
+  - name: iam-user-filter-policy
+    resource: iam-user
+    description: |
+      Retrieve list of IAM users that match regex.
+    filters:
+      - type: value
+        key: UserName
+        op: regex
+        value: "david.lin.ctr"

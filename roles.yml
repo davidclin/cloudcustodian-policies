@@ -1,6 +1,8 @@
 policies:
-   - name: iam-roles-unused
-     resource: iam-role
-     filters:
-       - type: used
-         state: false 
+  - name: iam-roles-unused
+    resource: iam-role
+    description: |
+      Retrieve list of unused roles.
+    filters:
+      - type: used
+        state: false 
