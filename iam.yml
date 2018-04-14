@@ -1,8 +1,8 @@
 policies:
-  - name: iam-user-filter-policy
-    resource: iam-user
-    filters:
-      - type: value
-        key: UserName
-        op: regex
-        value: "david.lin.ctr"
+   - name: iam-user-filter-policy
+     resource: iam-user
+     filters:
+       - type: value
+         key: UserName
+         op: regex
+         value: "david.lin.ctr"

@@ -1,0 +1,10 @@
+policies:
+   - name: mfa-unused
+     resource: iam-user
+     filters:
+       - type: credential 
+         key: mfa_active 
+         value: false 
+       - type: group
+         key: GroupName
+         value: Administrators
