@@ -1,8 +1,9 @@
 # Cloud Custodian Examples
-1. **security-groups-unused.yml** : Policy that filters unused security groups based on regex <br>
-2. **iam.yml**                    : Policy that filters iam users based on regex <br>
-3. **mfa.yml**                    : Policy that filters iam users with MFA enabled <br>
-4. **roles.yml**                  : Policy that filters unused roles on EC2, Lambda, and ECS only <br>
+1. **security-groups-unused.yml** : Policy that retrieves unused security groups based on regex <br>
+2. **iam.yml**                    : Policy that retrieves iam users based on regex <br>
+3. **mfa.yml**                    : Policy that retrieves iam users with MFA enabled <br>
+4. **roles.yml**                  : Policy that retrieves unused roles on EC2, Lambda, and ECS only <br>
+5. **admin_group.yml**            : Policy that retrieves users in the group named 'Administrators' <br>
 
 ## Resource(s)
 https://github.com/capitalone/cloud-custodian/pull/379 <br>
@@ -73,7 +74,7 @@ aws.iam-role:
 2018-04-13 22:51:05,472: custodian.policy:INFO policy: iam-user-filter-policy resource:iam-user region:us-east-1 **count:1** time:0.01
 
 (custodian) [hostname]$ more ./iam-user-filter-policy/resources.json | grep UserName\"\:
-    "UserName": "david.lin.ctr",
+    "UserName": "david.lin",
 </pre>
 
 ### mfa.yml
@@ -82,22 +83,11 @@ aws.iam-role:
 2018-04-13 23:47:40,901: custodian.policy:INFO policy: mfa-user-filter-policy resource:iam-user region:us-east-1 **count:15** time:0.01
 
 (custodian) [hostname]$ more ./mfa-user-filter-policy/resources.json | grep UserName\"\:
-    "UserName": "brandon.winningham",
-    "UserName": "david.lin.ctr",
-    "UserName": "eric.schanberger",
-    "UserName": "jesse.lavigne",
-    "UserName": "jmarcoux",
-    "UserName": "jonathan.voigt",
-    "UserName": "kosta.djukic.ctr",
-    "UserName": "mike.garrison",
-    "UserName": "ngallaher",
-    "UserName": "nikos.michalakis",
-    "UserName": "omar.akkawi",
-    "UserName": "peter.richmond",
-    "UserName": "ramya.ravula.ctr",
-    "UserName": "simon.stent",
-    "UserName": "srikanth.yadav.ctr",
-    etc.
+    "UserName": "username_1",
+    "UserName": "username_2,
+    "UserName": "username_3",
+    "UserName": "username_4",
+     etc.
 </pre>
 
 ### roles.yml
@@ -110,5 +100,18 @@ aws.iam-role:
     "RoleName": "autotag-AutoTagExecutionRole-KA3LH5ARKJ2E",
     "RoleName": "autotag-AutoTagMasterRole-3VSL2AF3480E",
     "RoleName": "AWS-Cloudera-Infrastructu-ClusterLauncherInstanceR-1HUTDQJUYVGVE",
+    etc.
+</pre>
+
+### admin_group.yml
+<pre>
+(custodian) [hostname]$ custodian run --dryrun admin_group.yml -s .
+2018-04-14 07:54:08,198: custodian.policy:INFO policy: iam-users-in-admin-group resource:iam-user region:us-east-1 **count:14** time:3.67
+
+(custodian) [hostname]$ more ./iam-users-in-admin-group/resources.json | grep UserName
+    "UserName": "username_1",
+    "UserName": "username_2",
+    "UserName": "username_3",
+    "UserName": "username_4",
     etc.
 </pre>

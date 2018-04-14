@@ -1,0 +1,7 @@
+policies:
+   - name: iam-users-in-admin-group
+     resource: iam-user
+     filters:
+       - type: group
+         key: GroupName
+         value: Administrators
