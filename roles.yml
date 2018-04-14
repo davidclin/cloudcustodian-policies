@@ -1,0 +1,6 @@
+policies:
+   - name: iam-roles-unused
+     resource: iam-role
+     filters:
+       - type: used
+         state: false 

@@ -1,0 +1,7 @@
+policies:
+  - name: mfa-user-filter-policy
+    resource: iam-user
+    filters:
+      - type: credential 
+        key: mfa_active 
+        value: true 

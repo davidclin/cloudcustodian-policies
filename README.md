@@ -1,6 +1,7 @@
 # Cloud Custodian Examples
-1. Cloud Custodian policy that filters unused security groups based on regex <br>
-2. Cloud Custodian policy that filters iam users based on regex
+1. **security-groups-unused.yml** : Cloud Custodian policy that filters unused security groups based on regex <br>
+2. **iam.yml**                    : Cloud Custodian policy that filters iam users based on regex <br>
+3. **mfa.yml**                    : Cloud Custodian policy that filters iam users with MFA enabled <br>
 
 ## Resource(s)
 https://github.com/capitalone/cloud-custodian/pull/379 <br>
@@ -61,4 +62,27 @@ aws.iam-user:
 
 (custodian) [hostname]$ more ./iam-user-filter-policy/resources.json | grep UserName\"\:
     "UserName": "david.lin",
+</pre>
+
+### mfa.yml
+<pre>
+(custodian) [hostname]$ custodian run --dryrun mfa.yml -s .
+2018-04-13 23:47:40,901: custodian.policy:INFO policy: mfa-user-filter-policy resource:iam-user region:us-east-1 count:15 time:0.01
+
+(custodian) [ec2-user@ip-10-100-0-195 cloudcustodian]$ more ./mfa-user-filter-policy/resources.json | grep UserName\"\:
+    "UserName": "brandon.winningham",
+    "UserName": "david.lin.ctr",
+    "UserName": "eric.schanberger",
+    "UserName": "jesse.lavigne",
+    "UserName": "jmarcoux",
+    "UserName": "jonathan.voigt",
+    "UserName": "kosta.djukic.ctr",
+    "UserName": "mike.garrison",
+    "UserName": "ngallaher",
+    "UserName": "nikos.michalakis",
+    "UserName": "omar.akkawi",
+    "UserName": "peter.richmond",
+    "UserName": "ramya.ravula.ctr",
+    "UserName": "simon.stent",
+    "UserName": "srikanth.yadav.ctr",
 </pre>

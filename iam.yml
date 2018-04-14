@@ -5,4 +5,4 @@ policies:
       - type: value
         key: UserName
         op: regex
-        value: "david.lin"
+        value: "david.lin.ctr"
