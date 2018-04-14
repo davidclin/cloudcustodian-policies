@@ -1,11 +1,12 @@
 # Cloud Custodian Examples
-1. **security-groups-unused.yml** : Cloud Custodian policy that filters unused security groups based on regex <br>
-2. **iam.yml**                    : Cloud Custodian policy that filters iam users based on regex <br>
-3. **mfa.yml**                    : Cloud Custodian policy that filters iam users with MFA enabled <br>
+1. **security-groups-unused.yml** : Policy that filters unused security groups based on regex <br>
+2. **iam.yml**                    : Policy that filters iam users based on regex <br>
+3. **mfa.yml**                    : Policy that filters iam users with MFA enabled <br>
+4. **roles.yml**                  : Policy that filters unused roles on EC2, Lambda, and ECS only <br>
 
 ## Resource(s)
 https://github.com/capitalone/cloud-custodian/pull/379 <br>
-https://github.com/capitalone/cloud-custodian/issues/1437
+https://github.com/capitalone/cloud-custodian/issues/1437 
 
 ## Schemas 
 
@@ -31,15 +32,26 @@ aws.iam-user:
     value]
 </pre>
 
+### iam-role
+
+<pre>
+(custodian) [hostname]$ custodian schema iam-role
+aws.iam-role:
+  actions: [invoke-lambda, notify, put-metric]
+  filters: [and, event, has-inline-policy, has-specific-managed-policy, no-specific-managed-policy,
+    not, or, unused, used, value]
+</pre>
+
+
 ## Artifacts
 
 ### security-groups-unused.yml
 <pre>
 (custodian) [hostname]$ custodian run --dryrun -s . security-groups-unused.yml
-2018-04-13 20:02:01,043: custodian.policy:INFO policy: security-groups-unused resource:security-group region:us-east-1 count:29 time:0.30
+2018-04-13 20:02:01,043: custodian.policy:INFO policy: security-groups-unused resource:security-group region:us-east-1 **count:29** time:0.30
 
 (custodian) [hostname]$ more ./security-groups-unused/resources.json | grep 'GroupName\|GroupId'
-(custodian) [ec2-user@ip-10-100-0-195 custodian]$ more ./security-groups-unused/resources.json | grep GroupName\"\:
+(custodian) [hostname]$ more ./security-groups-unused/resources.json | grep GroupName\"\:
     "GroupName": "rds-launch-wizard-5",
     "GroupName": "rds-launch-wizard",
     "GroupName": "rds-launch-wizard-2",
@@ -58,18 +70,18 @@ aws.iam-user:
 ### iam.yml
 <pre>
 (custodian) [ec2-user@ip-10-100-0-195 custodian]$ custodian run --dryrun -s . iam.yml
-2018-04-13 22:51:05,472: custodian.policy:INFO policy: iam-user-filter-policy resource:iam-user region:us-east-1 count:1 time:0.01
+2018-04-13 22:51:05,472: custodian.policy:INFO policy: iam-user-filter-policy resource:iam-user region:us-east-1 **count:1** time:0.01
 
 (custodian) [hostname]$ more ./iam-user-filter-policy/resources.json | grep UserName\"\:
-    "UserName": "david.lin",
+    "UserName": "david.lin.ctr",
 </pre>
 
 ### mfa.yml
 <pre>
 (custodian) [hostname]$ custodian run --dryrun mfa.yml -s .
-2018-04-13 23:47:40,901: custodian.policy:INFO policy: mfa-user-filter-policy resource:iam-user region:us-east-1 count:15 time:0.01
+2018-04-13 23:47:40,901: custodian.policy:INFO policy: mfa-user-filter-policy resource:iam-user region:us-east-1 **count:15** time:0.01
 
-(custodian) [ec2-user@ip-10-100-0-195 cloudcustodian]$ more ./mfa-user-filter-policy/resources.json | grep UserName\"\:
+(custodian) [hostname]$ more ./mfa-user-filter-policy/resources.json | grep UserName\"\:
     "UserName": "brandon.winningham",
     "UserName": "david.lin.ctr",
     "UserName": "eric.schanberger",
@@ -85,4 +97,18 @@ aws.iam-user:
     "UserName": "ramya.ravula.ctr",
     "UserName": "simon.stent",
     "UserName": "srikanth.yadav.ctr",
+    etc.
+</pre>
+
+### roles.yml
+<pre>
+(custodian) [hostname]$ custodian run --dryrun roles.yml -s .
+2018-04-14 07:11:22,425: custodian.policy:INFO policy: iam-roles-unused resource:iam-role region:us-east-1 **count:55** time:1.92
+
+(custodian) [hostname]$ more ./iam-roles-unused/resources.json | grep RoleName
+    "RoleName": "AmazonSageMaker-ExecutionRole-20180412T161207",
+    "RoleName": "autotag-AutoTagExecutionRole-KA3LH5ARKJ2E",
+    "RoleName": "autotag-AutoTagMasterRole-3VSL2AF3480E",
+    "RoleName": "AWS-Cloudera-Infrastructu-ClusterLauncherInstanceR-1HUTDQJUYVGVE",
+    etc.
 </pre>
