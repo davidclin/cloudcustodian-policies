@@ -1,10 +1,15 @@
 # Cloud Custodian Use Cases
-1. **security-groups-unused.yml** : Retrieves unused security groups using regex <br>
-2. **iam.yml**                    : Retrieves iam users using regex <br>
-3. **mfa.yml**                    : Retrieves iam users with MFA enabled <br>
-4. **roles.yml**                  : Retrieves unused roles on EC2, Lambda, and ECS <br>
-5. **admin-group.yml**            : Retrieves users in the group named 'Administrators' <br>
-6. **mfa-unused.yml**             : Retrieves users who have MFA disabled in the group named 'Administrators' <br>
+**security-groups-unused.yml** : Retrieves unused security groups using regex <br>
+**iam.yml**                    : Retrieves iam users using regex <br>
+**mfa.yml**                    : Retrieves iam users with MFA enabled <br>
+**roles.yml**                  : Retrieves unused roles on EC2, Lambda, and ECS <br>
+**admin-group.yml**            : Retrieves users in the group named 'Administrators' <br>
+**mfa-unused.yml**             : Retrieves users who have MFA disabled in the group named 'Administrators' <br>
+**emailer.yml**                : Sends email notification via Simple Email Service (SES) using notify action<br>
+**security-groups-unused-notify.yml** : Retrieves unused security groups using regex and notifies via email<br>
+
+## Usage Considerations
+*emailer.yml* requires the custodian mailer described [here] (https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_mailer). 
 
 ## Schemas Used
 
