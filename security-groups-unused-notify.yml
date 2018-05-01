@@ -19,9 +19,9 @@ policies:
         priority_header: '5'
         subject: 'CloudCustodian: Unused Security Groups'
         to:
-          - david.lin.ctr@tri.global
+          - email-address-goes-here
         owner_absent_contact:
-          - david.lin.ctr@tri.global
+          - email-address-goes-here
         transport:
           type: sqs
-          queue: https://sqs.us-east-1.amazonaws.com/929292782238/david-lin-ctr-cloudcustodian
+          queue: sqs-url-goes-here
