@@ -1,0 +1,27 @@
+policies:
+  - name: security-groups-unused
+    resource: security-group
+    description: |
+      Retrieve unused security groups using regex.
+      Notify using Simple Email Service (SES).
+      To get a complete list, use value of .*
+      To get a subset, use a regex pattern. 
+    filters:
+      - unused 
+      - type: value
+        key: GroupName
+        op: regex
+        value: .* 
+    actions:
+      - type: notify
+        template: default.html
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'CloudCustodian: Unused Security Groups'
+        to:
+          - david.lin.ctr@tri.global
+        owner_absent_contact:
+          - david.lin.ctr@tri.global
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/929292782238/david-lin-ctr-cloudcustodian
