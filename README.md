@@ -1,3 +1,12 @@
+### Quick Install
+<pre>
+$ virtualenv --python=python2 custodian
+$ source custodian/bin/activate
+(custodian) $ pip install c7n
+</pre>
+
+Cloud Custodian Repo: https://github.com/capitalone/cloud-custodian
+
 # Cloud Custodian Use Cases
 **security-groups-unused.yml** : Retrieves unused security groups using regex <br>
 **iam.yml**                    : Retrieves iam users using regex <br>
