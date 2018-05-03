@@ -16,9 +16,13 @@ Cloud Custodian Repo: https://github.com/capitalone/cloud-custodian
 **mfa-unused.yml**             : Retrieves users who have MFA disabled in the group named 'Administrators' <br>
 **emailer.yml**                : Sends email notification via Simple Email Service (SES) using notify action<br>
 **security-groups-unused-notify.yml** : Retrieves unused security groups using regex and notifies via email<br>
+**ebs-garbage-collection.yml** : Deletes all unattached volumes<br>
 
 ## Usage Considerations
 *emailer.yml* requires the custodian mailer described [here] (https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_mailer). 
+
+*ebs-garbage-collection.yml** can be run across all regions with the --region all option.
+ For example: custodian run --dryrun -s out --region all ebs-garbage-collection.yml
 
 ## Schemas Used
 
