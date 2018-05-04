@@ -28,7 +28,7 @@ $ source custodian/bin/activate
 
 For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalone/cloud-custodian)
 
-# Resources
+# Tickets
 [Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)<br>
 [Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)<br>
 [Using ec2-instance-state, lessons around roles, how to view lambda logs, and more](https://github.com/capitalone/cloud-custodian/issues/2321)<br>
