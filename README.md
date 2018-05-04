@@ -1,12 +1,12 @@
 # Cloud Custodian Use Cases
 **security-groups-unused.yml** : Retrieves unused security groups using regex <br>
+**security-groups-unused-notify.yml** : Retrieves unused security groups using regex and notifies via email<br>
 **iam.yml**                    : Retrieves iam users using regex <br>
 **mfa.yml**                    : Retrieves iam users with MFA enabled <br>
 **roles.yml**                  : Retrieves unused roles on EC2, Lambda, and ECS <br>
 **admin-group.yml**            : Retrieves users in the group named 'Administrators' <br>
 **mfa-unused.yml**             : Retrieves users who have MFA disabled in the group named 'Administrators' <br>
 **emailer.yml**                : Sends email notification via Simple Email Service (SES) using notify action<br>
-**security-groups-unused-notify.yml** : Retrieves unused security groups using regex and notifies via email<br>
 **ebs-garbage-collection.yml** : Deletes all unattached volumes<br>
 **public-subnet-instance-audit-notify.yml** : Sends email notification via SES when EC2 instance launches in a public subnet<br>
 
