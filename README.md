@@ -1,12 +1,3 @@
-# Quick Install
-<pre>
-$ virtualenv --python=python2 custodian
-$ source custodian/bin/activate
-(custodian) $ pip install c7n
-</pre>
-
-Cloud Custodian Repo: https://github.com/capitalone/cloud-custodian
-
 # Cloud Custodian Use Cases
 **security-groups-unused.yml** : Retrieves unused security groups using regex <br>
 **iam.yml**                    : Retrieves iam users using regex <br>
@@ -24,6 +15,15 @@ Cloud Custodian Repo: https://github.com/capitalone/cloud-custodian
 
 *ebs-garbage-collection.yml** can be run across all regions with the --region all option.
  For example: custodian run --dryrun -s out --region all ebs-garbage-collection.yml
+
+# Quick Install
+<pre>
+$ virtualenv --python=python2 custodian
+$ source custodian/bin/activate
+(custodian) $ pip install c7n
+</pre>
+
+Cloud Custodian Repo: https://github.com/capitalone/cloud-custodian
 
 ## Schemas Used
 
