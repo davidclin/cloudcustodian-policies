@@ -16,8 +16,12 @@
 # Usage Considerations
 *emailer.yml* requires the custodian mailer described [here](https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_mailer). 
 
-*ebs-garbage-collection.yml* can be run across all regions with the --region all option.
- For example: custodian run --dryrun -s out --region all ebs-garbage-collection.yml
+*ebs-garbage-collection.yml* can be run across all regions with the --region all option.<br>
+ For example: <br>
+ 
+```
+ custodian run --dryrun -s out --region all ebs-garbage-collection.yml
+```
 
 # Quick Install
 <pre>
