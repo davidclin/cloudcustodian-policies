@@ -1,4 +1,4 @@
-### Quick Install
+# Quick Install
 <pre>
 $ virtualenv --python=python2 custodian
 $ source custodian/bin/activate
@@ -17,6 +17,7 @@ Cloud Custodian Repo: https://github.com/capitalone/cloud-custodian
 **emailer.yml**                : Sends email notification via Simple Email Service (SES) using notify action<br>
 **security-groups-unused-notify.yml** : Retrieves unused security groups using regex and notifies via email<br>
 **ebs-garbage-collection.yml** : Deletes all unattached volumes<br>
+**public-subnet-instance-audit-notify.yml** : Sends email notification via SES when EC2 instance launches in a public subnet<br>
 
 ## Usage Considerations
 *emailer.yml* requires the custodian mailer described [here] (https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_mailer). 
@@ -139,4 +140,10 @@ aws.iam-role:
 (custodian) [ec2-user@ip-10-100-0-195 custodian]$ more ./mfa-unused/resources.json | grep UserName
     "UserName": "username_1",
     "UserName": "username_2"
+</pre>
+
+### public-subnet-instance-audit-notify.yml
+<pre>
+(custodian) $ custodian run -s . public-subnet-instance-audit-notify.yml
+2018-05-04 01:07:56,937: custodian.policy:INFO Provisioning policy lambda public-subnet-instance-audit-notification
 </pre>
