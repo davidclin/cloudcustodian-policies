@@ -10,13 +10,13 @@
 **ebs-garbage-collection.yml** : Deletes all unattached volumes<br>
 **public-subnet-instance-audit-notify.yml** : Sends email notification via SES when EC2 instance launches in a public subnet<br>
 
-## Cloud Custodian Architecture and AWS Services
+# Cloud Custodian Architecture and AWS Services
 See high level [diagram](http://capitalone.github.io/cloud-custodian/docs/_images/singlenodedeploy.png)
 
-## Usage Considerations
-*emailer.yml* requires the custodian mailer described [here] (https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_mailer). 
+# Usage Considerations
+*emailer.yml* requires the custodian mailer described [here](https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_mailer). 
 
-*ebs-garbage-collection.yml** can be run across all regions with the --region all option.
+*ebs-garbage-collection.yml* can be run across all regions with the --region all option.
  For example: custodian run --dryrun -s out --region all ebs-garbage-collection.yml
 
 # Quick Install
@@ -150,3 +150,8 @@ aws.iam-role:
 (custodian) $ custodian run -s . public-subnet-instance-audit-notify.yml
 2018-05-04 01:07:56,937: custodian.policy:INFO Provisioning policy lambda public-subnet-instance-audit-notification
 </pre>
+
+
+# Useful Links
+[Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)
+[Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)
