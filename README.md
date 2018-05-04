@@ -10,6 +10,9 @@
 **ebs-garbage-collection.yml** : Deletes all unattached volumes<br>
 **public-subnet-instance-audit-notify.yml** : Sends email notification via SES when EC2 instance launches in a public subnet<br>
 
+## Cloud Custodian Architecture and AWS Services
+See high level [diagram](http://capitalone.github.io/cloud-custodian/docs/_images/singlenodedeploy.png)
+
 ## Usage Considerations
 *emailer.yml* requires the custodian mailer described [here] (https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_mailer). 
 
