@@ -23,7 +23,7 @@ $ source custodian/bin/activate
 (custodian) $ pip install c7n
 </pre>
 
-For more info: https://github.com/capitalone/cloud-custodian
+For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalone/cloud-custodian)
 
 ## Schemas Used
 
