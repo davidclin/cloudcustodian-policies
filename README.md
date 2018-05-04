@@ -28,6 +28,10 @@ $ source custodian/bin/activate
 
 For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalone/cloud-custodian)
 
+# Resources
+[Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)
+[Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)
+
 ## Schemas Used
 
 ### security-group
@@ -150,8 +154,3 @@ aws.iam-role:
 (custodian) $ custodian run -s . public-subnet-instance-audit-notify.yml
 2018-05-04 01:07:56,937: custodian.policy:INFO Provisioning policy lambda public-subnet-instance-audit-notification
 </pre>
-
-
-# Useful Links
-[Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)
-[Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)
