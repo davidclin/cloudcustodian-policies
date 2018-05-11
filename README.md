@@ -36,7 +36,7 @@ $ cd cloud-custodian/tools/c7n_mailer
 $ pip install -r requirements.txt
 
 *** Install the extensions ***
-python setup.py develop
+$ python setup.py develop
 ```
 
 For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalone/cloud-custodian)
