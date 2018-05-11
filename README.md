@@ -25,11 +25,19 @@
 ```
 
 # Quick Install
-<pre>
-$ virtualenv --python=python2 custodian (or try $virtualenv custodian)
-$ source custodian/bin/activate
-(custodian) $ pip install c7n
-</pre>
+```
+*** Install repository***
+$ git clone https://github.com/capitalone/cloud-custodian
+
+*** Install dependencies (with virtualenv) ***
+$ virtualenv c7n_mailer
+$ source c7n_mailer/bin/activate
+$ cd tools/c7n_mailer
+$ pip install -r requirements.txt
+
+*** Install the extensions ***
+python setup.py develop
+```
 
 For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalone/cloud-custodian)
 
