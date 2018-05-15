@@ -9,22 +9,41 @@
 **emailer.yml**                : Sends email notification via Simple Email Service (SES) using notify action<br>
 **ebs-garbage-collection.yml** : Deletes all unattached volumes<br>
 **public-subnet-instance-audit-notify.yml** : Sends email notification via SES when EC2 instance launches in a public subnet<br>
+**public-subnet-instance-audit-whitelist.yml** : Lambda that sends email notification via SES when EC2 instance launches in a public subnet and is NOT in the whitelist
 
 # Cloud Custodian Architecture and AWS Services
-See high level [diagram](http://capitalone.github.io/cloud-custodian/docs/_images/singlenodedeploy.png)
+![](./images/singlenodedeploy.png)
 
 # Usage Considerations
 *emailer.yml* requires the custodian mailer described [here](https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_mailer). 
 
-*ebs-garbage-collection.yml* can be run across all regions with the --region all option.
- For example: custodian run --dryrun -s out --region all ebs-garbage-collection.yml
+*ebs-garbage-collection.yml* can be run across all regions with the --region all option.<p>
+ 
+ For example: <br>
+ 
+```
+ custodian run --dryrun -s out --region all ebs-garbage-collection.yml
+```
 
 # Quick Install
-<pre>
-$ virtualenv --python=python2 custodian
-$ source custodian/bin/activate
-(custodian) $ pip install c7n
-</pre>
+```
+*** Install repository***
+$ git clone https://github.com/capitalone/cloud-custodian
+
+*** Install dependencies (with virtualenv) ***
+$ virtualenv c7n_mailer
+$ source c7n_mailer/bin/activate
+$ cd cloud-custodian/tools/c7n_mailer
+$ pip install -r requirements.txt
+
+*** Install the extensions ***
+$ python setup.py develop
+
+*** Verify Installation ***
+$ c7n-mailer
+$ custodian
+
+```
 
 For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalone/cloud-custodian)
 
