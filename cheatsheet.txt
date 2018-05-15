@@ -43,7 +43,6 @@ $ cd tools/c7n_mailer
 $ pip install -r requirements.txt
 $ python setup.py develop
 
-<<<<<<< HEAD
 ==============================
 Deleting Cloud Custodian Cache
 ==============================
