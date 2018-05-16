@@ -300,7 +300,7 @@ Check role for lambda(s) have adequate permissions<br>
 Remember to update the cloud-custodian-mailer lambda when making changes to a policy that uses notifications<br>
 Clear the cache if you encounter errors due to stale information (rm ~/.cache/cloud-custodian.cache)
 
-# Useful Resources
+# Resources
 [Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)<br>
 [Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)<br>
 [Using ec2-instance-state, lessons around roles, how to view lambda logs, and more](https://github.com/capitalone/cloud-custodian/issues/2321)<br>
