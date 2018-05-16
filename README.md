@@ -56,9 +56,10 @@ For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalo
 # Troubleshooting Tips
 Use 'custodian validate' to find syntax errors<br>
 Check 'name' of policy doesn't contain spaces<br>
-Check SQS to see if Custodian payload are entering the queue<br>
+Check SQS to see if Custodian payload is entering the queue<br>
 Check cloud-custodian-mailer lambda CloudWatch rule schedule (5 minute by default)<br>
 Check Lambda error logs (this requires CloudWatch logging)<br>
+Check role for lambda(s) have adequate permissions
 Remember to update the cloud-custodian-mailer lambda when making changes to a policy that uses notifications<br>
 
 
