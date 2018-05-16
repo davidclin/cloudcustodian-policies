@@ -16,7 +16,6 @@
 # Cloud Custodian Architecture and AWS Services
 <img src="./images/singlenodedeploy.png" width="550">
 
-
 # Getting Started
 <details>
 <summary>Quick Install</summary>
@@ -47,11 +46,36 @@ For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalo
 2018-05-04 01:07:56,937: custodian.policy:INFO Provisioning policy lambda public-subnet-instance-audit-notification
 </pre>
 
-# Lambda Role 
+# Environment Settings
 <details>
-<summary>Permissions</summary>
+<summary>mailer.yml</summary>
+
+<pre>
+# Which queue should we listen to for messages
+queue_url: https://sqs.us-east-1.amazonaws.com/1234567890/sandbox
+
+# Default from address
+from_address: email@address.com
+
+# Tags that we should look at for address infomation
+contact_tags:
+  - OwnerContact
+  - OwnerEmail
+  - SNSTopicARN
+
+# Standard Lambda Function Config
+region: us-east-1
+role: arn:aws:iam::1234567890:role/CloudCustodianRole
+slack_token: xoxb-bot_token_string_goes_here
+</pre>
+</details>
+
+<details>
+<summary>Cloud Custodian Lambda AWS Role</summary>
  
 <pre>
+Note: Based on your use case, additional permissions may be needed. Cloud Custodian will generate a msg if that is the case after invocation.
+
 Trust relationship:
 "Service": "lambda.amazonaws.com"
 
@@ -76,8 +100,6 @@ events:ListTargetsByRule
 tag:GetResources
 cloudwatch:CreateLogGroup
 cloudwatch:CreateLogStream
-
-Note: Based on your use case, additional permissions may be needed. Cloud Custodian will generate a msg if that is the case after invocation.
 </pre>
 </details>
 
