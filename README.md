@@ -153,7 +153,7 @@ aws.ec2:
 </pre>
 </details>
 
-## Artifacts
+# Artifacts
 <details>
 <summary>security-groups-unused.yml</summary>
 
