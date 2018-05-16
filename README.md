@@ -54,12 +54,12 @@ For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalo
 [How does garbage collection get enforced?](https://github.com/capitalone/cloud-custodian/issues/2384)<br>
 
 # Troubleshooting Tips
-Use 'custodian validate' to find syntax errors
-Check 'name' of policy doesn't contain spaces
-Check SQS to see if Custodian payload are entering the queue
-Check cloud-custodian-mailer lambda CloudWatch rule schedule (5 minute by default)
-Check Lambda error logs (this requires CloudWatch logging)
-Remember to update the cloud-custodian-mailer lambda when making changes to a policy that uses notifications
+Use 'custodian validate' to find syntax errors<br>
+Check 'name' of policy doesn't contain spaces<br>
+Check SQS to see if Custodian payload are entering the queue<br>
+Check cloud-custodian-mailer lambda CloudWatch rule schedule (5 minute by default)<br>
+Check Lambda error logs (this requires CloudWatch logging)<br>
+Remember to update the cloud-custodian-mailer lambda when making changes to a policy that uses notifications<br>
 
 
 ## Schemas Used
