@@ -53,6 +53,40 @@ For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalo
 [Using ec2-instance-state, lessons around roles, how to view lambda logs, and more](https://github.com/capitalone/cloud-custodian/issues/2321)<br>
 [How does garbage collection get enforced?](https://github.com/capitalone/cloud-custodian/issues/2384)<br>
 
+
+# cloud-custodian-mailer Lambda Role 
+<details>
+ <summary>Permissions</summary>
+<pre>
+Trust relationship:
+"Service": "lambda.amazonaws.com"
+
+General policy permissions:
+iam:PassRole
+iam:ListAccountAliases
+iam:ListUsers
+iam:GetCredentialReport
+ses:SendEmail
+ses:SendRawEmail
+lambda:CreateFunction
+lambda:ListTags
+lambda:GetFunction
+lambda:AddPermission
+lambda:ListFunctions
+lambda:UpdateFunctionCode
+events:DescribeRule
+events:PutRule
+events:ListTargetsByRule
+events:PutTargets
+events:ListTargetsByRule
+tag:GetResources
+cloudwatch:CreateLogGroup
+cloudwatch:CreateLogStream
+
+Note: Based on your use case, additional permissions may be needed. Cloud Custodian will generate a msg if that is the case after invocation.
+<pre>
+</details>
+ 
 # Troubleshooting Tips
 Use 'custodian validate' to find syntax errors<br>
 Check 'name' of policy doesn't contain spaces<br>
