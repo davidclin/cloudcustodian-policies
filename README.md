@@ -154,8 +154,9 @@ aws.ec2:
 </details>
 
 ## Artifacts
+<details>
+<summary>security-groups-unused.yml</summary>
 
-### security-groups-unused.yml
 <pre>
 (custodian) [hostname]$ custodian run --dryrun -s . security-groups-unused.yml
 2018-04-13 20:02:01,043: custodian.policy:INFO policy: security-groups-unused resource:security-group region:us-east-1 count:29 time:0.30
@@ -176,8 +177,11 @@ aws.ec2:
     "GroupName": "launch-wizard-3",
     etc.
 </pre>
+</details>
 
-### iam.yml
+<details>
+<summary>iam.yml</summary>
+
 <pre>
 (custodian) [ec2-user@ip-10-100-0-195 custodian]$ custodian run --dryrun -s . iam.yml
 2018-04-13 22:51:05,472: custodian.policy:INFO policy: iam-user-filter-policy resource:iam-user region:us-east-1 count:1 time:0.01
@@ -185,8 +189,11 @@ aws.ec2:
 (custodian) [hostname]$ more ./iam-user-filter-policy/resources.json | grep UserName\"\:
     "UserName": "david.lin",
 </pre>
+</details>
 
-### mfa.yml
+<details>
+<summary>mfa.yml</summary>
+
 <pre>
 (custodian) [hostname]$ custodian run --dryrun mfa.yml -s .
 2018-04-13 23:47:40,901: custodian.policy:INFO policy: mfa-user-filter-policy resource:iam-user region:us-east-1 count:15 time:0.01
@@ -198,8 +205,11 @@ aws.ec2:
     "UserName": "username_4",
      etc.
 </pre>
+</details>
 
-### roles.yml
+<details>
+<summary>roles.yml</summary>
+
 <pre>
 (custodian) [hostname]$ custodian run --dryrun roles.yml -s .
 2018-04-14 07:11:22,425: custodian.policy:INFO policy: iam-roles-unused resource:iam-role region:us-east-1 count:55 time:1.92
@@ -211,8 +221,11 @@ aws.ec2:
     "RoleName": "AWS-Cloudera-Infrastructu-ClusterLauncherInstanceR-1HUTDQJUYVGVE",
     etc.
 </pre>
+</details>
 
-### admin-group.yml
+<details>
+<summary>admin-group.yml</summary>
+
 <pre>
 (custodian) [hostname]$ custodian run --dryrun admin_group.yml -s .
 2018-04-14 07:54:08,198: custodian.policy:INFO policy: iam-users-in-admin-group resource:iam-user region:us-east-1 count:14 time:3.67
@@ -224,8 +237,11 @@ aws.ec2:
     "UserName": "username_4",
     etc.
 </pre>
+</details>
 
-### mfa-unused.yml
+<details>
+<summary>mfa-unused.yml</summary>
+
 <pre>
 (custodian) [hostname]$ custodian run --dryrun mfa-unused.yml -s .
 2018-04-14 08:13:07,214: custodian.policy:INFO policy: mfa-unused resource:iam-user region:us-east-1 count:2 time:2.54
@@ -234,12 +250,26 @@ aws.ec2:
     "UserName": "username_1",
     "UserName": "username_2"
 </pre>
+</details>
 
-### public-subnet-instance-audit-notify.yml
+<details>
+<summary>emailer.yml</summary>
+
+<pre>
+(custodian) [hostname]$ custodian run -s . emailer.yml
+2018-04-23 22:25:12,614: custodian.policy:INFO policy: mfa-unused resource:iam-user region:us-east-1 count:2 time:8.41
+2018-04-23 22:25:12,812: custodian.actions:INFO sent message:71ba67dd-731a-4734-bf63-15991754249e policy:mfa-unused template:default.html count:2
+2018-04-23 22:25:12,813: custodian.policy:INFO policy: mfa-unused action: notify resources: 2 execution_time: 0.20
+</pre>
+</details>
+
+<details>
+<summary>public-subnet-instance-audit-notify.yml</summary>
 <pre>
 (custodian) $ custodian run -s . public-subnet-instance-audit-notify.yml
 2018-05-04 01:07:56,937: custodian.policy:INFO Provisioning policy lambda public-subnet-instance-audit-notification
 </pre>
+</details>
 
 # Usage Considerations
 <details>
