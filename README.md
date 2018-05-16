@@ -98,9 +98,9 @@ cloudwatch:CreateLogStream
 </pre>
 </details>
 
-## Schemas Used
-
-### security-group
+# Schemas Used
+<details>
+<summary>security-group</summary>
 
 <pre>
 (custodian) [hostname]$ custodian schema security-group
@@ -111,8 +111,10 @@ aws.security-group:
   filters: [and, default-vpc, diff, egress, event, ingress, json-diff, locked, marked-for-op,
     not, or, stale, tag-count, unused, used, value]
 </pre>
+</details>
 
-### iam-user
+<details>
+<summary>iam-user</summary>
 
 <pre>
 (custodian) [hostname]$ custodian schema iam-user
@@ -121,8 +123,10 @@ aws.iam-user:
   filters: [access-key, and, credential, event, group, mfa-device, not, or, policy,
     value]
 </pre>
+</details>
 
-### iam-role
+<details>
+<summary>iam-role</summary>
 
 <pre>
 (custodian) [hostname]$ custodian schema iam-role
@@ -131,7 +135,23 @@ aws.iam-role:
   filters: [and, event, has-inline-policy, has-specific-managed-policy, no-specific-managed-policy,
     not, or, unused, used, value]
 </pre>
+</details>
 
+<details>
+<summary>ec2</summary>
+<pre>
+
+(custodian) [hostname]$ custodian schema ec2
+aws.ec2:
+  actions: [auto-tag-user, autorecover-alarm, invoke-lambda, mark, mark-for-op, modify-security-groups,
+    normalize-tag, notify, put-metric, reboot, remove-tag, rename-tag, resize, set-instance-profile,
+    snapshot, start, stop, tag, tag-trim, terminate, unmark, untag]
+  filters: [and, default-vpc, ebs, ephemeral, event, health-event, image, image-age,
+    instance-age, instance-uptime, marked-for-op, metrics, network-location, not,
+    offhour, onhour, or, security-group, singleton, state-age, subnet, tag-count,
+    termination-protected, value]
+</pre>
+</details>
 
 ## Artifacts
 
