@@ -3,30 +3,32 @@ policies:
     resource: ec2
     mode:
       type: ec2-instance-state
-      role: arn:aws:iam::485020822820:role/CloudCustodianRole
+      role: arn:aws:iam::1234567890:role/CloudCustodianRole
       events:
         - pending
     filters:
       - not:
           - type: value
             key: "tag:Name"
-            value: (watson|sherlock|jenkins.*)
+            value: (Instance_Name_1|Instance_Name_2)
             op: regex
       - and:
         - type: subnet 
           key: "tag:Name"
-          value: "david.lin.ctr-public-subnet" 
+          value: "PublicSubnet" 
     actions:
       - terminate 
       - type: notify
-        template: default.html
+        template: ec2-public-whitelist.html
+        slack_template: slack_ec2-public-whitelist
         template_format: 'html'
         priority_header: '5'
         subject: 'Cloud Custodian: EC2 Instance Launched in Public Subnet'
         to:
-          - david.lin.ctr@tri.global
+          - email@address.com 
+          - slack://#slack-channel-goes-here
         owner_absent_contact:
-          - david.lin.ctr@tri.global
+          - email@address.com
         transport:
           type: sqs
-          queue: https://sqs.us-east-1.amazonaws.com/485020822820/david-lin-ctr-iesandbox-cloudcustodian
+          queue: https://sqs.us-east-1.amazonaws.com/1234567890/sandbox
