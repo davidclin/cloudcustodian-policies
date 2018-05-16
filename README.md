@@ -9,7 +9,7 @@
 **emailer.yml**                : Sends email notification via Simple Email Service (SES) using notify action<br>
 **ebs-garbage-collection.yml** : Deletes all unattached volumes<br>
 **public-subnet-instance-audit-notify.yml** : Sends email notification via SES when EC2 instance launches in a public subnet<br>
-**public-subnet-instance-audit-whitelist.yml** : Lambda that sends email notification via SES when EC2 instance launches in a public subnet and is NOT in the whitelist
+**public-subnet-instance-audit-whitelist.yml** : Lambda that sends email notification via SES when EC2 instance launches in a public subnet and is NOT in the whitelist<br>
 **mark-unused-sgroups.yml** : Mark unused security groups for deletion after N days ; to be used with delete-marked-sgroups.yml<br>
 **delete-marked-sgroups.yml**: Unmarks used security groups that were marked for deletion then deletes remaining marked security<br>
 
