@@ -53,6 +53,16 @@ For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalo
 [Using ec2-instance-state, lessons around roles, how to view lambda logs, and more](https://github.com/capitalone/cloud-custodian/issues/2321)<br>
 [How does garbage collection get enforced?](https://github.com/capitalone/cloud-custodian/issues/2384)<br>
 
+# Troubleshooting Tips
+Use 'custodian validate' to find syntax errors<br>
+Check 'name' of policy doesn't contain spaces<br>
+Check SQS to see if Custodian payload is entering the queue<br>
+Check cloud-custodian-mailer lambda CloudWatch rule schedule (5 minute by default)<br>
+Check Lambda error logs (this requires CloudWatch logging)<br>
+Check role for lambda(s) have adequate permissions
+Remember to update the cloud-custodian-mailer lambda when making changes to a policy that uses notifications<br>
+
+
 ## Schemas Used
 
 ### security-group
