@@ -10,22 +10,17 @@
 **ebs-garbage-collection.yml** : Deletes all unattached volumes<br>
 **public-subnet-instance-audit-notify.yml** : Sends email notification via SES when EC2 instance launches in a public subnet<br>
 **public-subnet-instance-audit-whitelist.yml** : Lambda that sends email notification via SES when EC2 instance launches in a public subnet and is NOT in the whitelist
+**mark-unused-sgroups.yml** : Mark unused security groups for deletion after N days ; to be used with delete-marked-sgroups.yml<br>
+**delete-marked-sgroups.yml**: Unmarks used security groups that were marked for deletion then deletes remaining marked security<br>
 
 # Cloud Custodian Architecture and AWS Services
 <img src="./images/singlenodedeploy.png" width="550">
 
-# Usage Considerations
-*emailer.yml* requires the custodian mailer described [here](https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_mailer). 
 
-*ebs-garbage-collection.yml* can be run across all regions with the --region all option.<p>
- 
- For example: <br>
- 
-```
- custodian run --dryrun -s out --region all ebs-garbage-collection.yml
-```
+# Getting Started
+<details>
+<summary>Quick Install</summary>
 
-# Quick Install
 ```
 *** Install repository***
 $ git clone https://github.com/capitalone/cloud-custodian
@@ -36,16 +31,15 @@ $ source c7n_mailer/bin/activate
 $ cd cloud-custodian/tools/c7n_mailer
 $ pip install -r requirements.txt
 
-*** Install the extensions ***
+*** Install extensions ***
 $ python setup.py develop
 
 *** Verify Installation ***
 $ c7n-mailer
 $ custodian
-
 ```
-
 For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalone/cloud-custodian)
+</details>
 
 ### public-subnet-instance-audit-notify.yml
 <pre>
@@ -86,13 +80,6 @@ cloudwatch:CreateLogStream
 Note: Based on your use case, additional permissions may be needed. Cloud Custodian will generate a msg if that is the case after invocation.
 </pre>
 </details>
-
-# Tickets
-[Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)<br>
-[Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)<br>
-[Using ec2-instance-state, lessons around roles, how to view lambda logs, and more](https://github.com/capitalone/cloud-custodian/issues/2321)<br>
-[How does garbage collection get enforced?](https://github.com/capitalone/cloud-custodian/issues/2384)<br>
-
 
 # Troubleshooting Tips
 Use 'custodian validate' to find syntax errors<br>
@@ -226,3 +213,29 @@ aws.iam-role:
 (custodian) $ custodian run -s . public-subnet-instance-audit-notify.yml
 2018-05-04 01:07:56,937: custodian.policy:INFO Provisioning policy lambda public-subnet-instance-audit-notification
 </pre>
+
+# Usage Considerations
+<details>
+<summary>Work in Progress</summary>
+
+*copy-tag* and *tag-team* policies require addtional enhancements that were added to c7n/tags.py.
+A modified version that tracks these changes can be found [here](https://github.com/capitalone/cloud-custodian/compare/master...mikegarrison:master).
+
+*emailer.yml* requires the custodian mailer described [here](https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_mailer). 
+
+*ebs-garbage-collection.yml* can be run across all regions with the --region all option.<p>
+ 
+ For example: <br>
+ 
+```
+ custodian run --dryrun -s out --region all ebs-garbage-collection.yml
+```
+</details>
+
+# Useful Resources
+[Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)<br>
+[Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)<br>
+[Using ec2-instance-state, lessons around roles, how to view lambda logs, and more](https://github.com/capitalone/cloud-custodian/issues/2321)<br>
+[How does garbage collection get enforced?](https://github.com/capitalone/cloud-custodian/issues/2384)<br>
+
+
