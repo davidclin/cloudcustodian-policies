@@ -12,6 +12,7 @@
 **public-subnet-instance-audit-whitelist.yml** : Lambda that sends email notification via SES when EC2 instance launches in a public subnet and is NOT in the whitelist<br>
 **mark-unused-sgroups.yml** : Mark unused security groups for deletion after N days ; to be used with delete-marked-sgroups.yml<br>
 **delete-marked-sgroups.yml**: Unmarks used security groups that were marked for deletion then deletes remaining marked security<br>
+**slack-notify.yml**: Slack example<br>
 
 # Cloud Custodian Architecture and AWS Services
 <img src="./images/singlenodedeploy.png" width="550">
