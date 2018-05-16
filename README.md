@@ -103,16 +103,6 @@ cloudwatch:CreateLogStream
 </pre>
 </details>
 
-# Troubleshooting Tips
-Use 'custodian validate' to find syntax errors<br>
-Check 'name' of policy doesn't contain spaces<br>
-Check SQS to see if Custodian payload is entering the queue<br>
-Check cloud-custodian-mailer lambda CloudWatch rule schedule (5 minute by default)<br>
-Check Lambda error logs (this requires CloudWatch logging)<br>
-Check role for lambda(s) have adequate permissions
-Remember to update the cloud-custodian-mailer lambda when making changes to a policy that uses notifications<br>
-
-
 ## Schemas Used
 
 ### security-group
@@ -253,6 +243,16 @@ A modified version that tracks these changes can be found [here](https://github.
  custodian run --dryrun -s out --region all ebs-garbage-collection.yml
 ```
 </details>
+
+# Troubleshooting Tips
+Use 'custodian validate' to find syntax errors<br>
+Check 'name' of policy doesn't contain spaces<br>
+Check SQS to see if Custodian payload is entering the queue<br>
+Check cloud-custodian-mailer lambda CloudWatch rule schedule (5 minute by default)<br>
+Check Lambda error logs (this requires CloudWatch logging)<br>
+Check role for lambda(s) have adequate permissions<br>
+Remember to update the cloud-custodian-mailer lambda when making changes to a policy that uses notifications<br>
+Clear the cache if you encounter errors due to stale information (rm ~/.cache/cloud-custodian.cache)
 
 # Useful Resources
 [Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)<br>
