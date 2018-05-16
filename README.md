@@ -12,7 +12,7 @@
 **public-subnet-instance-audit-whitelist.yml** : Lambda that sends email notification via SES when EC2 instance launches in a public subnet and is NOT in the whitelist
 
 # Cloud Custodian Architecture and AWS Services
-![](./images/singlenodedeploy.png)
+<img src="./images/singlenodedeploy.png" width="550">
 
 # Usage Considerations
 *emailer.yml* requires the custodian mailer described [here](https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_mailer). 
