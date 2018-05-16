@@ -40,11 +40,6 @@ $ custodian
 For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalone/cloud-custodian)
 </details>
 
-### public-subnet-instance-audit-notify.yml
-<pre>
-(custodian) $ custodian run -s . public-subnet-instance-audit-notify.yml
-2018-05-04 01:07:56,937: custodian.policy:INFO Provisioning policy lambda public-subnet-instance-audit-notification
-</pre>
 
 # Environment Settings
 <details>
