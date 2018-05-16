@@ -47,6 +47,46 @@ $ custodian
 
 For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalone/cloud-custodian)
 
+### public-subnet-instance-audit-notify.yml
+<pre>
+(custodian) $ custodian run -s . public-subnet-instance-audit-notify.yml
+2018-05-04 01:07:56,937: custodian.policy:INFO Provisioning policy lambda public-subnet-instance-audit-notification
+</pre>
+
+# Lambda Role 
+<details>
+<summary>Permissions</summary>
+ 
+<pre>
+Trust relationship:
+"Service": "lambda.amazonaws.com"
+
+General policy permissions:
+iam:PassRole
+iam:ListAccountAliases
+iam:ListUsers
+iam:GetCredentialReport
+ses:SendEmail
+ses:SendRawEmail
+lambda:CreateFunction
+lambda:ListTags
+lambda:GetFunction
+lambda:AddPermission
+lambda:ListFunctions
+lambda:UpdateFunctionCode
+events:DescribeRule
+events:PutRule
+events:ListTargetsByRule
+events:PutTargets
+events:ListTargetsByRule
+tag:GetResources
+cloudwatch:CreateLogGroup
+cloudwatch:CreateLogStream
+
+Note: Based on your use case, additional permissions may be needed. Cloud Custodian will generate a msg if that is the case after invocation.
+</pre>
+</details>
+
 # Tickets
 [Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)<br>
 [Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)<br>
@@ -186,36 +226,3 @@ aws.iam-role:
 (custodian) $ custodian run -s . public-subnet-instance-audit-notify.yml
 2018-05-04 01:07:56,937: custodian.policy:INFO Provisioning policy lambda public-subnet-instance-audit-notification
 </pre>
-
-# cloud-custodian-mailer Lambda Role 
-<details>
-<summary>Permissions</summary>
-<pre>
-Trust relationship:
-"Service": "lambda.amazonaws.com"
-
-General policy permissions:
-iam:PassRole
-iam:ListAccountAliases
-iam:ListUsers
-iam:GetCredentialReport
-ses:SendEmail
-ses:SendRawEmail
-lambda:CreateFunction
-lambda:ListTags
-lambda:GetFunction
-lambda:AddPermission
-lambda:ListFunctions
-lambda:UpdateFunctionCode
-events:DescribeRule
-events:PutRule
-events:ListTargetsByRule
-events:PutTargets
-events:ListTargetsByRule
-tag:GetResources
-cloudwatch:CreateLogGroup
-cloudwatch:CreateLogStream
-
-Note: Based on your use case, additional permissions may be needed. Cloud Custodian will generate a msg if that is the case after invocation.
-</pre>
-</details>
