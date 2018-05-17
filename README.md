@@ -73,7 +73,8 @@ slack_token: xoxb-bot_token_string_goes_here
 <summary>Cloud Custodian Lambda AWS Role</summary>
  
 <pre>
-Note: Based on your use case, additional permissions may be needed. Cloud Custodian will generate a msg if that is the case after invocation.
+Note: Based on your use case, additional permissions may be needed. 
+Cloud Custodian will generate a msg if that is the case after invocation.
 
 Trust relationship:
 "Service": "lambda.amazonaws.com"
