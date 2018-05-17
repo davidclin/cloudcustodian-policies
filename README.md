@@ -16,6 +16,7 @@
 | [mark-unused-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mark-unused-sgroups.yml) | Mark unused security groups for deletion after N days ; to be used with delete-marked-sgroups.yml |
 | [delete-marked-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/delete-marked-sgroups.yml) | Unmarks used security groups that were marked for deletion then deletes remaining marked security |
 | [slack-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/slack-notify.yml) | Slack example |
+| [offhours.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/offhours.yml) | Offhours policy using Lambda and default maid_status tag |
 
 # Cloud Custodian Architecture and AWS Services
 <img src="./images/singlenodedeploy.png" width="550">
@@ -296,6 +297,9 @@ aws.ec2:
 # Usage Considerations
 <details>
 <summary>Work in Progress</summary>
+
+*offhours.yml* is run as a Lambda with CloudWatch periodic scheduler. It filters for EC2 instances tagged with "maid_offhours"
+and obeys rules set forth in the corresponding value pair per [Cloud Custodian Offhours Policy](http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html#offhours). When specifying on/off/tz values, the values in the policies are overrided by the EC2 instance maid_offhours tag. So you can set the onhour/offhour to anything in the policy and it will not do anything.  
 
 *copy-tag* and *tag-team* policies require addtional enhancements that were added to c7n/tags.py.
 A modified version that tracks these changes can be found [here](https://github.com/capitalone/cloud-custodian/compare/master...mikegarrison:master).
