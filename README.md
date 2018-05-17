@@ -15,7 +15,7 @@
 | [public-subnet-instance-audit-whitelist.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/public-subnet-instance-audit-whitelist.yml) | Lambda that sends email notification via SES when EC2 instance launches in a public subnet and is NOT in the whitelist |
 | [mark-unused-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mark-unused-sgroups.yml) | Mark unused security groups for deletion after N days ; to be used with delete-marked-sgroups.yml |
 | [delete-marked-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/delete-marked-sgroups.yml) | Unmarks used security groups that were marked for deletion then deletes remaining marked security |
-| [slack-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/)slack-notify.yml | Slack example |
+| [slack-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/slack-notify.yml) | Slack example |
 
 # Cloud Custodian Architecture and AWS Services
 <img src="./images/singlenodedeploy.png" width="550">
