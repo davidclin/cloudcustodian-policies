@@ -2,20 +2,20 @@
 
 | Policy | Description |
 |--------|-------------|
-| **security-groups-unused.yml** | Retrieves unused security groups using regex |
-| **security-groups-unused-notify.yml** | Retrieves unused security groups using regex and notifies via email |
-| **iam.yml**                    | Retrieves iam users using regex |
-| **mfa.yml**                    | Retrieves iam users with MFA enabled |
-| **roles.yml**                  | Retrieves unused roles on EC2, Lambda, and ECS |
-| **admin-group.yml**            | Retrieves users in the group named 'Administrators' |
-| **mfa-unused.yml**             | Retrieves users who have MFA disabled in the group named 'Administrators' |
-| **emailer.yml**                | Sends email notification via Simple Email Service (SES) using notify action |
-| **ebs-garbage-collection.yml** | Deletes all unattached volumes |
-| **public-subnet-instance-audit-notify.yml** | Sends email notification via SES when EC2 instance launches in a public subnet |
-| **public-subnet-instance-audit-whitelist.yml** | Lambda that sends email notification via SES when EC2 instance launches in a public subnet and is NOT in the whitelist |
-| **mark-unused-sgroups.yml** | Mark unused security groups for deletion after N days ; to be used with delete-marked-sgroups.yml |
-| **delete-marked-sgroups.yml** | Unmarks used security groups that were marked for deletion then deletes remaining marked security |
-| **slack-notify.yml** | Slack example |
+| [security-groups-unused.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused.yml) | Retrieves unused security groups using regex |
+| [security-groups-unused-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused-notify.yml) | Retrieves unused security groups using regex and notifies via email |
+| [iam.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam.yml)                    | Retrieves iam users using regex |
+| [mfa.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mfa.yml)                    | Retrieves iam users with MFA enabled |
+| [roles.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/roles.yml)                  | Retrieves unused roles on EC2, Lambda, and ECS |
+| [admin-group.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/admin-group.yml)            | Retrieves users in the group named 'Administrators' |
+| [mfa-unused.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mfa-unused.yml)             | Retrieves users who have MFA disabled in the group named 'Administrators' |
+| [emailer.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/emailer.yml)                | Sends email notification via Simple Email Service (SES) using notify action |
+| [ebs-garbage-collection.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/ebs-garbage-collection.yml) | Deletes all unattached volumes |
+| [public-subnet-instance-audit-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/public-subnet-instance-audit-notify.yml) | Sends email notification via SES when EC2 instance launches in a public subnet |
+| [public-subnet-instance-audit-whitelist.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/public-subnet-instance-audit-whitelist.yml) | Lambda that sends email notification via SES when EC2 instance launches in a public subnet and is NOT in the whitelist |
+| [mark-unused-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mark-unused-sgroups.yml) | Mark unused security groups for deletion after N days ; to be used with delete-marked-sgroups.yml |
+| [delete-marked-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/delete-marked-sgroups.yml) | Unmarks used security groups that were marked for deletion then deletes remaining marked security |
+| [slack-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/)slack-notify.yml | Slack example |
 
 # Cloud Custodian Architecture and AWS Services
 <img src="./images/singlenodedeploy.png" width="550">
