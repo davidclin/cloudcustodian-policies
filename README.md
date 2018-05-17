@@ -103,6 +103,23 @@ cloudwatch:CreateLogStream
 </pre>
 </details>
 
+<details>
+<summary>Slack Oauth Permissions for App with Bot User</summary>
+  
+<pre>
+incoming-webhook
+channels:history
+channels:read
+chat:write:bot
+chat:write:user
+groups:history
+groups:read
+im:write
+users:read
+users:read.email
+</pre>
+</details>
+
 # Schemas Used
 <details>
 <summary>security-group</summary>
