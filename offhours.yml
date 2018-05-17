@@ -1,0 +1,33 @@
+policies:
+  - name: stop-after-maid-offhours
+    resource: ec2
+    description: |
+      Stop EC2 instances that have tag of
+      key = 'maid_offhours'
+      value = schedule
+      where schedule may look like on=(M-F,16);off=(M-F,23);tz=est (or pt for pacific)
+      See http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html#offhours
+    mode:
+      type: periodic
+      role: arn:aws:iam::485020822820:role/CloudCustodianRole
+      schedule: "rate(1 minute)"
+    filters:
+      - type: offhour
+        default_tz: est
+        offhour: 1
+    actions:
+      - stop
+
+  - name: start-after-maid-offhours
+    resource: ec2
+    mode:
+      type: periodic
+      role: arn:aws:iam::485020822820:role/CloudCustodianRole
+      schedule: "rate(1 minute)"
+    filters:
+      - type: onhour
+        default_tz: est
+        onhour: 1
+    actions:
+      - start
+
