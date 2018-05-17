@@ -326,5 +326,7 @@ Clear the cache if you encounter errors due to stale information (rm ~/.cache/cl
 [Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)<br>
 [Using ec2-instance-state, lessons around roles, how to view lambda logs, and more](https://github.com/capitalone/cloud-custodian/issues/2321)<br>
 [How does garbage collection get enforced?](https://github.com/capitalone/cloud-custodian/issues/2384)<br>
+[EC2 Offhours Support](http://capitalone.github.io/cloud-custodian/docs/usecases/ec2offhours.html#ec2offhours)<br>
+[Example offhours support](http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html)<br>
 
 
