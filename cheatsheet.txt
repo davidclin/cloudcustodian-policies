@@ -48,11 +48,11 @@ git branch -a  (to view branch info)
 =======================================
 AWS CLI to Create Dummy Security Groups
 =======================================
-Create security groups in David's VPC IE Sandbox
-export AWS_PROFILE=iesandbox
-aws ec2 create-security-group --group-name launch-wizard-10 --description "david.lin.ctr security group" --vpc-id vpc-2ea22555
-aws ec2 create-security-group --group-name launch-wizard-11 --description "david.lin.ctr security group" --vpc-id vpc-2ea22555
-aws ec2 create-security-group --group-name launch-wizard-12 --description "david.lin.ctr security group" --vpc-id vpc-2ea22555
-aws ec2 create-security-group --group-name launch-wizard-13 --description "david.lin.ctr security group" --vpc-id vpc-2ea22555
-aws ec2 create-security-group --group-name launch-wizard-14 --description "david.lin.ctr security group" --vpc-id vpc-2ea22555
-aws ec2 create-security-group --group-name launch-wizard-15 --description "david.lin.ctr security group" --vpc-id vpc-2ea22555
+Create security groups in David's VPC Sandbox
+export AWS_PROFILE=sandbox
+aws ec2 create-security-group --group-name launch-wizard-10 --description "david.lin security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-11 --description "david.lin security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-12 --description "david.lin security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-13 --description "david.lin security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-14 --description "david.lin security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-15 --description "david.lin security group" --vpc-id vpc-2ea22555
