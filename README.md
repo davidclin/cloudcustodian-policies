@@ -1,18 +1,20 @@
 # Cloud Custodian Use Cases
-**security-groups-unused.yml** : Retrieves unused security groups using regex <br>
-**security-groups-unused-notify.yml** : Retrieves unused security groups using regex and notifies via email<br>
-**iam.yml**                    : Retrieves iam users using regex <br>
-**mfa.yml**                    : Retrieves iam users with MFA enabled <br>
-**roles.yml**                  : Retrieves unused roles on EC2, Lambda, and ECS <br>
-**admin-group.yml**            : Retrieves users in the group named 'Administrators' <br>
-**mfa-unused.yml**             : Retrieves users who have MFA disabled in the group named 'Administrators' <br>
-**emailer.yml**                : Sends email notification via Simple Email Service (SES) using notify action<br>
-**ebs-garbage-collection.yml** : Deletes all unattached volumes<br>
-**public-subnet-instance-audit-notify.yml** : Sends email notification via SES when EC2 instance launches in a public subnet<br>
-**public-subnet-instance-audit-whitelist.yml** : Lambda that sends email notification via SES when EC2 instance launches in a public subnet and is NOT in the whitelist<br>
-**mark-unused-sgroups.yml** : Mark unused security groups for deletion after N days ; to be used with delete-marked-sgroups.yml<br>
-**delete-marked-sgroups.yml**: Unmarks used security groups that were marked for deletion then deletes remaining marked security<br>
-**slack-notify.yml**: Slack example<br>
+| Policy | Description |
+|--------|-------------|
+| **security-groups-unused.yml** | Retrieves unused security groups using regex |
+| **security-groups-unused-notify.yml** | Retrieves unused security groups using regex and notifies via email |
+| **iam.yml**                    | Retrieves iam users using regex |
+| **mfa.yml**                    | Retrieves iam users with MFA enabled |
+| **roles.yml**                  | Retrieves unused roles on EC2, Lambda, and ECS |
+| **admin-group.yml**            | Retrieves users in the group named 'Administrators' |
+| **mfa-unused.yml**             | Retrieves users who have MFA disabled in the group named 'Administrators' |
+| **emailer.yml**                | Sends email notification via Simple Email Service (SES) using notify action |
+| **ebs-garbage-collection.yml** | Deletes all unattached volumes |
+| **public-subnet-instance-audit-notify.yml** | Sends email notification via SES when EC2 instance launches in a public subnet |
+| **public-subnet-instance-audit-whitelist.yml** | Lambda that sends email notification via SES when EC2 instance launches in a public subnet and is NOT in the whitelist |
+| **mark-unused-sgroups.yml** | Mark unused security groups for deletion after N days ; to be used with delete-marked-sgroups.yml |
+| **delete-marked-sgroups.yml** | Unmarks used security groups that were marked for deletion then deletes remaining marked security |
+| **slack-notify.yml** | Slack example |
 
 # Cloud Custodian Architecture and AWS Services
 <img src="./images/singlenodedeploy.png" width="550">
