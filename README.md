@@ -329,4 +329,4 @@ Clear the cache if you encounter errors due to stale information (rm ~/.cache/cl
 [EC2 Offhours Support](http://capitalone.github.io/cloud-custodian/docs/usecases/ec2offhours.html#ec2offhours)<br>
 [Example offhours support](http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html)<br>
 [Lambda Support](http://capitalone.github.io/cloud-custodian/docs/policy/lambda.html)
-
+[AWS CloudWatch Schedule Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
