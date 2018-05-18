@@ -6,6 +6,7 @@ policies:
       Volumes set to not delete on instance termination do have
       valid use cases as data drives, but 99% of the time they
       appear to be just garbage creation.
+      To run across all regions -> custodian run --dryrun -s out --region all ebs-garbage-collection.yml
       Use this policy at your discretion. 
     mode:
       type: periodic
