@@ -9,7 +9,7 @@ policies:
       See http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html#offhours
     mode:
       type: periodic
-      role: arn:aws:iam::485020822820:role/CloudCustodianRole
+      role: arn:aws:iam::{account_id}:role/CloudCustodianRole
       schedule: "rate(1 minute)"
     filters:
       - type: offhour
@@ -22,7 +22,7 @@ policies:
     resource: ec2
     mode:
       type: periodic
-      role: arn:aws:iam::485020822820:role/CloudCustodianRole
+      role: arn:aws:iam::{account_id}:role/CloudCustodianRole
       schedule: "rate(1 minute)"
     filters:
       - type: onhour
