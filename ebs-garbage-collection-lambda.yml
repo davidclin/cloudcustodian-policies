@@ -11,7 +11,7 @@ policies:
     mode:
       type: periodic
       role: arn:aws:iam::{account_id}:role/CloudCustodianRole
-      schedule: "rate(5 days)"
+      schedule: "rate(1 day)"
     filters:
       - Attachments: []
       - "tag:maid_status": absent
