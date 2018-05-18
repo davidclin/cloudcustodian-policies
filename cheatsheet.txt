@@ -1,0 +1,58 @@
+============================
+c7n-mailer Developer Install
+============================
+$ git clone https://github.com/capitalone/cloud-custodian
+$ cd cloud-custodian
+$ virtualenv c7n_mailer
+$ source c7n_mailer/bin/activate
+$ cd tools/c7n_mailer
+$ pip install -r requirements.txt
+$ python setup.py develop
+
+
+===================
+Invoking c7n Mailer
+===================
+c7n-mailer --config mailer.yml --update-lambda && custodian run -c test.yml -s .
+c7n-mailer --config mailer_iesandbox.yml --update-lambda && custodian run -c test.yml -s .
+
+
+===============================
+Finding Default Email Templates
+===============================
+find ~/ -type f -name "default.html.j2" 
+find ~/ -type f -name "slack_default.j2"
+
+
+==============================
+Clearing Cloud Custodian Cache
+==============================
+$ custodian run --help
+$ rm ~/.cache/cloud-custodian.cache
+
+
+========================================
+Cloning a Development Branch for Testing
+========================================
+git clone -b mailer-test https://github.com/LykinsN/cloud-custodian.git
+
+
+===================
+Useful Git Commands
+===================
+git clone -b mailer-test https://github.com/LykinsN/cloud-custodian.git
+git pull  (from directory branch was cloned)
+git branch -a  (to view branch info)
+
+
+=======================================
+AWS CLI to Create Dummy Security Groups
+=======================================
+Create security groups in David's VPC Sandbox
+export AWS_PROFILE=sandbox
+aws ec2 create-security-group --group-name launch-wizard-10 --description "david.lin security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-11 --description "david.lin security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-12 --description "david.lin security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-13 --description "david.lin security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-14 --description "david.lin security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-15 --description "david.lin security group" --vpc-id vpc-2ea22555

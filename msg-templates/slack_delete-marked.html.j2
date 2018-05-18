@@ -1,0 +1,27 @@
+{
+   "attachments":[
+      {
+         "fallback":"Garbage Collection",
+         "title":"Unused Security Groups",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"Resources",
+               "value":"{%- for resource in resources -%}
+                        {{ format_resource(resource, policy['resource']) }}
+                        {%- endfor -%}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Status",
+               "value":"Unused security groups marked for deletion successfully deleted."
+            }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
