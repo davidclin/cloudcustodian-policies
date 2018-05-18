@@ -11,6 +11,7 @@
 | [mfa-unused.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mfa-unused.yml)             | Retrieves users who have MFA disabled in the group named 'Administrators' |
 | [emailer.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/emailer.yml)                | Sends email notification via Simple Email Service (SES) using notify action |
 | [ebs-garbage-collection.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/ebs-garbage-collection.yml) | Deletes all unattached volumes |
+| [ebs-garbage-collection-lambda.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/ebs-garbage-collection-lambda.yml) | Deletes all unattached volumes using Lambda function |
 | [public-subnet-instance-audit-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/public-subnet-instance-audit-notify.yml) | Sends email notification via SES when EC2 instance launches in a public subnet |
 | [public-subnet-instance-audit-whitelist.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/public-subnet-instance-audit-whitelist.yml) | Lambda that sends email notification via SES when EC2 instance launches in a public subnet and is NOT in the whitelist |
 | [mark-unused-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mark-unused-sgroups.yml) | Mark unused security groups for deletion after N days ; to be used with delete-marked-sgroups.yml |
