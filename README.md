@@ -335,3 +335,4 @@ Clear the cache if you encounter errors due to stale information (rm ~/.cache/cl
 [Example offhours support](http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html)<br>
 [Lambda Support](http://capitalone.github.io/cloud-custodian/docs/policy/lambda.html)
 [AWS CloudWatch Schedule Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
+[iam-user feature enhancement](iam-user - add ability to pick what parts of the iam-user to delete #2454)
