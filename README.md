@@ -333,6 +333,6 @@ Clear the cache if you encounter errors due to stale information (rm ~/.cache/cl
 [How does garbage collection get enforced?](https://github.com/capitalone/cloud-custodian/issues/2384)<br>
 [EC2 Offhours Support](http://capitalone.github.io/cloud-custodian/docs/usecases/ec2offhours.html#ec2offhours)<br>
 [Example offhours support](http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html)<br>
-[Lambda Support](http://capitalone.github.io/cloud-custodian/docs/policy/lambda.html)
-[AWS CloudWatch Schedule Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
-[iam-user feature enhancement](https://github.com/capitalone/cloud-custodian/pull/2454)
+[Lambda Support](http://capitalone.github.io/cloud-custodian/docs/policy/lambda.html)<br>
+[AWS CloudWatch Schedule Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)<br>
+[iam-user feature enhancement](https://github.com/capitalone/cloud-custodian/pull/2454)<br>
