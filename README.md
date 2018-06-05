@@ -17,7 +17,7 @@
 | [mark-unused-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mark-unused-sgroups.yml) | Mark unused security groups for deletion after N days ; to be used with delete-marked-sgroups.yml |
 | [delete-marked-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/delete-marked-sgroups.yml) | Unmarks used security groups that were marked for deletion then deletes remaining marked security |
 | [slack-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/slack-notify.yml) | Slack example |
-| [offhours.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/offhours.yml) | Offhours policy using Lambda and custom tagging |
+| [offhours.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/offhours.yml) | Offhours policy using Lambda and custom tagging [(Offhour Examples)](#offhours) |
 
 # Cloud Custodian Architecture and AWS Services
 <img src="./images/singlenodedeploy.png" width="550">
@@ -46,6 +46,24 @@ $ custodian
 For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalone/cloud-custodian)
 </details>
 
+# Usage
+<details>
+<summary>Getting Started</summary>
+
+<pre>
+Cloud Custodian must be run within a virtual environment.
+
+$ cd ~
+$ virtualenv c7n_mailer/bin/activate
+$ cd cloudcustodian  (this is the IE/cloudcustodian repo where all the policies reside)
+
+As a test, try
+$ custodian run -s out mfa.yml
+$ custodian report -s out mfa.yml --format grid
+
+Cloud Custodian will create a log file in the ~/cloudcustodian/out/ subdirectory IF there are any matches. 
+</pre>
+</details>
 
 # Environment Settings
 <details>
@@ -296,14 +314,59 @@ aws.ec2:
 </details>
 
 # Usage Considerations
-<details>
-<summary>Work in Progress</summary>
+<a name="offhours"></a><details>
+<summary>Offhour Examples</summary>
 
-*offhours.yml* is run as a Lambda with CloudWatch periodic scheduler. It filters for EC2 instances tagged with "maid_offhours"
-and obeys rules set forth in the corresponding value pair per [Cloud Custodian Offhours Policy](http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html#offhours). When specifying on/off/tz values, the values in the policies are overrided by the EC2 instance maid_offhours tag. So you can set the onhour/offhour to anything in the policy and it will not do anything.  
+<pre>
+-------------------------------------------------------
+Option 1: Using a Single Tag with key = "maid_offhours"
+-------------------------------------------------------
+# up mon-fri from 7am-7pm; eastern time
+off=(M-F,19);on=(M-F,7);tz=est
+# up mon-fri from 6am-9pm; up sun from 10am-6pm; pacific time
+off=[(M-F,21),(U,18)];on=[(M-F,6),(U,10)];tz=pt
+
+<img align="center" src="./images/maid_hours.png" height="200" />
+
+---------------------------------------------------------------------
+Option 2: Using Tags with Names "StartAfterHours" and "StopAfterHours"
+---------------------------------------------------------------------
+# Using key "StartAfterHours"
+# up mon-fri starting 7am; eastern time
+on=(M-F,7);tz=est
+
+#Using key "StopAfterHours"
+# off mon-fri after 5pm; pacific time
+off=(M-F,17);tz=pt
+
+<img align="center" src="./images/custom_offhours.png" height="200" />
+
+More Examples: http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html#offhours
+</pre>
+</details>
+
+<details>
+<summary>Other Misc Usage Considerations</summary>
 
 *copy-tag* and *tag-team* policies require addtional enhancements that were added to c7n/tags.py.
 A modified version that tracks these changes can be found [here](https://github.com/capitalone/cloud-custodian/compare/master...mikegarrison:master).
+
+*emailer.yml* requires the custodian mailer described [here](https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_mailer). 
+
+*ebs-garbage-collection.yml* can be run across all regions with the --region all option.<p>
+ 
+ For example: <br>
+ 
+```
+ custodian run --dryrun -s out --region all ebs-garbage-collection.yml
+```
+</details>
+
+<details>
+<summary>More</summary>
+
+*offhours.yml* is run as a Lambda with CloudWatch periodic scheduler. It filters for EC2 instances tagged with "maid_offhours"
+and obeys rules set forth in the corresponding value pair per [Cloud Custodian Offhours Policy](http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html#offhours). When specifying on/off/tz values, the values in the policies are overrided by the EC2 instance maid_offhours tag. So you can set the onhour/offhour to anything in the policy and it will not do anything.  
 
 *emailer.yml* requires the custodian mailer described [here](https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_mailer). 
 
@@ -336,3 +399,4 @@ Clear the cache if you encounter errors due to stale information (rm ~/.cache/cl
 [Lambda Support](http://capitalone.github.io/cloud-custodian/docs/policy/lambda.html)<br>
 [AWS CloudWatch Schedule Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)<br>
 [iam-user feature enhancement](https://github.com/capitalone/cloud-custodian/pull/2454)<br>
+[Offhours Examples](http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html)<br>
