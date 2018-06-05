@@ -1,15 +1,18 @@
 policies:
-  - name: stop-after-maid-offhours
-    resource: ec2
+  - name: maid-offhours
     description: |
-      Stop EC2 instances that have tag of
+      Cloud Custodian Maid Offhours
+    comment: |
+      Stop EC2 instances after offhours that have tag of
       key = 'maid_offhours'
       value = schedule
-      where schedule may look like on=(M-F,16);off=(M-F,23);tz=est (or pt for pacific)
+      example value -> 'on=(M-F,16);off=(M-F,23);tz=est'
+      use 'pt' for pacific time
       See http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html#offhours
+    resource: ec2
     mode:
       type: periodic
-      role: arn:aws:iam::{account_id}:role/CloudCustodianRole
+      role: arn:aws:iam::929292782238:role/CloudCustodian
       schedule: "rate(1 minute)"
     filters:
       - type: offhour
@@ -18,11 +21,20 @@ policies:
     actions:
       - stop
 
-  - name: start-after-maid-offhours
+  - name: maid-onhours
+    description: |
+      Cloud Custodian Maid Onhours
+    comment: |
+      Start EC2 instances after onhours that have a tag of
+      key = 'maid_offhours'
+      value = schedule
+      example value -> 'on=(M-F,16);tz=est'
+      use 'pt' for pacific time
+      See http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html#offhours
     resource: ec2
     mode:
       type: periodic
-      role: arn:aws:iam::{account_id}:role/CloudCustodianRole
+      role: arn:aws:iam::929292782238:role/CloudCustodian
       schedule: "rate(1 minute)"
     filters:
       - type: onhour
@@ -31,3 +43,48 @@ policies:
     actions:
       - start
 
+  - name: custom-offhours 
+    description: |
+      Cloud Custodian Custom Offhours 
+    comment: |
+      Stop EC2 instances after hours that have custom tag of
+      tag = 'StopAfterHours'
+      value = schedule
+      example value -> 'off=(M-F,23);tz=est'
+      use 'tz=pt' for pacific time
+      See http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html#offhours
+    resource: ec2
+    mode:
+      type: periodic
+      role: arn:aws:iam::929292782238:role/CloudCustodian
+      schedule: "rate(1 minute)"
+    filters:
+      - type: offhour
+        tag: StopAfterHours
+        default_tz: est
+        offhour: 1
+    actions:
+      - stop
+
+  - name: custom-onhours
+    description: |
+      Cloud Custodian Custom Onhours
+    comments: |
+      Start EC2 instances after onhours that have custom tag of
+      tag = 'StartAfterHours'
+      value = schedule
+      example value -> 'on=(M-F,16);tz=est'
+      use 'tz=pt' for pacific time
+      See http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html#offhours
+    resource: ec2
+    mode:
+      type: periodic
+      role: arn:aws:iam::929292782238:role/CloudCustodian
+      schedule: "rate(1 minute)"
+    filters:
+      - type: onhour
+        tag: StartAfterHours
+        default_tz: est
+        onhour: 1
+    actions:
+      - start
