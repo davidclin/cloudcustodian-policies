@@ -400,3 +400,4 @@ Clear the cache if you encounter errors due to stale information (rm ~/.cache/cl
 [AWS CloudWatch Schedule Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)<br>
 [iam-user feature enhancement](https://github.com/capitalone/cloud-custodian/pull/2454)<br>
 [Offhours Examples](http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html)<br>
+[CloudWatch Rules Expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)<br>
