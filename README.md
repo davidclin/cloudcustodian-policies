@@ -120,6 +120,7 @@ events:ListTargetsByRule
 tag:GetResources
 cloudwatch:CreateLogGroup
 cloudwatch:CreateLogStream
+autoscaling:DescribeLaunchConfigurations
 </pre>
 </details>
 
