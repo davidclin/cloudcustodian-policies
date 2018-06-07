@@ -388,8 +388,14 @@ Check cloud-custodian-mailer lambda CloudWatch rule schedule (5 minute by defaul
 Check Lambda error logs (this requires CloudWatch logging)<br>
 Check role for lambda(s) have adequate permissions<br>
 Remember to update the cloud-custodian-mailer lambda when making changes to a policy that uses notifications<br>
-Clear the cache if you encounter errors due to stale information (rm ~/.cache/cloud-custodian.cache)
+Clear the cache if you encounter errors due to stale information (rm ~/.cache/cloud-custodian.cache)<br>
 
+# Log Messages
+If you see the following CloudWatch log when sending notifications via Slack, ignore it:<br>
+
+<pre>
+[WARNING]	2018-06-06T23:42:21.321Z	413b5506-69e3-11e8-8a8c-6f167e23dc1a	Error: An error occurred (InvalidCiphertextException) when calling the Decrypt operation: Unable to decrypt slack_token with kms, will assume plaintext.
+</pre>
 # Resources
 [Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)<br>
 [Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)<br>
