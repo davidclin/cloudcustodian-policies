@@ -2,6 +2,8 @@
 
 | Policy | Description |
 |--------|-------------|
+| [offhours.yml](https://github.awsinternal.tri.global/IE/cloudcustodian/blob/master/offhours.yml)<br>(in production) | Starts and stops instances during offhours via Lambda function. Instances filtered on presence of maid_offhours tag or StartAfterHours/StopAfterHours custom tags. [(See Offhour Examples)](#offhours) |
+| [unused-sgroup-audit.yml](https://github.awsinternal.tri.global/IE/cloudcustodian/blob/master/unused-sgroup-audit.yml)<br>(in production) | Retrieves all unused security groups that match regex, deletes them, then sends notifications.  |
 | [security-groups-unused.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused.yml) | Retrieves unused security groups using regex |
 | [security-groups-unused-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused-notify.yml) | Retrieves unused security groups using regex and notifies via email |
 | [iam.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam.yml)                    | Retrieves iam users using regex |
@@ -17,7 +19,6 @@
 | [mark-unused-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mark-unused-sgroups.yml) | Mark unused security groups for deletion after N days ; to be used with delete-marked-sgroups.yml |
 | [delete-marked-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/delete-marked-sgroups.yml) | Unmarks used security groups that were marked for deletion then deletes remaining marked security |
 | [slack-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/slack-notify.yml) | Slack example |
-| [offhours.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/offhours.yml) | Offhours policy using Lambda and custom tagging [(Offhour Examples)](#offhours) |
 
 # Cloud Custodian Architecture and AWS Services
 <img src="./images/singlenodedeploy.png" width="550">
