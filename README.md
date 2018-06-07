@@ -342,7 +342,11 @@ off=(M-F,17);tz=pt
 
 <img align="center" src="./images/custom_offhours.png" height="200" />
 
-More Examples: http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html#offhours
+Important Note: When you stop an instance, the data on any instance store volumes is erased. 
+                Therefore, if you have any data on instance store volumes that you want to 
+                keep, be sure to back it up to persistent storage.
+
+More Examples : http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html#offhours
 </pre>
 </details>
 
