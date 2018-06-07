@@ -1,0 +1,35 @@
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian Policy Violation",
+         "title":"Security Group Audit",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"Unused Security Groups that match '*wizard':",
+               "value":"{%- for resource in resources -%}
+                        {{ format_resource(resource, policy['resource']) }}
+                        {%- endfor -%}"
+            },
+            {
+               "title":"Account",
+               "value":"{{ account }}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Action Description",
+               "value":"Unused security groups deleted."
+            },
+            {
+               "title":"Note:",
+               "value":"Check email for more details."
+            }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
