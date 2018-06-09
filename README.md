@@ -122,6 +122,7 @@ tag:GetResources
 cloudwatch:CreateLogGroup
 cloudwatch:CreateLogStream
 autoscaling:DescribeLaunchConfigurations
+s3:ListBucket
 </pre>
 </details>
 
