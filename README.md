@@ -122,7 +122,18 @@ tag:GetResources
 cloudwatch:CreateLogGroup
 cloudwatch:CreateLogStream
 autoscaling:DescribeLaunchConfigurations
-s3:ListBucket
+s3:GetBucketLocation
+s3:GetBucketTagging
+s3:GetBucketPolicy
+s3:GetReplicationConfiguration
+s3:GetBucketVersioning
+s3:GetBucketNotification  
+s3:GetLifeCycleConfiguration
+s3:ListAllMyBuckets
+s3:GetBucketAcl
+s3:GetBucketWebsite
+s3:GetBucketLogging 
+s3:DeleteBucket 
 </pre>
 </details>
 
