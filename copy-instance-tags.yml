@@ -7,7 +7,7 @@ policies:
       Copy instance tags to respective instance's ebs volume.
     mode:
       type: periodic
-      role: arn:aws:iam::929292782238:role/CloudCustodian
+      role: arn:aws:iam::1234567890:role/CloudCustodian
       schedule: "rate(15 minutes)"
     filters:
       - type: value
