@@ -419,6 +419,66 @@ If you see the following CloudWatch log when sending notifications via Slack, ig
 <pre>
 [WARNING]	2018-06-06T23:42:21.321Z	413b5506-69e3-11e8-8a8c-6f167e23dc1a	Error: An error occurred (InvalidCiphertextException) when calling the Decrypt operation: Unable to decrypt slack_token with kms, will assume plaintext.
 </pre>
+
+# Canned Code Cheatsheet
+<details>
+<summary>Invoking Lambda Funtions</summary>
+
+```
+mode:
+  type: cloudtrail
+  role: arn:aws:iam::929292782238:role/CloudCustodian
+  events:
+    - CreateBucket
+```
+
+```
+mode:
+  type: periodic
+  role: arn:aws:iam::929292782238:role/CloudCustodian
+  schedule: "rate(15 minutes)"```
+```
+</details>
+
+<details>
+<summary>Sending Notifications via SES and Slack</summary>
+  
+```
+actions:
+ - type: notify
+   template: default.html
+   slack_template: slack-default
+   template_format: 'html'
+   priority_header: '5'
+   subject: 'Security Audit: Unused Security Groups'
+   to:
+     - <your-email-address-goes-here>
+     - slack://#<slack-channel-name>
+   owner_absent_contact:
+     - <your-emails-address-goes-here>
+   transport:
+     type: sqs
+     queue: https://sqs.us-east-1.amazonaws.com/1234567890/cloud-cloudcustodian
+```
+</details>
+
+<details>
+<summary>Filtering with regex and whitelist</summary>
+  
+```
+filters:
+  - not:
+    - type: value
+      key: "tag:Name"
+      value: (MyJenkinsInstance|MyCloudCustodianInstance)
+      op: regex
+  - and:
+    - type: subnet 
+      key: "tag:Name"
+      value: "david.lin-subnet" 
+```
+</details>
+
 # Resources
 [Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)<br>
 [Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)<br>
