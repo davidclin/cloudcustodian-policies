@@ -4,6 +4,7 @@
 |--------|-------------|
 | [offhours.yml](https://github.awsinternal.tri.global/IE/cloudcustodian/blob/master/offhours.yml)<br>(in production) | Starts and stops instances during offhours via Lambda function. Instances filtered on presence of maid_offhours tag or StartAfterHours/StopAfterHours custom tags. [(See Offhour Examples)](#offhours) |
 | [unused-sgroup-audit.yml](https://github.awsinternal.tri.global/IE/cloudcustodian/blob/master/unused-sgroup-audit.yml)<br>(in production) | Retrieves all unused security groups that match regex, deletes them, then sends notifications.  |
+| [s3-public-audit.yml](https://github.awsinternal.tri.global/IE/cloudcustodian/blob/master/s3-public-audit.yml)<br>(in production) | Sends notification when public S3 bucket is created.  |
 | [security-groups-unused.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused.yml) | Retrieves unused security groups using regex |
 | [security-groups-unused-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused-notify.yml) | Retrieves unused security groups using regex and notifies via email |
 | [iam.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam.yml)                    | Retrieves iam users using regex |
