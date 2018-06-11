@@ -1,0 +1,29 @@
+policies:
+  - name: s3-public-audit
+    description: |
+      Cloud Custodian Public S3 Audit
+    comments: |
+      Send notification when public S3 bucket gets created
+    resource: s3
+    mode:
+      type: cloudtrail
+      role: arn:aws:iam::1234567890:role/CloudCustodian
+      events:
+        - CreateBucket
+    filters:
+      - type: global-grants
+    actions:
+      - type: notify
+        template: s3-public-audit.html
+        template_format: 'html'
+        slack_template: slack-s3-public-audit
+        priority_header: '5'
+        subject: 'Security Audit: Public S3 Bucket Created'
+        to:
+          - your_verified_email@domain.com
+          - slack://#channel_name_goes_here
+        owner_absent_contact:
+          - your_verified_email@domain.com 
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/1234567890/cloud-cloudcustodian 
