@@ -502,3 +502,4 @@ This will reflect changes in your virtualenv Python lib such that the schema val
 [iam-user feature enhancement](https://github.com/capitalone/cloud-custodian/pull/2454)<br>
 [Offhours Examples](http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html)<br>
 [CloudWatch Rules Expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)<br>
+[Adding Custom Fields to Reports](http://capitalone.github.io/cloud-custodian/docs/quickstart/advanced.html#adding-custom-fields-to-reports)<br>
