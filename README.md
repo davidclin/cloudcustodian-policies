@@ -479,6 +479,16 @@ filters:
 ```
 </details>
 
+# Updating Latest Merges to Master
+From your virtualenv
+
+```
+cd ~/cloud-custodian
+git pull
+python setup.py install
+```
+This will reflect changes in your virtualenv Python lib such that the schema validation uses the latest fixes/updates.
+
 # Resources
 [Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)<br>
 [Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)<br>
