@@ -111,6 +111,7 @@ iam:PassRole
 iam:ListAccountAliases
 iam:ListUsers
 iam:GetCredentialReport
+iam:GenerateCredentialReport
 ses:SendEmail
 ses:SendRawEmail
 lambda:CreateFunction
