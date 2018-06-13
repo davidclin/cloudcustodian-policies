@@ -1,10 +1,15 @@
-# David Lin's Cloud Custodian Policies
+# David Lin's Cloud Custodian Policies (in Production)
 
 | Policy | Description |
 |--------|-------------|
-| [offhours.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/offhours.yml)<br>(in production) | Starts and stops instances during offhours via Lambda function. Instances filtered on presence of maid_offhours tag or StartAfterHours/StopAfterHours custom tags. [(See Offhour Examples)](#offhours) |
-| [unused-sgroup-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/unused-sgroup-audit.yml)<br>(in production) | Retrieves all unused security groups that match regex, deletes them, then sends notifications.  |
-| [s3-public-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/s3-public-audit.yml)<br>(in production) | Sends notification when public S3 bucket is created.  |
+| [offhours.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/offhours.yml)<br> | Starts and stops instances during offhours via Lambda function. Instances filtered on presence of maid_offhours tag or StartAfterHours/StopAfterHours custom tags. [(See Offhour Examples)](#offhours) |
+| [unused-sgroup-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/unused-sgroup-audit.yml)<br> | Retrieves all unused security groups that match regex, deletes them, then sends notifications.  |
+| [s3-public-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/s3-public-audit.yml)<br> | Sends notification when public S3 bucket is created.  |
+| [copy-instance-tags.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/copy-instance-tags.yml)<br> | Periodically copies tags from EC2 instances to respective EBS volumes. |
+
+# David Lin's Cloud Custodian Policies (Examples)
+| Policy | Description |
+|--------|-------------|
 | [security-groups-unused.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused.yml) | Retrieves unused security groups using regex |
 | [security-groups-unused-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused-notify.yml) | Retrieves unused security groups using regex and notifies via email |
 | [iam.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam.yml)                    | Retrieves iam users using regex |
@@ -106,6 +111,7 @@ iam:PassRole
 iam:ListAccountAliases
 iam:ListUsers
 iam:GetCredentialReport
+iam:GenerateCredentialReport
 ses:SendEmail
 ses:SendRawEmail
 lambda:CreateFunction
@@ -414,6 +420,76 @@ If you see the following CloudWatch log when sending notifications via Slack, ig
 <pre>
 [WARNING]	2018-06-06T23:42:21.321Z	413b5506-69e3-11e8-8a8c-6f167e23dc1a	Error: An error occurred (InvalidCiphertextException) when calling the Decrypt operation: Unable to decrypt slack_token with kms, will assume plaintext.
 </pre>
+
+# Canned Code Cheatsheet
+<details>
+<summary>Invoking Lambda Funtions</summary>
+
+```
+mode:
+  type: cloudtrail
+  role: arn:aws:iam::929292782238:role/CloudCustodian
+  events:
+    - CreateBucket
+```
+
+```
+mode:
+  type: periodic
+  role: arn:aws:iam::929292782238:role/CloudCustodian
+  schedule: "rate(15 minutes)"```
+```
+</details>
+
+<details>
+<summary>Sending Notifications via SES and Slack</summary>
+  
+```
+actions:
+ - type: notify
+   template: default.html
+   slack_template: slack-default
+   template_format: 'html'
+   priority_header: '5'
+   subject: 'Security Audit: Unused Security Groups'
+   to:
+     - <your-email-address-goes-here>
+     - slack://#<slack-channel-name>
+   owner_absent_contact:
+     - <your-emails-address-goes-here>
+   transport:
+     type: sqs
+     queue: https://sqs.us-east-1.amazonaws.com/1234567890/cloud-cloudcustodian
+```
+</details>
+
+<details>
+<summary>Filtering with regex and whitelist</summary>
+  
+```
+filters:
+  - not:
+    - type: value
+      key: "tag:Name"
+      value: (MyJenkinsInstance|MyCloudCustodianInstance)
+      op: regex
+  - and:
+    - type: subnet 
+      key: "tag:Name"
+      value: "david.lin-subnet" 
+```
+</details>
+
+# Updating Latest Merges to Master
+From your virtualenv
+
+```
+cd ~/cloud-custodian
+git pull
+python setup.py install
+```
+This will reflect changes in your virtualenv Python lib such that the schema validation uses the latest fixes/updates.
+
 # Resources
 [Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)<br>
 [Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)<br>
@@ -426,3 +502,4 @@ If you see the following CloudWatch log when sending notifications via Slack, ig
 [iam-user feature enhancement](https://github.com/capitalone/cloud-custodian/pull/2454)<br>
 [Offhours Examples](http://capitalone.github.io/cloud-custodian/docs/quickstart/offhours.html)<br>
 [CloudWatch Rules Expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)<br>
+[Adding Custom Fields to Reports](http://capitalone.github.io/cloud-custodian/docs/quickstart/advanced.html#adding-custom-fields-to-reports)<br>
