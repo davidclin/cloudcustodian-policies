@@ -1,4 +1,6 @@
-# David Lin's Cloud Custodian Policies (in Production)
+# David Lin's Cloud Custodian Policies 
+
+## Policies in Production
 
 | Policy | Description |
 |--------|-------------|
@@ -8,7 +10,7 @@
 | [copy-instance-tags.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/copy-instance-tags.yml)<br> | Periodically copies tags from EC2 instances to respective EBS volumes. |
 | [public-instance-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/public-instance-audit.yml)<br> | Sends notification when EC2 instance is launched with a Public IP address or attached to a Public subnet. |
 
-# David Lin's Cloud Custodian Policies (Examples)
+## Policies in Test
 | Policy | Description |
 |--------|-------------|
 | [security-groups-unused.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused.yml) | Retrieves unused security groups using regex |
