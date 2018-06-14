@@ -60,7 +60,7 @@ aws ec2 create-security-group --group-name launch-wizard-15 --description "david
 ================
 Custom Reporting
 ================
-custodian report --format grid -s output public-instance-whitelist.yml --field KeyName=KeyName --field PublicIpAddress=PublicIpAddress --no-default-fields --field InstanceId=InstanceI    d --field VpcId=VpcId --field tag:SubnetId=SubnetId
-  1
-66  custodian report -s output --no-default-fields --format grid --field InstanceId=InstanceId --field tag:Name=tag:Name --field InstanceType=InstanceType --field VpcId=VpcId --field tag:    State=State.Name stopped.yml
+$ custodian report --format grid -s output public-instance-whitelist.yml --field KeyName=KeyName --field PublicIpAddress=PublicIpAddress --no-default-fields --field InstanceId=InstanceI    d --field VpcId=VpcId --field tag:SubnetId=SubnetId
+  
+$ custodian report -s output --no-default-fields --format grid --field InstanceId=InstanceId --field tag:Name=tag:Name --field InstanceType=InstanceType --field VpcId=VpcId --field tag:    State=State.Name stopped.yml
 
