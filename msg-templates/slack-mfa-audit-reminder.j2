@@ -1,0 +1,31 @@
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian Policy Violation",
+         "title":"Reminder to enable MFA",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"IAM User Name(s)",
+               "value":"{%- for resource in resources -%}
+                        {{ format_resource(resource, policy['resource']) }}
+                        {%- endfor -%}"
+            },
+            {
+               "title":"Account",
+               "value":"{{ account }}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Action Description",
+               "value":"If your user name is on this list, you have 2 days left to enable MFA before access is disabled."
+            },
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
