@@ -15,6 +15,7 @@
 |--------|-------------|
 | [new-user-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/new-user-audit.yml) | Retrieves iam users in specified group with MFA disabled in the last 30 days  |
 | [security-groups-unused.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused.yml) | Retrieves unused security groups using regex |
+| [stopped-instances.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/stopped-instances.yml) | Retrieves list of all stopped instances in specific VPC. Can be further customized to match other criteria. |
 | [security-groups-unused-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused-notify.yml) | Retrieves unused security groups using regex and notifies via email |
 | [iam.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam.yml)                    | Retrieves iam users using regex |
 | [mfa.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mfa.yml)                    | Retrieves iam users with MFA enabled |
