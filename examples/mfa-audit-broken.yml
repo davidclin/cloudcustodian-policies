@@ -1,0 +1,87 @@
+policies:
+  - name: mfa-audit-reminder
+    description: Cloud Custodian MFA Audit Notification
+    comment: |
+      Retrieve list of all IAM users with MFA disabled
+      in the group 'Administrators' and send notification
+      if MFA is not enabled after 3 days of the create date.
+      Send notification via SES and Slack.
+    resource: iam-user
+    mode:
+      type: periodic
+      role: arn:aws:iam::1234567890:role/CloudCustodian
+      schedule: "rate(5 minutes)"
+    filters:
+      - type: credential
+        key: mfa_active
+        value: false
+      - type: group
+        key: GroupName
+        value: Administrators
+      - type: value
+        key: CreateDate
+        op: less-than
+        value_type: age
+        value: 3
+    actions:
+      - type: notify
+        template: mfa-audit-reminder.html
+        template_format: 'html'
+        slack_template: slack-mfa-audit-reminder
+        priority_header: '5'
+        subject: 'Security Audit: IAM users in Administrators group with MFA Disabled'
+        to:
+          - <your-verified-email-address-goes-here> 
+          - slack://#ie-stratus
+        owner_absent_contact:
+          - <your-verified-email-address-goes-here> 
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/1234567890/cloud-cloudcustodian
+
+
+  - name: mfa-audit-disable-access
+    description: Cloud Custodian MFA Audit Disable Access
+    comment: |
+      Retrieve list of all IAM users with MFA disabled
+      in the group 'Administrators' and send notification
+      if MFA is not enabled after 5 days of inactivity.
+      Send notification via SES and Slack.
+      Disable user access to management console.
+      Delete user access-keys.
+    resource: iam-user
+    mode:
+      type: periodic
+      role: arn:aws:iam::1234567890:role/CloudCustodian
+      schedule: "rate(5 minutes)"
+    filters:
+      - type: credential
+        key: mfa_active
+        value: false
+      - type: group
+        key: GroupName
+        value: Administrators
+      - type: value
+        key: CreateDate
+        op: greater-than
+        value_type: age
+        value: 5
+    actions:
+      - type: delete
+        options:
+          - access-keys
+          - console-access
+      - type: notify
+        template: mfa-audit-disable-access
+        template_format: 'html'
+        slack_template: slack-mfa-audit-disable-access
+        priority_header: '5'
+        subject: 'Security Audit: AWS Console Access Disabled and Access Keys Deleted'
+        to:
+          - <your-verified-email-address-goes-here> 
+          - slack://#<slack-channel>
+        owner_absent_contact:
+          - <your-verified-email-address-goes-here> 
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/1234567890/cloud-cloudcustodian
