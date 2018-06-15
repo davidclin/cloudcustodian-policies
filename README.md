@@ -47,10 +47,10 @@ $ git clone https://github.com/capitalone/cloud-custodian
 $ virtualenv c7n_mailer
 $ source c7n_mailer/bin/activate
 $ cd cloud-custodian/tools/c7n_mailer
-$ pip install -r requirements.txt
+$ sudo pip install -r requirements.txt
 
 *** Install extensions ***
-$ python setup.py develop
+$ sudo python setup.py develop
 
 *** Verify Installation ***
 $ c7n-mailer
