@@ -55,6 +55,10 @@ $ sudo python setup.py develop
 *** Verify Installation ***
 $ c7n-mailer
 $ custodian
+
+*** Upgrade AWS CLI ***
+$ sudo pip install awscli --upgrade
+
 ```
 For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalone/cloud-custodian)
 </details>
