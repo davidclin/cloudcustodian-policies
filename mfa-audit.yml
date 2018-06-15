@@ -25,7 +25,7 @@ policies:
       - type: notify
         template: mfa-audit-reminder.html
         template_format: 'html'
-        slack_template: slack-mfa-audit-reminder
+        template_slack: slack-mfa-audit-reminder
         priority_header: '5'
         subject: 'Security Audit: IAM users in Administrators group with MFA Disabled'
         to:
@@ -68,7 +68,7 @@ policies:
       - type: notify
         template: mfa-audit-disable-access.html
         template_format: 'html'
-        slack_template: slack-mfa-audit-disable-access
+        template_slack: slack-mfa-audit-disable-access
         priority_header: '5'
         subject: 'Security Audit: AWS Console Access Disabled and Access Keys Deleted'
         to:
