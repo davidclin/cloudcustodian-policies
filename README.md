@@ -500,6 +500,49 @@ python setup.py install
 ```
 This will reflect changes in your virtualenv Python lib such that the schema validation uses the latest fixes/updates.
 
+# Running Policy as Cron Job
+<details>
+  <summary>See Example</summary>
+  
+  <b>crontab</b>
+  <pre>
+  $ crontab -l
+  # Run job every day at 5 pm PST.
+  # Clean log at 23:00 pm PST every month to save disk space.
+  * 17 * * * /home/ubuntu/cloudcustodian/cron/mfa-audit.sh > /home/ubuntu/cloudcustodian/logs/mfa-audit.log 2>&1
+  * 23 * 1-12 * /home/ubuntu/cloudcustodian/cron/cleanlogs.sh
+  </pre>
+
+  <b>mfa-audit.sh</b>
+  <pre>
+  $ pwd
+  /home/ubuntu/cloudcustodian-policies/cron
+  $ more mfa-audit.sh
+  #!/bin/bash
+ PATH=/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  export PATH
+  source c7n_mailer/bin/activate
+  echo "Running policy..."
+  c7n-mailer --config /home/ubuntu/cloudcustodian-policies/mailer.yml --update-lambda && custodian run -c /home/ubuntu/cloudcustodian-policies/mfa-audit.yml -s output
+  echo "MFA policy run completed"
+  </pre>
+  
+  <b>cleanlogs.sh</b>
+  <pre>
+  $ pwd
+  /home/ubuntu/cloudcustodian-policies/cron
+  $ more cleanlogs.sh
+  #!/bin/bash
+      PATH=/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  export PATH
+  echo "Cleaning logs ..."
+  rm /home/ubuntu/cloudcustodian/logs/mfa-audit.log
+  echo "Log files deleted!"
+  </pre>
+  
+  Useful Tool: <a href="https://crontab.guru/">Quick simple editor for cron schedule expressions.</a>
+</details>
+
 # Resources
 [Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)<br>
 [Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)<br>
