@@ -48,6 +48,7 @@ $ virtualenv c7n_mailer
 $ source c7n_mailer/bin/activate
 $ cd cloud-custodian/tools/c7n_mailer
 $ sudo pip install -r requirements.txt
+$ sudo pip install sendgrid
 
 *** Install extensions ***
 $ sudo python setup.py develop
