@@ -459,7 +459,7 @@ mode:
 actions:
  - type: notify
    template: default.html
-   template_slack: slack-default
+   slack_template: slack-default
    template_format: 'html'
    priority_header: '5'
    subject: 'Security Audit: Unused Security Groups'
