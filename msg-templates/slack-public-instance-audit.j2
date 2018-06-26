@@ -6,7 +6,7 @@
          "color":"danger",
          "fields":[
             {
-               "title":"EC2 Instance was launched with Public IP or Public subnet",
+               "title":"EC2 Instance was launched with Public IP and Public subnet",
                "value":"{%- for resource in resources -%}
                         {{ format_resource(resource, policy['resource']) }}
                         {%- endfor -%}"
@@ -21,7 +21,7 @@
             },
             {
                "title":"Action Description",
-               "value":"Email notification sent."
+               "value":"Email notification sent containing KeyName."
             }
          ]
       }

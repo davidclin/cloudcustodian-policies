@@ -134,17 +134,17 @@ Additional parameters can be passed in from the policy - i.e. action_desc, viola
     	<h2><font color="#505151"> {{  "%s - %s" | format(account,region)  }} </h2>
 
         <pre>
-        ----------------------------------------------------------------------------------------
-          ___ _  _ __ _   _  ___  _ __  _   __ _____ __  __  _  ______    __  _  _ __  _ _____  
-         | _,\ || |  \ | | |/ _/ | |  \| |/' _/_   _/  \|  \| |/ _/ __|  /  \| || | _\| |_   _| 
-         | v_/ \/ | -< |_| | \__ | | | ' |`._`. | || /\ | | ' | \_| _|  | /\ | \/ | v | | | |     
-         |_|  \__/|__/___|_|\__/ |_|_|\__||___/ |_||_||_|_|\__|\__/___| |_||_|\__/|__/|_| |_| 
+        -------------------------------------------------------------------------------------
+                      _ ___   ___ __  _  __ _ __  _ ___ ___ ___ _ __  _  __
+                     | | __| | __|  \| |/ _] |  \| | __| __| _ \ |  \| |/ _]
+                     | | _|  | _|| | ' | [/\ | | ' | _|| _|| v / | | ' | [/\
+                     |_|___| |___|_|\__|\__/_|_|\__|___|___|_|_\_|_|\__|\__/
 
-        ----------------------------------------------------------------------------------------
+        -------------------------------------------------------------------------------------
 
-        The following instance was launched with a Public IP address or Public subnet.
+        The following instance was launched with a Public IP address and Public subnet.
 	
-        ----------------------------------------------------------------------------------------
+        -------------------------------------------------------------------------------------
         </pre>
 
 
@@ -195,7 +195,7 @@ Additional parameters can be passed in from the policy - i.e. action_desc, viola
 			{% if resources[0]['MatchedFilters'] == ['PublicIpAddress'] %}
 				{% set columnNames = ['tag.Name','PublicIp','InstanceId'] %}
 			{% else %}
-				{% set columnNames = ['tag.Name','PrivateIpAddress','InstanceId','ImageId','Application','Owner'] %}
+				{% set columnNames = ['InstanceId','KeyName','InstanceType','PrivateIpAddress','PublicIpAddress'] %}
 			{% endif %}
 			{{ createTable(columnNames, resources, '80') }}					   
 			
