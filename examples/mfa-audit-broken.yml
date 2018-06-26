@@ -6,9 +6,11 @@ policies:
       in the group 'Administrators' and send notification
       if MFA is not enabled after 3 days of the create date.
       Send notification via SES and Slack.
-      This policy must be run as a cron job until lambda support
-      with group filtering is supported.
     resource: iam-user
+    mode:
+      type: periodic
+      role: arn:aws:iam::1234567890:role/CloudCustodian
+      schedule: "rate(5 minutes)"
     filters:
       - type: credential
         key: mfa_active
@@ -25,14 +27,14 @@ policies:
       - type: notify
         template: mfa-audit-reminder.html
         template_format: 'html'
-        template_slack: slack-mfa-audit-reminder
+        slack_template: slack-mfa-audit-reminder
         priority_header: '5'
         subject: 'Security Audit: IAM users in Administrators group with MFA Disabled'
         to:
-          - <your-email-address-goes-here>
-          - slack://#<slack-channel>
+          - <your-verified-email-address-goes-here> 
+          - slack://#ie-stratus
         owner_absent_contact:
-          - <your-email-address-goes-here>
+          - <your-verified-email-address-goes-here> 
         transport:
           type: sqs
           queue: https://sqs.us-east-1.amazonaws.com/1234567890/cloud-cloudcustodian
@@ -48,6 +50,10 @@ policies:
       Disable user access to management console.
       Delete user access-keys.
     resource: iam-user
+    mode:
+      type: periodic
+      role: arn:aws:iam::1234567890:role/CloudCustodian
+      schedule: "rate(5 minutes)"
     filters:
       - type: credential
         key: mfa_active
@@ -66,16 +72,16 @@ policies:
           - access-keys
           - console-access
       - type: notify
-        template: mfa-audit-disable-access.html
+        template: mfa-audit-disable-access
         template_format: 'html'
-        template_slack: slack-mfa-audit-disable-access
+        slack_template: slack-mfa-audit-disable-access
         priority_header: '5'
         subject: 'Security Audit: AWS Console Access Disabled and Access Keys Deleted'
         to:
-          - <your-email-address-goes-here> 
+          - <your-verified-email-address-goes-here> 
           - slack://#<slack-channel>
         owner_absent_contact:
-          - <your-email-address-goes-here>
+          - <your-verified-email-address-goes-here> 
         transport:
           type: sqs
           queue: https://sqs.us-east-1.amazonaws.com/1234567890/cloud-cloudcustodian
