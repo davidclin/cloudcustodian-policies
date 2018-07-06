@@ -572,6 +572,7 @@ Cloud Custodian policies can be run
   - as EC2 instance via c7n-org 
   - as container via ECS Fargate c7n-org
   - Cross account Lambda policies are not supported per [Issue #1071](https://github.com/capitalone/cloud-custodian/issues/1071)
+    But was recently support per [Issue #2533 ](https://github.com/capitalone/cloud-custodian/issues/2533)
   - Support for cross-account CloudWatch events is supported per [Issue #2005](https://github.com/capitalone/cloud-custodian/pull/2005)
     but requires an AWS CloudWatch footprint in each cross-account which can be stood up using CloudFormation
 
