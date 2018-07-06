@@ -553,7 +553,7 @@ This will reflect changes in your virtualenv Python lib such that the schema val
 - c7n-org can manage policies across different accounts and restrict the execution of policy by tag (and type like "dev" or "prod").
 - c7n_org includes a tool that auto generates the config file c7n-org uses for accounts using the aws organizations API.
 - To run policies across multiple AWS accounts, create roles in the cross-accounts that trust a 'primary/governance' account and from the primary/governance account create an instance profile that has the STS assume role to switch to N other accounts.
-- c7n-org uses the ~/.aws/config default profile 
+- c7n-org gets credentials from the [default] section of the ~/.aws/credentials and ~/.aws/config files.
   - how about using profiles within the config file?
   - how about using an instance profile if attached to EC2 instance that c7n-org is run on?
   - The cache file can handle multiple regions but you need a separate cache for each account (i.e. --cache /home/custodian/.accountname.cache)
