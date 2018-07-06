@@ -10,11 +10,13 @@
 | [copy-instance-tags.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/copy-instance-tags.yml)<br> | Periodically copies tags from EC2 instances to respective EBS volumes. |
 | [public-instance-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/public-instance-audit.yml)<br> | Sends notification when EC2 instance is launched with a Public IP address or attached to a Public subnet. |
 | [mfa-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mfa-audit.yml) | Sends reminder to Slack channel so users who are in the Administrators group don't forget to enable MFA to comply with business security policies. If MFA remains disabled after 5 days of the user create date, console access is disabled and access keys are deleted. |
+| [termination-protection-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/termination-protection-audit.yml) | Sends email and Slack notification when EC2 instances in whitelist are found with termination protection disabled. |
 
 ## Policies in Test
 | Policy | Description |
 |--------|-------------|
 | [new-user-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/new-user-audit.yml) | Retrieves iam users in specified group with MFA disabled in the last 30 days  |
+| [termination-protection-list.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/termination-protection-list.yml) | Retrieves list of all EC2 instances with termination protection enabled. |
 | [security-groups-unused.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused.yml) | Retrieves unused security groups using regex |
 | [stopped-instances.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/stopped-instances.yml) | Retrieves list of all stopped instances in specific VPC. Can be further customized to match other criteria. |
 | [security-groups-unused-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused-notify.yml) | Retrieves unused security groups using regex and notifies via email |
