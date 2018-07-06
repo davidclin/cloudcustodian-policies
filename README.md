@@ -546,7 +546,9 @@ This will reflect changes in your virtualenv Python lib such that the schema val
   Useful Tool: <a href="https://crontab.guru/">Quick simple editor for cron schedule expressions.</a>
 </details>
 
-# Cloud Custodian Lambda Policies 101
+# Lambda Policies 101
+Lambda policies can get confusing in a hurry. My advice. Read the documentation before diving into the weeds.
+
 [Lambda Policies](https://www.capitalone.io/docs/policy/lambda.html#execution-options)
 
 # Cross-Account Notes
