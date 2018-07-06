@@ -550,9 +550,13 @@ This will reflect changes in your virtualenv Python lib such that the schema val
 - Cross account is supported in the c7n_org tool via the c7n-org CLI command.
 - c7n-org supports multiple regions via the --region option (i.e. --region all).
 - c7n-org support scheduled and event based runs across multiple accounts concurrently.
-- c7n-org can manage policies across different accounts and restrict the execution of policy by tag.
+- c7n-org can manage policies across different accounts and restrict the execution of policy by tag (and type like "dev" or "prod").
 - c7n_org includes a tool that auto generates the config file c7n-org uses for accounts using the aws organizations API.
-- To run policies across multiple AWS accounts, create roles in the cross-accounts that trust a 'primary/governance' account and from the primary/governance account create an instance profile that has the ability to assume the cross-account roles.
+- To run policies across multiple AWS accounts, create roles in the cross-accounts that trust a 'primary/governance' account and from the primary/governance account create an instance profile that has the STS assume role to switch to N other accounts.
+- c7n-org uses the ~/.aws/config default profile 
+  - how about using profiles within the config file?
+  - how about using an instance profile if attached to EC2 instance that c7n-org is run on?
+  - The cache file can handle multiple regions but you need a separate cache for each account (i.e. --cache /home/custodian/.accountname.cache)
 - Policies can be run locally on EC2 instance or via Lambdas (or containers on k8s/ECS although I haven't tried this)
 
 
