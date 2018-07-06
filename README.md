@@ -547,9 +547,15 @@ This will reflect changes in your virtualenv Python lib such that the schema val
 </details>
 
 # Lambda Policies 101
-Lambda policies can get confusing in a hurry. My advice. Read the documentation before diving into the weeds.
+Lambda policies can get confusing in a hurry. My advice. RTFM before diving into the weeds!
 
 [Lambda Policies](https://www.capitalone.io/docs/policy/lambda.html#execution-options)
+
+Supported Lambda Mode Types:
+- cloudtrail
+- ec2-instance-state
+- periodic
+- config-rule
 
 # Cross-Account Notes
 - Cross account is supported in the c7n_org tool via the c7n-org CLI command.
