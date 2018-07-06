@@ -1,0 +1,31 @@
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian Policy Violation",
+         "title":"IAM Users in Administrators Group with MFA Disabled",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"Resources",
+               "value":"{%- for resource in resources -%}
+                        {{ format_resource(resource, policy['resource']) }}
+                        {%- endfor -%}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Action Description",
+               "value":"Console access disabled. Access keys deleted."
+            },
+            {
+               "title":"Note",
+               "value":"Users will need to contact IE Team to regain access."
+            }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
