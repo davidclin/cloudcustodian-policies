@@ -546,6 +546,11 @@ This will reflect changes in your virtualenv Python lib such that the schema val
   Useful Tool: <a href="https://crontab.guru/">Quick simple editor for cron schedule expressions.</a>
 </details>
 
+# Cross-Account Notes
+- Cross account is supported in the c7n_org tool via the c7n-org CLI command.
+- c7n-org supports ability to run policies against a subset of accounts within a given accounts file by using tag filters (i.e. -t env:prod)
+- To run policies across multiple AWS accounts, create roles in the cross-accounts that trust a 'primary/governance' account and from the primary/governance account create an instance profile that has the ability to assume the cross-account roles.
+
 # Resources
 [Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)<br>
 [Slack API and Token](https://github.com/capitalone/cloud-custodian/issues/2340)<br>
