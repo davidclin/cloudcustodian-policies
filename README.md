@@ -568,12 +568,14 @@ Supported Lambda Mode Types:
 - periodic
 - config-rule
 
+<pre>
 When using execution-options:
 - Metrics are pushed using the assumed role which may or may not be desired. Use 'metrics_enabled: false' to disable if not desired.
 - The mode must be periodic as there are restrictions on where policy executions can run according to the module:
   -- Config: May run in a different region but NOT cross-account
   -- Event: Only run in the SAME region and account
   -- Periodic: May run in a different region AND different account (this is the most flexible)
+</pre>
 
 # Cross-Account Notes
 - Cross account is supported in the c7n_org tool via the c7n-org CLI command.
