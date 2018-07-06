@@ -546,6 +546,9 @@ This will reflect changes in your virtualenv Python lib such that the schema val
   Useful Tool: <a href="https://crontab.guru/">Quick simple editor for cron schedule expressions.</a>
 </details>
 
+# Cloud Custodian Lambda Policies 101
+[Lambda Policies](https://www.capitalone.io/docs/policy/lambda.html#execution-options)
+
 # Cross-Account Notes
 - Cross account is supported in the c7n_org tool via the c7n-org CLI command.
 - c7n-org supports multiple regions via the --region option (i.e. --region all).
