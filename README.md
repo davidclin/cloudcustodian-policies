@@ -554,6 +554,7 @@ This will reflect changes in your virtualenv Python lib such that the schema val
 - c7n_org includes a tool that auto generates the config file c7n-org uses for accounts using the aws organizations API.
 - To run policies across multiple AWS accounts, create roles in the cross-accounts that trust a 'primary/governance' account and from the primary/governance account create an instance profile that has the STS assume role to switch to N other accounts.
 - c7n-org gets credentials from the [default] section of the ~/.aws/credentials and ~/.aws/config files.
+  Support for [profile](https://github.com/capitalone/cloud-custodian/issues/1956) as part of the account config was later introduced in Feb 2018.
   - how about using profiles within the config file?
   - how about using an instance profile if attached to EC2 instance that c7n-org is run on?
   - The cache file can handle multiple regions but you need a separate cache for each account (i.e. --cache /home/custodian/.accountname.cache)
