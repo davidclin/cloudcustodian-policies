@@ -565,13 +565,14 @@ This will reflect changes in your virtualenv Python lib such that the schema val
 - How are Lambda policies run across accounts?
 - How is Lambda policy sprawl managed across accounts?
 
-# Lambda Policy Notes
-Lambda policies can be run
-  - Serverless as separate Lambdas per account per region
+# General Policy Notes
+Cloud Custodian policies can be run
+  - serverless as separate Lambdas per account per region
+  - as EC2 instance via cron job
   - as EC2 instance via c7n-org 
   - as container via ECS Fargate c7n-org
   - Cross account Lambda policies are not supported per [Issue 1071](https://github.com/capitalone/cloud-custodian/issues/1071)
-    But is this still the case?
+  - Support for cross-account CloudWatch events is supported per [Issue #2005](https://github.com/capitalone/cloud-custodian/pull/2005)
 
 
 # Resources
