@@ -570,6 +570,8 @@ Lambda policies can be run
   - Serverless as separate Lambdas per account per region
   - as EC2 instance via c7n-org 
   - as container via ECS Fargate c7n-org
+  - Cross account Lambda policies are not supported per [Issue 1071](https://github.com/capitalone/cloud-custodian/issues/1071)
+    But is this still the case?
 
 
 # Resources
