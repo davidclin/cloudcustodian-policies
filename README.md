@@ -548,8 +548,24 @@ This will reflect changes in your virtualenv Python lib such that the schema val
 
 # Cross-Account Notes
 - Cross account is supported in the c7n_org tool via the c7n-org CLI command.
-- c7n-org supports ability to run policies against a subset of accounts within a given accounts file by using tag filters (i.e. -t env:prod)
+- c7n-org supports multiple regions via the --region option (i.e. --region all).
+- c7n-org support scheduled and event based runs across multiple accounts concurrently.
+- c7n-org can manage policies across different accounts and restrict the execution of policy by tag.
+- c7n_org includes a tool that auto generates the config file c7n-org uses for accounts using the aws organizations API.
 - To run policies across multiple AWS accounts, create roles in the cross-accounts that trust a 'primary/governance' account and from the primary/governance account create an instance profile that has the ability to assume the cross-account roles.
+- Policies can be run locally on EC2 instance or via Lambdas (or containers on k8s/ECS although I haven't tried this)
+
+
+# Cross-Account Questions
+- How are Lambda policies run across accounts?
+- How is Lambda policy sprawl managed across accounts?
+
+# Lambda Policy Notes
+Lambda policies can be run
+  - Serverless as separate Lambdas per account per region
+  - as EC2 instance via c7n-org 
+  - as container via ECS Fargate c7n-org
+
 
 # Resources
 [Custom msg-templates for c7n_mailer](https://github.com/capitalone/cloud-custodian/issues/1127)<br>
