@@ -421,6 +421,7 @@ and obeys rules set forth in the corresponding value pair per [Cloud Custodian O
 Use 'custodian validate' to find syntax errors<br>
 Check 'name' of policy doesn't contain spaces<br>
 Check SQS to see if Custodian payload is entering the queue<br>
+Check SQS permissions permit other accounts if using c7n-org
 Check cloud-custodian-mailer lambda CloudWatch rule schedule (5 minute by default)<br>
 Check Lambda error logs (this requires CloudWatch logging)<br>
 Check role for lambda(s) have adequate permissions<br>
@@ -580,21 +581,23 @@ When using execution-options:
 # Cross-Account Notes
 - Cross account is supported in the c7n_org tool via the c7n-org CLI command.
 - c7n-org supports multiple regions via the --region option (i.e. --region all).
-- c7n-org support scheduled and event based runs across multiple accounts concurrently.
 - c7n-org can manage policies across different accounts and restrict the execution of policy by tag (and type like "dev" or "prod").
 - c7n_org includes a tool that auto generates the config file c7n-org uses for accounts using the aws organizations API.
 - To run policies across multiple AWS accounts, create roles in the cross-accounts that trust a 'primary/governance' account and from the primary/governance account create an instance profile that has the STS assume role to switch to N other accounts.
+- To send email/Slack notifications using the existing SQS mailer queue, add permission to the SQS mailer queue that allows cross-accounts.
 - c7n-org gets credentials from the [default] section of the ~/.aws/credentials and ~/.aws/config files.
   Support for [profile](https://github.com/capitalone/cloud-custodian/issues/1956) as part of the account config was later introduced in Feb 2018.
-  - how about using profiles within the config file?
-  - how about using an instance profile if attached to EC2 instance that c7n-org is run on?
-  - The cache file can handle multiple regions but you need a separate cache for each account (i.e. --cache /home/custodian/.accountname.cache)
+- The cache file can handle multiple regions but you need a separate cache for each account (i.e. --cache /home/custodian/.accountname.cache)
 - Policies can be run locally on EC2 instance or via Lambdas (or containers on k8s/ECS although I haven't tried this)
 
 
 # Cross-Account Questions
 - How are Lambda policies run across accounts?
+  The same but you need to remove ```role:``` under the mode section.
+  In addition, the CloudCustodian role assigned to the c7n-org instance requires **sts:AssumeRole** and the role being assumed in the other account(s) must **trust** the CloudCustodian role assigned to the c7n-org.   
+  
 - How is Lambda policy sprawl managed across accounts?
+  [TBD]
 
 # General Policy Notes
 Cloud Custodian policies can be run
