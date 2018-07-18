@@ -590,6 +590,20 @@ When using execution-options:
 - The cache file can handle multiple regions but you need a separate cache for each account (i.e. --cache /home/custodian/.accountname.cache)
 - Policies can be run locally on EC2 instance or via Lambdas (or containers on k8s/ECS although I haven't tried this)
 
+<pre>
+Jamison Roberts @jtroberts83 14:13
+@davidclin If you grab one of the email messages in the c7n mailer SQS queue before it gets picked up and then unzip and base64 decode it you can see the entire metadata file with all the available info being passed to the mailer. Check that metadata to see if it shows the account numbers for the resources you are looking at. If so we can assist some with the email template to get those printed
+@davidclin
+
+To get the plan text:
+Copy the encoded SQS message into a file (e.g. result)
+Then decode the text using:
+$ cat result | base64 -d > result.zlib
+$ printf "\x1f\x8b\x08\x00\x00\x00\x00\x00" | cat - result.zlib | gzip -dc
+The printf is just to pad a proper header for gzip. Otherwise gzip will not be able to uncompress it.
+
+*Taken from https://groups.google.com/d/msg/cloud-custodian/z67zuVApHp0/xX81toqVAgAJ
+</pre>
 
 # Cross-Account Questions
 - How are Lambda policies run across accounts?
