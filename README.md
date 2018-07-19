@@ -589,7 +589,15 @@ When using execution-options:
 # Cross-Account Notes
 - Cross account is supported in the c7n_org tool via the c7n-org CLI command.
 - c7n-org supports multiple regions via the --region option (i.e. --region all).
-- c7n-org can manage policies across different accounts and restrict the execution of policy by tag [See more](https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_org).
+- c7n-org can manage policies across different accounts and restrict the execution of policy by tag [(See more)](https://github.com/capitalone/cloud-custodian/tree/master/tools/c7n_org).
+
+```
+Example:
+(c7n_org) $ c7n-org run -s output -c accounts.yml -u c7n-org-public-instance-audit.yml --region us-west-1 -a "Sandbox"
+2018-07-19 18:09:04,624: c7n_org:INFO Ran account:Sandbox region:us-west-1 policy:c7n-org-public-instance-audit matched:17 time:2.88
+2018-07-19 18:09:04,633: c7n_org:INFO Policy resource counts Counter({'c7n-org-public-instance-audit': 17})
+```
+
 - c7n_org includes a tool that auto generates the config file c7n-org uses for accounts using the aws organizations API.
 - To run policies across multiple AWS accounts, create roles in the cross-accounts that trust a 'primary/governance' account and from the primary/governance account create an instance profile that has the STS assume role to switch to N other accounts.
 - To send email/Slack notifications using the existing SQS mailer queue, add permission to the SQS mailer queue that allows cross-accounts.
