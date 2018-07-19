@@ -505,6 +505,14 @@ filters:
 ```
 </details>
 
+# Updating Latest Changes to Message Templates
+When you make changes to a message template and you've deployed the Lambda mailer,
+you will need to update the mailer.
+
+```
+c7n-mailer --config mailer.yml --update-lambda
+```
+
 # Updating Latest Merges to Master
 From your virtualenv
 
