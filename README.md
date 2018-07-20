@@ -629,6 +629,31 @@ The printf is just to pad a proper header for gzip. Otherwise gzip will not be a
 - How is Lambda policy sprawl managed across accounts?
   [TBD]
 
+# Email and Slack Message Templates
+The default email and slack templates will show the primary account ID by default.
+In order to have the templates show cross account ID's, you need to include the variable name 'account_id'.
+
+Email Template Example:
+```
+{% if account == "tri-na" %}
+     <h2><font color="#505151"> Account {{  "%s - %s" | format(account,region)  }} </h2>
+{% else %}
+     <h2><font color="#505151"> Cross Account {{ "%s - %s" | format(account_id,region)  }} </h2>
+{% endif %}
+```
+
+Slack Template Example:
+```
+{
+   "title":"Account ID",
+   "value":"{{ account_id }}"
+},
+{
+   "title":"Region",
+   "value":"{{ region }}"
+},
+```
+
 # General Policy Notes
 Cloud Custodian policies can be run
   - serverless as separate Lambdas per account per region
