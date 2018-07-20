@@ -30,6 +30,15 @@ Clearing Cloud Custodian Cache
 $ custodian run --help
 $ rm ~/.cache/cloud-custodian.cache
 
+=====================================================
+Extracting Email Message Variable Names in Mailer SQS
+=====================================================
+Copy the encoded SQS message into a file (e.g. result)
+Decode the text using:
+$ cat result | base64 -d > result.zlib
+$ printf "\x1f\x8b\x08\x00\x00\x00\x00\x00" | cat - result.zlib | gzip -dc
+
+The printf is just to pad a proper header for gzip. Otherwise gzip will not be able to uncompress it.
 
 ========================================
 Cloning a Development Branch for Testing
