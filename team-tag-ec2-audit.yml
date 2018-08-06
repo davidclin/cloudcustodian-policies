@@ -1,0 +1,31 @@
+policies:
+  - name: team-tag-audit
+    resource: ec2
+    description: |
+      Cloud Custodian EC2 Team Tag Audit
+    comments: |
+      Retrieve list of all instances that
+      - are missing the tag "Team"
+    mode:
+      type: periodic
+      role: arn:aws:iam::929292782238:role/CloudCustodian
+      schedule: "cron(0 20 * * ? *)"
+    filters:
+      - or:
+        - "tag:Team": absent
+        - "tag:Team": empty 
+    actions:
+      - type: notify
+        template: team-tag-ec2-audit.html
+        slack_template: slack-team-tag-ec2-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'Tag Audit: EC2 Instance(s) with no tag named Team'
+        to:
+          - cloudcustodianadmins@tri.global
+          - slack://#ie-stratus
+        owner_absent_contact:
+          - cloudcustodianadmins@tri.global
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/929292782238/cloud-cloudcustodian
