@@ -22,10 +22,10 @@ policies:
         priority_header: '5'
         subject: 'Tag Audit: EC2 Instance(s) with no tag named Team'
         to:
-          - cloudcustodianadmins@tri.global
-          - slack://#ie-stratus
+          - <email-address-goes-here>
+          - slack://#<slack-channel-goes-here>
         owner_absent_contact:
-          - cloudcustodianadmins@tri.global
+          - <email-address-goes-here>
         transport:
           type: sqs
           queue: https://sqs.us-east-1.amazonaws.com/123456789012/cloud-cloudcustodian
