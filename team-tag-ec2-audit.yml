@@ -8,7 +8,7 @@ policies:
       - are missing the tag "Team"
     mode:
       type: periodic
-      role: arn:aws:iam::929292782238:role/CloudCustodian
+      role: arn:aws:iam::123456789012:role/CloudCustodian
       schedule: "cron(0 20 * * ? *)"
     filters:
       - or:
@@ -28,4 +28,4 @@ policies:
           - cloudcustodianadmins@tri.global
         transport:
           type: sqs
-          queue: https://sqs.us-east-1.amazonaws.com/929292782238/cloud-cloudcustodian
+          queue: https://sqs.us-east-1.amazonaws.com/123456789012/cloud-cloudcustodian
