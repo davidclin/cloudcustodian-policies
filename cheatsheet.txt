@@ -30,6 +30,11 @@ Clearing Cloud Custodian Cache
 $ custodian run --help
 $ rm ~/.cache/cloud-custodian.cache
 
+==============================
+Getting Jenkins Version Number
+==============================
+java -jar jenkins-cli.jar -s http://localhost:8080/ version
+
 =====================================================
 Extracting Email Message Variable Names in Mailer SQS
 =====================================================
