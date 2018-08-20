@@ -49,8 +49,10 @@ $ git clone https://github.com/capitalone/cloud-custodian
 $ virtualenv c7n_mailer
 $ source c7n_mailer/bin/activate
 $ cd cloud-custodian/tools/c7n_mailer
-$ sudo pip install -r requirements.txt
-$ sudo pip install sendgrid
+$ pip install -r requirements.txt
+
+Note: If you upgrade PIP and encounter issues related to "pip ImportError: cannot import name 'main' after update",
+save yourself some grief and simply remove /usr/bin/pip and re-install pip.
 
 *** Install extensions ***
 $ sudo python setup.py develop
