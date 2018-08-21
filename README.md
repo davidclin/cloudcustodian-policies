@@ -135,6 +135,7 @@ lambda:GetFunction
 lambda:AddPermission
 lambda:ListFunctions
 lambda:UpdateFunctionCode
+lambda:CreateAlias
 events:DescribeRule
 events:PutRule
 events:ListTargetsByRule
