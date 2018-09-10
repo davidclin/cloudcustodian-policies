@@ -11,6 +11,8 @@
 | [public-instance-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/public-instance-audit.yml)<br> | Sends notification when EC2 instance is launched with a Public IP address or attached to a Public subnet. |
 | [mfa-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mfa-audit.yml) | Sends reminder to Slack channel so users who are in the Administrators group don't forget to enable MFA to comply with business security policies. If MFA remains disabled after 5 days of the user create date, console access is disabled and access keys are deleted. |
 | [termination-protection-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/termination-protection-audit.yml) | Sends email and Slack notification when EC2 instances in whitelist are found with termination protection disabled. |
+| [team-tag-ec2-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/team-tag-ec2-audit.yml) | Retrieves all EC2 instances with absent or empty Team tag and sends notification.	 |
+| [team-tag-s3-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/team-tag-s3-audit.yml) | Retrieves all S3 buckets with absent or empty Team tag and sends notification. |
 
 ## Policies in Test
 | Policy | Description |
