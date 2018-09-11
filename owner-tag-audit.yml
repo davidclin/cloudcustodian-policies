@@ -1,0 +1,39 @@
+# custodian report -s output owner-tag-audit.yml --field Name=tag:Name --field tag:Owner=tag:Owner --field KeyName=KeyName --field InstanceId=InstanceId --field Type=InstanceType --field State=State --format grid --no-default
+policies:
+  - name: owner-tag-audit
+    resource: ec2
+    description: |
+      Cloud Custodian Owner Tag Audit
+    comments: |
+      Retrieve list of all instances that
+      match specific "Owner" tag
+    mode:
+      type: ec2-instance-state 
+      role: arn:aws:iam::123456789:role/CloudCustodian
+      events: 
+        - running
+    filters:
+      - or:
+        - type: value
+          key: "tag:Owner"
+          value: (.*david.*)
+          op: regex
+        - type: value
+          key: "KeyName"
+          value: (.*david.*)
+          op: regex
+    actions:
+      - type: notify
+        template: owner-tag-audit.html
+        slack_template: slack-ownder-tag-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'Tag Audit: EC Instance(s) with Owner tag set to srikanth.yadav.ctr'
+        to:
+          - <your-email-address-goes-here>
+          - slack://#<slack-channel-goes-here>
+        owner_absent_contact:
+          - <your-email-address-goes-here>
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/1234567890/cloud-cloudcustodian
