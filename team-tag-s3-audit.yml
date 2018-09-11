@@ -9,6 +9,7 @@ policies:
     mode: 
       type: periodic
       role: arn:aws:iam::1234567890:role/CloudCustodian
+      timeout: 300
       schedule: "cron(0 17 ? * MON-FRI *)"
     filters:
       - "tag:Team": absent
