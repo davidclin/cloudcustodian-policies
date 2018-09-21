@@ -1,6 +1,8 @@
 policies:
   - name: termination-protection-audit
     resource: ec2
+    query:
+      - instance-state-name: running
     filters:
       - not:
           - type: termination-protected
