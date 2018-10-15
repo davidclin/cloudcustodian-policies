@@ -1,0 +1,29 @@
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian Policy Violation",
+         "title":"ElasticSearch Security Audit",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"Info",
+               "value":"An ES domain was found with access policy that is too permissive."
+            },
+            {
+               "title":"Account",
+               "value":"{{ account }}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Action Description",
+               "value":"Email notification sent. See email for details."
+            }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
