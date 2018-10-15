@@ -159,6 +159,9 @@ s3:GetBucketAcl
 s3:GetBucketWebsite
 s3:GetBucketLogging 
 s3:DeleteBucket 
+es:DescribeElasticsearchDomains
+es:ListDomainsNames
+es:ListTags
 </pre>
 </details>
 
