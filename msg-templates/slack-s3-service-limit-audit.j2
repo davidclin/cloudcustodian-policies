@@ -1,0 +1,29 @@
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian Policy Violation",
+         "title":"S3 Service Limit Audit",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"S3 Service Limit Threshold Exceeded:",
+               "value":"It may be time to increase the S3 service limit or do some housekeeping."
+            },
+            {
+               "title":"Account",
+               "value":"{{ account }}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Action Description",
+               "value":"Email notification sent."
+            }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
