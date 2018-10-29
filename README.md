@@ -13,6 +13,8 @@
 | [termination-protection-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/termination-protection-audit.yml) | Sends email and Slack notification when EC2 instances in whitelist are found with termination protection disabled. |
 | [team-tag-ec2-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/team-tag-ec2-audit.yml) | Retrieves all EC2 instances with absent or empty Team tag and sends notification.	 |
 | [team-tag-s3-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/team-tag-s3-audit.yml) | Retrieves all S3 buckets with absent or empty Team tag and sends notification. |
+ [s3-service-limit-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/s3-service-limit-audit.yml) | Monitors S3 service limits based on user threshhold and sends notifications. |
+
 
 ## Policies in Test
 | Policy | Description |
