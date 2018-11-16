@@ -1,0 +1,35 @@
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian Policy Violation",
+         "title":"EBS Garbage Collection",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"Available EBS Volumes Older than 1 Day :",
+               "value":"{%- for resource in resources -%}
+                        {{ format_resource(resource, policy['resource']) }}
+                        {%- endfor -%}"
+            },
+            {
+               "title":"Account",
+               "value":"{{ account }}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Action Description",
+               "value":"Unused EBS volumes deleted. No further action is required on your part."
+            },
+	    {
+	       "title":"Note:",
+	       "value":"This is informational only. Check email for more details."
+	    }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
