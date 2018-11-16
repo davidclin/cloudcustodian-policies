@@ -1,0 +1,25 @@
+policies:
+  - name: ebs-autocleanup-tag
+    resource: ebs
+    description: |
+      Cloud Custodian EBS AutoCleanup Tag
+    comments: |
+      Tags ebs volume with name "AutoCleanup" and sets value to "false"
+      unless volume is already tagged with "true".
+      This policy is used with the ebs-garbage-collection policy
+      which periodically checks ebs volumes with the "AutoClenaup"
+      tag set to "true" to mark ebs volumes for deletion after 24 hours
+      of being in the state "available".
+    mode: 
+      type: periodic
+      role: arn:aws:iam::1234567890:role/CloudCustodian
+      schedule: "rate(5 minutes)" 
+    filters:
+      - or:
+        - "tag:AutoCleanup": absent
+        - not:
+          - "tag:AutoCleanup": "true"
+    actions:
+      - type: tag
+        key: "AutoCleanup"
+        value: "false"
