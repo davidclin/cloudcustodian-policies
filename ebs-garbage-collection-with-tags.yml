@@ -25,7 +25,7 @@ policies:
     actions:
       - delete
       - type: notify
-        template: ebs-garbage-collection-with-tags.html
+        template: ebs-garbage-collection.html
         slack_template: slack-ebs-garbage-collection
         template_format: 'html'
         priority_header: '5'
