@@ -15,6 +15,7 @@
 | [team-tag-s3-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/team-tag-s3-audit.yml) | Retrieves all S3 buckets with absent or empty Team tag and sends notification. |
  [s3-service-limit-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/s3-service-limit-audit.yml) | Monitors S3 service limits based on user threshhold and sends notifications. |
 [s3-server-access-logging.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/s3-server-access-logging.yml) | Enables S3 server access logging with TargetBucket set to s3-access-log-account_number-region and PrefixTarget set to name of bucket. |
+[s3-target-bucket-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/s3-target-bucket-audit.yml) | Checks S3 server access logging target bucket name is in compliance. Supplements s3-server-access-logging.yml policy |
 [ebs-autocleanup-tag.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/ebs-autocleanup-tag.yml) | Tags ebs volume with name 'AutoCleanup' and sets value to 'false' unless volume is already tagged with 'true'. This policy is used with the ebs-garbage-collection policy. | 
 [ebs-garbage-collection-with-tags.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/ebs-garbage-collection-with-tags.yml) | Deletes unattached EBS volumes older than 1 day (24hrs) that have the tag AutoCleanup set to true. |
 
