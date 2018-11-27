@@ -1,0 +1,29 @@
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian Policy Violation",
+         "title":"S3 Target Bucket Audit",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"Notifcation:",
+               "value":"S3 buckets were found with non-compliant target bucket names."
+            },
+            {
+               "title":"Account",
+               "value":"{{ account }}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Action Description",
+               "value":"Email notification sent."
+            }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
