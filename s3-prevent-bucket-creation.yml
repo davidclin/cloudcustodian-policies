@@ -15,26 +15,32 @@ policies:
         - CreateBucket
       timeout: 200
     filters:
-      - type: event 
-        key: "region"
-        op: in
-        value:
-          - us-east-1
+      - and:
+        - not:      
+          - type: value
+            key: "Name"
+            value: "david-lin-ctr-sandbox-1|david-lin-ctr-sandbox-2"
+            op: regex
+        - type: event 
+          key: "region"
+          op: in
+          value:
+            - us-east-1
     actions:
+      - type: delete
+        remove-contents: true
       - type: notify
         template: s3-prevent-bucket-creation.html
         template_format: 'html'
         slack_template: slack-s3-prevent-bucket-creation
         priority_header: '5'
-        subject: 'Resource Audit: S3 Bucket Deleted - [custodian {{custodian {{account }} - {{ region }}]'
-        violation_desc: "Creating S3 buckets is prohibited"
-        action_desc: "Actions Taken: Your new S3 bucket has been deleted. Please recreate in an existing bucket or submit a request to IE."
+        subject: "S3 Audit: S3 Bucket Deleted"
         to:
           - cloudcustodianadmins@company.com
-          - event-owner
           - slack://#channel_name
+          - event-owner
         owner_absent_contact:
           - cloudcustodianadmins@company.com
         transport:
           type: sqs
-          queue: https://sqs.us-east-1.amazonaws.com/929292782238/cloud-cloudcustodian
+          queue: https://sqs.us-east-1.amazonaws.com/account_id/cloud-cloudcustodian
