@@ -1,0 +1,40 @@
+policies:
+
+
+  - name: s3-prevent-bucket-creation
+    resource: s3 
+    description: |
+      Cloud Custodian S3 Bucket Creation Prevention  
+    comments: |
+      Prevents creation of S3 buckets in us-east-1
+      and sends email notification to user
+    mode:
+      type: cloudtrail
+      role: arn:aws:iam::account_id:role/CloudCustodian
+      events:
+        - CreateBucket
+      timeout: 200
+    filters:
+      - type: event 
+        key: "region"
+        op: in
+        value:
+          - us-east-1
+    actions:
+      - type: notify
+        template: s3-prevent-bucket-creation.html
+        template_format: 'html'
+        slack_template: slack-s3-prevent-bucket-creation
+        priority_header: '5'
+        subject: 'Resource Audit: S3 Bucket Deleted - [custodian {{custodian {{account }} - {{ region }}]'
+        violation_desc: "Creating S3 buckets is prohibited"
+        action_desc: "Actions Taken: Your new S3 bucket has been deleted. Please recreate in an existing bucket or submit a request to IE."
+        to:
+          - cloudcustodianadmins@company.com
+          - event-owner
+          - slack://#channel_name
+        owner_absent_contact:
+          - cloudcustodianadmins@company.com
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/929292782238/cloud-cloudcustodian
