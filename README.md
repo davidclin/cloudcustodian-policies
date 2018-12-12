@@ -19,6 +19,9 @@
 [s3-prevent-bucket-creation.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/s3-prevent-bucket-creation.yml) | Prevents creation of S3 buckets. |
 [ebs-autocleanup-tag.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/ebs-autocleanup-tag.yml) | Tags ebs volume with name 'AutoCleanup' and sets value to 'false' unless volume is already tagged with 'true'. This policy is used with the ebs-garbage-collection policy. | 
 [ebs-garbage-collection-with-tags.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/ebs-garbage-collection-with-tags.yml) | Deletes unattached EBS volumes older than 1 day (24hrs) that have the tag AutoCleanup set to true. |
+[iam-ec2-policy-check.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-ec2-policy-check.yml) | Checks IAM policies that have EC2 related full access permissions. |
+[iam-user-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-user-audit.yml) | Monitors IAM users not in Ec2InstanceLaunchers group but found with AmazonEC2FullAccess managed policy attached. |
+[iam-role-with-managed-policy-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-role-audit.yml) | TBD |
 
 
 ## Policies in Test
