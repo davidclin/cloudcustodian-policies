@@ -1,0 +1,36 @@
+policies:
+  - name: iam-user-audit
+    resource: iam-user
+    description: |
+      Cloud Custodian IAM User Audit
+    comments: |
+      Send notification when IAM user is found with AmazonEC2FullAccess
+      and not part of the Ec2InstanceLaunchers group.
+    mode:
+      type: periodic
+      role: arn:aws:iam::<account_id>:role/CloudCustodian
+      schedule: "rate(1 day)"
+    filters:
+      - not:
+        - type: group
+          key: GroupName
+          value: Ec2InstanceLaunchers
+      - type: policy
+        key: PolicyName
+        value: AmazonEC2FullAccess
+        op: regex
+    actions:
+      - type: notify
+        template: iam-user-audit
+        template_format: 'html'
+        slack_template: slack-iam-user-audit
+        priority_header: '5'
+        subject: 'IAM User Audit: IAM User(s) found not in Ec2InstanceLaunchers but with AmazonEC2FullAccess'
+        to:
+          - cloudcustodianadmins@company.com
+          - slack://#<slack-channel>
+        owner_absent_contact:
+          - cloudcustodianadmins@company.com 
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/<account_id>/cloud-cloudcustodian  
