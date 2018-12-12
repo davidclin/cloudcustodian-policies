@@ -1,0 +1,117 @@
+policies:
+  - name: iam-no-used-ec2-all-policy
+    resource: iam-policy
+    filters:
+      - type: has-allow-all
+      
+##############################################################################################      
+Note: By default, `has-allow-all` matches IAM policies that have the following JSON code block
+
+ {
+     'Version': '2012-10-17',
+     'Statement': [{
+         'Action': '*',
+         'Resource': '*',
+         'Effect': 'Allow'
+     }]
+ }
+
+
+##############################################################################################      
+Since I needed to have the Action match on specific values, the following lines were manually
+added to the /cloud-custodian/c7n/resources/iam.py module:
+
+     def has_allow_all_policy(self, client, resource):
+         statements = client.get_policy_version(
+             PolicyArn=resource['Arn'],
+             VersionId=resource['DefaultVersionId']
+         )['PolicyVersion']['Document']['Statement']
+         if isinstance(statements, dict):
+             statements = [statements]
+
+ # has ec2:*
+         for s in statements:
+             if ('Condition' not in s and
+                     'Action' in s and
+                     isinstance(s['Action'], six.string_types) and
+                     s['Action'] == "ec2:*" and    
+                     'Resource' in s and
+                     isinstance(s['Resource'], six.string_types) and
+                     s['Resource'] == "*" and
+                     s['Effect'] == "Allow"):
+                 return True
+
+ # has elasticloadbalancing:*
+         for s in statements:
+             if ('Condition' not in s and
+                     'Action' in s and
+                     isinstance(s['Action'], six.string_types) and
+                     s['Action'] == "elasticloadbalancing:*" and
+                     'Resource' in s and
+                     isinstance(s['Resource'], six.string_types) and
+                     s['Resource'] == "*" and
+                     s['Effect'] == "Allow"):
+                 return True
+
+ # has cloudwatch:*
+         for s in statements:
+             if ('Condition' not in s and
+                     'Action' in s and
+                     isinstance(s['Action'], six.string_types) and
+                     s['Action'] == "cloudwatch:*" and
+                     'Resource' in s and
+                     isinstance(s['Resource'], six.string_types) and
+                     s['Resource'] == "*" and
+                     s['Effect'] == "Allow"):
+                 return True
+                 
+# has autoscaling:*
+        for s in statements:
+            if ('Condition' not in s and
+                    'Action' in s and
+                    isinstance(s['Action'], six.string_types) and
+                    s['Action'] == "autoscaling:*" and
+                    'Resource' in s and
+                    isinstance(s['Resource'], six.string_types) and
+                    s['Resource'] == "*" and
+                    s['Effect'] == "Allow"):
+                return True
+
+# has iam:CreateServiceLinkedRole
+        for s in statements:
+            if ('Condition' not in s and
+                    'Action' in s and
+                    isinstance(s['Action'], six.string_types) and
+                    s['Action'] == "iam:CreateServiceLinkedRole" and
+                    'Resource' in s and
+                    isinstance(s['Resource'], six.string_types) and
+                    s['Resource'] == "*" and
+                    s['Effect'] == "Allow"):
+                return True
+
+# has ec2:RunInstances
+        for s in statements:
+            if ('Condition' not in s and
+                    'Action' in s and
+                    isinstance(s['Action'], six.string_types) and
+                    s['Action'] == "ec2:RunInstances" and
+                    'Resource' in s and
+                    isinstance(s['Resource'], six.string_types) and
+                    s['Resource'] == "*" and
+                    s['Effect'] == "Allow"):
+                return True
+        return False
+
+    def process(self, resources, event=None):
+        c = local_session(self.manager.session_factory).client('iam')
+        results = [r for r in resources if self.has_allow_all_policy(c, r)]
+        self.log.info(
+            "%d of %d iam policies have allow all.",
+            len(results), len(resources))
+        return results
+        
+        #####################################################################
+        Note: For the changes to the iam.py module to take effect, remember to issue:
+        
+        $ cd ~/cloud-custodian
+        $ python install setup.up install
