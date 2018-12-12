@@ -6,7 +6,7 @@ policies:
       
 ##############################################################################################      
 Note: By default, `has-allow-all` matches IAM policies that have the following JSON code block
-
+##############################################################################################   
  {
      'Version': '2012-10-17',
      'Statement': [{
@@ -20,7 +20,7 @@ Note: By default, `has-allow-all` matches IAM policies that have the following J
 ##############################################################################################      
 Since I needed to have the Action match on specific values, the following lines were manually
 added to the /cloud-custodian/c7n/resources/iam.py module:
-
+##############################################################################################   
      def has_allow_all_policy(self, client, resource):
          statements = client.get_policy_version(
              PolicyArn=resource['Arn'],
@@ -110,8 +110,9 @@ added to the /cloud-custodian/c7n/resources/iam.py module:
             len(results), len(resources))
         return results
         
-        #####################################################################
-        Note: For the changes to the iam.py module to take effect, remember to issue:
+##############################################################################################   
+Note: For the changes to the iam.py module to take effect, remember to issue:
+##############################################################################################   
         
         $ cd ~/cloud-custodian
         $ python install setup.up install
