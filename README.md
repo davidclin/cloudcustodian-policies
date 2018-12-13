@@ -21,7 +21,7 @@
 [ebs-garbage-collection-with-tags.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/ebs-garbage-collection-with-tags.yml) | Deletes unattached EBS volumes older than 1 day (24hrs) that have the tag AutoCleanup set to true. |
 [iam-ec2-policy-check.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-ec2-policy-check.yml) | Checks IAM policies that have EC2 related full access permissions. |
 [iam-user-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-user-audit.yml) | Monitors IAM users not in Ec2InstanceLaunchers group but found with AmazonEC2FullAccess managed policy attached. |
-[iam-role-with-managed-policy-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-role-audit.yml) | Monitors IAM roles with the AmazonEC2FullAccess managed policy among others. |
+[iam-role-with-managed-policy-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-role-with-managed-policy-audit.yml) | Monitors IAM roles with the AmazonEC2FullAccess managed policy among others. |
 
 
 ## Policies in Test
