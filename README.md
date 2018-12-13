@@ -137,6 +137,8 @@ General policy permissions:
 iam:PassRole
 iam:ListAccountAliases
 iam:ListUsers
+iam:ListRoles
+iam:ListAttachedRolePolicies
 iam:GetCredentialReport
 iam:GenerateCredentialReport
 ses:SendEmail
