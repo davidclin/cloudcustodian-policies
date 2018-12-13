@@ -16,7 +16,10 @@ policies:
     filters:
       - or: 
         - not:
-          - "tag:Autocleanup": false
+          - or:
+            - "tag:AutoCleanup": "false"
+            - "tag:AutoCleanup": "False"
+            - "tag:AutoCleanup": "FALSE"
         - "tag:AutoCleanup": absent
     actions:
       - type: tag
