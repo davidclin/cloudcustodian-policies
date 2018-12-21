@@ -1,0 +1,2 @@
+0 17 * * * /home/ubuntu/cloudcustodian/cron/mfa-audit.sh > /home/ubuntu/cloudcustodian/cron/mfa-audit.log 2>&1
+
