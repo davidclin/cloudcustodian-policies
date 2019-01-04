@@ -68,7 +68,7 @@ Note: If you upgrade PIP and encounter issues related to "pip ImportError: canno
 save yourself some grief and simply remove /usr/bin/pip and re-install pip.
 
 *** Install extensions ***
-$ sudo python setup.py develop
+$ python setup.py develop
 
 *** Verify Installation ***
 $ c7n-mailer
