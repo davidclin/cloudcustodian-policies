@@ -197,28 +197,45 @@ users:read.email
 
 # Schemas Used
 <details>
-<summary>security-group</summary>
+<summary>ebs</summary>
 
 <pre>
-(custodian) [hostname]$ custodian schema security-group
-aws.security-group:
-  actions: [auto-tag-user, delete, invoke-lambda, mark, mark-for-op, normalize-tag,
-    notify, patch, put-metric, remove-permissions, remove-tag, rename-tag, tag, tag-trim,
-    unmark, untag]
-  filters: [and, default-vpc, diff, egress, event, ingress, json-diff, locked, marked-for-op,
-    not, or, stale, tag-count, unused, used, value]
+(custodian) [hostname]$ custodian schema ebs
+aws.ebs:
+  actions: [auto-tag-user, copy-instance-tags, delete, detach, encrypt-instance-volumes,
+    invoke-lambda, mark, mark-for-op, modify, normalize-tag, notify, post-finding,
+    put-metric, remove-tag, rename-tag, snapshot, tag, tag-trim, unmark, untag]
+  filters: [and, config-compliance, event, fault-tolerant, health-event, instance,
+    kms-alias, marked-for-op, metrics, modifyable, not, or, tag-count, value]
 </pre>
 </details>
 
 <details>
-<summary>iam-user</summary>
+<summary>ec2</summary>
+<pre>
+
+(custodian) [hostname]$ custodian schema ec2
+aws.ec2:
+  actions: [auto-tag-user, autorecover-alarm, invoke-lambda, mark, mark-for-op, modify-security-groups,
+    normalize-tag, notify, post-finding, propagate-spot-tags, put-metric, reboot,
+    remove-tag, rename-tag, resize, set-instance-profile, snapshot, start, stop, tag,
+    tag-trim, terminate, unmark, untag]
+  filters: [and, config-compliance, default-vpc, ebs, ephemeral, event, health-event,
+    image, image-age, instance-age, instance-attribute, instance-uptime, marked-for-op,
+    metrics, network-location, not, offhour, onhour, or, security-group, singleton,
+    state-age, subnet, tag-count, termination-protected, user-data, value, vpc]
+</pre>
+</details>
+
+<details>
+<summary>elasticsearch</summary>
 
 <pre>
-(custodian) [hostname]$ custodian schema iam-user
-aws.iam-user:
-  actions: [delete, invoke-lambda, notify, put-metric, remove-keys]
-  filters: [access-key, and, credential, event, group, mfa-device, not, or, policy,
-    value]
+aws.elasticsearch:
+  actions: [auto-tag-user, delete, invoke-lambda, mark-for-op, modify-security-groups,
+    notify, post-finding, put-metric, remove-tag, tag]
+  filters: [and, event, marked-for-op, metrics, not, or, security-group, subnet, value,
+    vpc]
 </pre>
 </details>
 
@@ -235,18 +252,47 @@ aws.iam-role:
 </details>
 
 <details>
-<summary>ec2</summary>
-<pre>
+<summary>iam-user</summary>
 
-(custodian) [hostname]$ custodian schema ec2
-aws.ec2:
-  actions: [auto-tag-user, autorecover-alarm, invoke-lambda, mark, mark-for-op, modify-security-groups,
-    normalize-tag, notify, put-metric, reboot, remove-tag, rename-tag, resize, set-instance-profile,
-    snapshot, start, stop, tag, tag-trim, terminate, unmark, untag]
-  filters: [and, default-vpc, ebs, ephemeral, event, health-event, image, image-age,
-    instance-age, instance-uptime, marked-for-op, metrics, network-location, not,
-    offhour, onhour, or, security-group, singleton, state-age, subnet, tag-count,
-    termination-protected, value]
+<pre>
+(custodian) [hostname]$ custodian schema iam-user
+aws.iam-user:
+  actions: [delete, invoke-lambda, notify, put-metric, remove-keys]
+  filters: [access-key, and, credential, event, group, mfa-device, not, or, policy,
+    value]
+</pre>
+</details>
+
+<details>
+<summary>s3</summary>
+
+<pre>
+(custodian) [hostname]$ custodian schema s3
+aws.s3:
+  actions: [attach-encrypt, auto-tag-user, configure-lifecycle, delete, delete-bucket-notification,
+    delete-global-grants, encrypt-keys, encryption-policy, invoke-lambda, mark-for-op,
+    no-op, notify, post-finding, put-metric, remove-statements, remove-website-hosting,
+    set-bucket-encryption, set-inventory, set-statements, tag, toggle-logging, toggle-versioning,
+    unmark]
+  filters: [and, bucket-encryption, bucket-notification, config-compliance, cross-account,
+    data-events, event, global-grants, has-statement, inventory, is-log-target, marked-for-op,
+    metrics, missing-policy-statement, missing-statement, no-encryption-statement,
+    not, or, value]
+
+</pre>
+</details>
+
+<details>
+<summary>security-group</summary>
+
+<pre>
+(custodian) [hostname]$ custodian schema security-group
+aws.security-group:
+  actions: [auto-tag-user, delete, invoke-lambda, mark, mark-for-op, normalize-tag,
+    notify, patch, put-metric, remove-permissions, remove-tag, rename-tag, tag, tag-trim,
+    unmark, untag]
+  filters: [and, default-vpc, diff, egress, event, ingress, json-diff, locked, marked-for-op,
+    not, or, stale, tag-count, unused, used, value]
 </pre>
 </details>
 
