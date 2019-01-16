@@ -27,6 +27,7 @@
 ## Policies in Test
 | Policy | Description |
 |--------|-------------|
+| [ec2.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/ec2.yml) | Retrieves instances that match on specified tag name and instance type.  |
 | [elasticsearch-find-all-domains.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/elasticsearch-find-all-domains.yml) | Finds Elasticsearch domaina and retrieves attributes.  |
 | [new-user-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/new-user-audit.yml) | Retrieves iam users in specified group with MFA disabled in the last 30 days  |
 | [termination-protection-list.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/termination-protection-list.yml) | Retrieves list of all EC2 instances with termination protection enabled. |
