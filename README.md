@@ -176,6 +176,7 @@ s3:DeleteBucket
 es:DescribeElasticsearchDomains
 es:ListDomainsNames
 es:ListTags
+es:AddTags
 </pre>
 </details>
 
