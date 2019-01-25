@@ -143,6 +143,7 @@ iam:ListRoles
 iam:ListAttachedRolePolicies
 iam:GetCredentialReport
 iam:GenerateCredentialReport
+iam:ListAttachedUserPolicies
 ses:SendEmail
 ses:SendRawEmail
 lambda:CreateFunction
