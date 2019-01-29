@@ -22,7 +22,7 @@
 [iam-ec2-policy-check.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-ec2-policy-check.yml) | Checks IAM policies that have EC2 related full access permissions. |
 [iam-user-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-user-audit.yml) | Monitors IAM users not in Ec2InstanceLaunchers group but found with AmazonEC2FullAccess managed policy attached. |
 [iam-role-with-managed-policy-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-role-with-managed-policy-audit.yml) | Monitors IAM roles with the AmazonEC2FullAccess managed policy among others. |
-
+[iam-user-administrator-access-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-user-administrator-access-audit.yml) | Monitors non-whitelisted IAM users with Administrator access. |
 
 ## Policies in Test
 | Policy | Description |
