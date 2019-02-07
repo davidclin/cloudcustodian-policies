@@ -1,0 +1,10 @@
+policies:
+  - name: vpn_connections
+    resource: vpn-connection
+    description: |
+      Cloud Custodian VPN Connections
+    comments: |
+      Retrieve all VPN Connections
+    filters:
+      - not:
+        - "tag:Name": empty 

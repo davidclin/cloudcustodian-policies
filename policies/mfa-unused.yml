@@ -1,0 +1,13 @@
+policies:
+  - name: mfa-unused
+    resource: iam-user
+    description: |
+      Retrieve list of all IAM users in the group 'Administrators'
+      who have not enabled MFA.
+    filters:
+      - type: credential 
+        key: mfa_active 
+        value: false 
+      - type: group
+        key: GroupName
+        value: Administrators

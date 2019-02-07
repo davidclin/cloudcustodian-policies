@@ -1,0 +1,27 @@
+policies:
+  - name: slack-notify
+    resource: security-group
+    description: |
+      Retrieve unused security groups using regex.
+      Notify using Slack.
+      To get a complete list, use value of .*
+      To get a subset, use a regex pattern.
+    filters:
+      - unused
+      - type: value
+        key: GroupName
+        op: regex
+        value: .*
+    actions:
+      - type: notify
+        template_slack: slack_default
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'CloudCustodian: Unused Security Groups'
+        to:
+          - slack://#cloudcustodianprivate
+        owner_absent_contact:
+          - email@address.com 
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/1234567890/sandbox

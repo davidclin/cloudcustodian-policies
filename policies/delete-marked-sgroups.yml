@@ -1,0 +1,35 @@
+policies:
+  - name: unmark-attached-security-groups
+    resource: security-group
+    description: |
+      Unmark attached security groups that were previously tagged for deletion.
+    filters:
+      - used
+      - type: value
+        key: GroupName
+        value: not-null
+      - "tag:maid_status": not-null
+    actions:
+      - unmark
+
+  - name: delete-marked-security-groups
+    resource: security-group
+    description: |
+      Delete security groups marked for deletion
+    filters:
+      - type: marked-for-op
+        op: delete
+    actions:
+      - delete
+      - type: notify
+        template: sgroup-delete-marked.html
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'CloudCustodian: Unused Security Groups'
+        to:
+          - email@address.com 
+        owner_absent_contact:
+          - email@address.com 
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/1234567890/sandbox

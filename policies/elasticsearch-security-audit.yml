@@ -1,0 +1,45 @@
+policies:
+  - name: elasticsearch_security_audit
+    resource: elasticsearch 
+    description: |
+      Cloud Custodian Elasticsearch Security Audit 
+    comments: |
+      Periodically check PUBLIC ES domains that have
+      access policies that are too permissive.
+      Ignore PRIVATE ES domains.
+      PRIVATE domains will have VPCOptions configured.
+      PUBLIC  domains will have a Condition with AccessApolicies configured.
+      Send email/Slack notification.
+    mode:
+      type: periodic
+      role: arn:aws:iam::<account_id>:role/CloudCustodian
+      schedule: "rate(5 minutes)"
+    filters:
+      - type: value
+        key: VPCOptions
+        value: null 
+      - or:          
+        - not:
+          - type: value
+            key: AccessPolicies 
+            op: regex
+            value: .*Condition.* 
+        - type: value
+          key: AccessPolicies
+          op: regex
+          value: .*0.0.0.0/0.*
+    actions:
+      - type: notify
+        template: elasticsearch-security-audit.html
+        slack_template: slack-elasticsearch-security-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'ElasticSearch Security Audit: ES Domain found out of compliance'
+        to:
+          - <email_address> 
+          - slack://#<channel_name>
+        owner_absent_contact:
+          - <email_address> 
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/<account_id>/cloud-cloudcustodian
