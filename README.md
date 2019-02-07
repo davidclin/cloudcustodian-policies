@@ -10,43 +10,43 @@
 | [copy-instance-tags.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/copy-instance-tags.yml)<br> | Periodically copies tags from EC2 instances to respective EBS volumes. |
 | [public-instance-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/public-instance-audit.yml)<br> | Sends notification when EC2 instance is launched with a Public IP address or attached to a Public subnet. |
 | [mfa-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/mfa-audit.yml) | Sends reminder to Slack channel so users who are in the Administrators group don't forget to enable MFA to comply with business security policies. If MFA remains disabled after 5 days of the user create date, console access is disabled and access keys are deleted. |
-| [termination-protection-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/termination-protection-audit.yml) | Sends email and Slack notification when EC2 instances in whitelist are found with termination protection disabled. |
-| [team-tag-ec2-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/team-tag-ec2-audit.yml) | Retrieves all EC2 instances with absent or empty Team tag and sends notification.	 |
-| [team-tag-s3-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/team-tag-s3-audit.yml) | Retrieves all S3 buckets with absent or empty Team tag and sends notification. |
- [s3-service-limit-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/s3-service-limit-audit.yml) | Monitors S3 service limits based on user threshhold and sends notifications. |
-[s3-server-access-logging.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/s3-server-access-logging.yml) | Enables S3 server access logging with TargetBucket set to s3-access-log-account_number-region and PrefixTarget set to name of bucket. |
-[s3-target-bucket-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/s3-target-bucket-audit.yml) | Checks S3 server access logging target bucket name is in compliance. Supplements s3-server-access-logging.yml policy |
-[s3-prevent-bucket-creation.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/s3-prevent-bucket-creation.yml) | Prevents creation of S3 buckets. |
-[ebs-autocleanup-tag.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/ebs-autocleanup-tag.yml) | Tags ebs volume with name 'AutoCleanup' and sets value to 'false' unless volume is already tagged with 'true'. This policy is used with the ebs-garbage-collection policy. | 
-[ebs-garbage-collection-with-tags.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/ebs-garbage-collection-with-tags.yml) | Deletes unattached EBS volumes older than 1 day (24hrs) that have the tag AutoCleanup set to true. |
-[iam-ec2-policy-check.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-ec2-policy-check.yml) | Checks IAM policies that have EC2 related full access permissions. |
-[iam-user-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-user-audit.yml) | Monitors IAM users not in Ec2InstanceLaunchers group but found with AmazonEC2FullAccess managed policy attached. |
-[iam-role-with-managed-policy-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-role-with-managed-policy-audit.yml) | Monitors IAM roles with the AmazonEC2FullAccess managed policy among others. |
-[iam-user-administrator-access-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam-user-administrator-access-audit.yml) | Monitors non-whitelisted IAM users with Administrator access. |
+| [termination-protection-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/termination-protection-audit.yml) | Sends email and Slack notification when EC2 instances in whitelist are found with termination protection disabled. |
+| [team-tag-ec2-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/team-tag-ec2-audit.yml) | Retrieves all EC2 instances with absent or empty Team tag and sends notification.	 |
+| [team-tag-s3-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/team-tag-s3-audit.yml) | Retrieves all S3 buckets with absent or empty Team tag and sends notification. |
+ [s3-service-limit-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/s3-service-limit-audit.yml) | Monitors S3 service limits based on user threshhold and sends notifications. |
+[s3-server-access-logging.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/s3-server-access-logging.yml) | Enables S3 server access logging with TargetBucket set to s3-access-log-account_number-region and PrefixTarget set to name of bucket. |
+[s3-target-bucket-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/s3-target-bucket-audit.yml) | Checks S3 server access logging target bucket name is in compliance. Supplements s3-server-access-logging.yml policy |
+[s3-prevent-bucket-creation.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/s3-prevent-bucket-creation.yml) | Prevents creation of S3 buckets. |
+[ebs-autocleanup-tag.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/ebs-autocleanup-tag.yml) | Tags ebs volume with name 'AutoCleanup' and sets value to 'false' unless volume is already tagged with 'true'. This policy is used with the ebs-garbage-collection policy. | 
+[ebs-garbage-collection-with-tags.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/ebs-garbage-collection-with-tags.yml) | Deletes unattached EBS volumes older than 1 day (24hrs) that have the tag AutoCleanup set to true. |
+[iam-ec2-policy-check.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-ec2-policy-check.yml) | Checks IAM policies that have EC2 related full access permissions. |
+[iam-user-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-audit.yml) | Monitors IAM users not in Ec2InstanceLaunchers group but found with AmazonEC2FullAccess managed policy attached. |
+[iam-role-with-managed-policy-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-role-with-managed-policy-audit.yml) | Monitors IAM roles with the AmazonEC2FullAccess managed policy among others. |
+[iam-user-administrator-access-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-administrator-access-audit.yml) | Monitors non-whitelisted IAM users with Administrator access. |
 
 ## Policies in Test
 | Policy | Description |
 |--------|-------------|
-| [ec2.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/ec2.yml) | Retrieves instances that match on specified tag name and instance type.  |
-| [elasticsearch-find-all-domains.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/elasticsearch-find-all-domains.yml) | Finds Elasticsearch domaina and retrieves attributes.  |
-| [new-user-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/new-user-audit.yml) | Retrieves iam users in specified group with MFA disabled in the last 30 days  |
-| [termination-protection-list.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/termination-protection-list.yml) | Retrieves list of all EC2 instances with termination protection enabled. |
-| [security-groups-unused.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused.yml) | Retrieves unused security groups using regex |
-| [stopped-instances.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/stopped-instances.yml) | Retrieves list of all stopped instances in specific VPC. Can be further customized to match other criteria. |
-| [security-groups-unused-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/security-groups-unused-notify.yml) | Retrieves unused security groups using regex and notifies via email |
-| [iam.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/iam.yml)                    | Retrieves iam users using regex |
-| [mfa.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mfa.yml)                    | Retrieves iam users with MFA enabled |
-| [roles.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/roles.yml)                  | Retrieves unused roles on EC2, Lambda, and ECS |
-| [admin-group.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/admin-group.yml)            | Retrieves users in the group named 'Administrators' |
-| [mfa-unused.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mfa-unused.yml)             | Retrieves users who have MFA disabled in the group named 'Administrators' |
-| [emailer.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/emailer.yml)                | Sends email notification via Simple Email Service (SES) using notify action |
-| [ebs-garbage-collection.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/ebs-garbage-collection.yml) | Deletes all unattached volumes |
-| [ebs-garbage-collection-lambda.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/ebs-garbage-collection-lambda.yml) | Deletes all unattached volumes using Lambda function |
-| [public-subnet-instance-audit-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/public-subnet-instance-audit-notify.yml) | Sends email notification via SES when EC2 instance launches in a public subnet |
-| [public-subnet-instance-audit-whitelist.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/public-subnet-instance-audit-whitelist.yml) | Lambda that sends email notification via SES when EC2 instance launches in a public subnet and is NOT in the whitelist |
-| [mark-unused-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mark-unused-sgroups.yml) | Mark unused security groups for deletion after N days ; to be used with delete-marked-sgroups.yml |
-| [delete-marked-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/delete-marked-sgroups.yml) | Unmarks used security groups that were marked for deletion then deletes remaining marked security |
-| [slack-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/slack-notify.yml) | Slack example |
+| [ec2.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/ec2.yml) | Retrieves instances that match on specified tag name and instance type.  |
+| [elasticsearch-find-all-domains.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/elasticsearch-find-all-domains.yml) | Finds Elasticsearch domaina and retrieves attributes.  |
+| [new-user-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/new-user-audit.yml) | Retrieves iam users in specified group with MFA disabled in the last 30 days  |
+| [termination-protection-list.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/termination-protection-list.yml) | Retrieves list of all EC2 instances with termination protection enabled. |
+| [security-groups-unused.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/security-groups-unused.yml) | Retrieves unused security groups using regex |
+| [stopped-instances.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/stopped-instances.yml) | Retrieves list of all stopped instances in specific VPC. Can be further customized to match other criteria. |
+| [security-groups-unused-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/security-groups-unused-notify.yml) | Retrieves unused security groups using regex and notifies via email |
+| [iam.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam.yml)                    | Retrieves iam users using regex |
+| [mfa.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/mfa.yml)                    | Retrieves iam users with MFA enabled |
+| [roles.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/roles.yml)                  | Retrieves unused roles on EC2, Lambda, and ECS |
+| [admin-group.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/admin-group.yml)            | Retrieves users in the group named 'Administrators' |
+| [mfa-unused.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/mfa-unused.yml)             | Retrieves users who have MFA disabled in the group named 'Administrators' |
+| [emailer.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/emailer.yml)                | Sends email notification via Simple Email Service (SES) using notify action |
+| [ebs-garbage-collection.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/ebs-garbage-collection.yml) | Deletes all unattached volumes |
+| [ebs-garbage-collection-lambda.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/ebs-garbage-collection-lambda.yml) | Deletes all unattached volumes using Lambda function |
+| [public-subnet-instance-audit-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/public-subnet-instance-audit-notify.yml) | Sends email notification via SES when EC2 instance launches in a public subnet |
+| [public-subnet-instance-audit-whitelist.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/public-subnet-instance-audit-whitelist.yml) | Lambda that sends email notification via SES when EC2 instance launches in a public subnet and is NOT in the whitelist |
+| [mark-unused-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/mark-unused-sgroups.yml) | Mark unused security groups for deletion after N days ; to be used with delete-marked-sgroups.yml |
+| [delete-marked-sgroups.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/delete-marked-sgroups.yml) | Unmarks used security groups that were marked for deletion then deletes remaining marked security |
+| [slack-notify.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/slack-notify.yml) | Slack example |
 
 # Cloud Custodian Architecture and AWS Services
 <img src="./images/singlenodedeploy.png" width="550">
