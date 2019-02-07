@@ -1,9 +1,0 @@
-policies:
-  - name: mfa-user-filter-policy
-    resource: iam-user
-    description: |
-      Retrieve list of IAM users with MFA enabled.
-    filters:
-      - type: credential 
-        key: mfa_active 
-        value: true 

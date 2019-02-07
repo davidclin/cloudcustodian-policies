@@ -1,6 +1,0 @@
-policies:
-  - name: termination-protection-list 
-    resource: ec2 
-    filters:
-      - type: termination-protected
-
