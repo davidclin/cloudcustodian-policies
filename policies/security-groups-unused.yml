@@ -1,0 +1,13 @@
+policies:
+  - name: security-groups-unused
+    resource: security-group
+    description: |
+      Retrieve unused security groups using regex.
+      To get a complete list, use value of .*
+      To get a subset, use a regex pattern. 
+    filters:
+      - unused 
+      - type: value
+        key: GroupName
+        op: regex
+        value: ".*wiz"

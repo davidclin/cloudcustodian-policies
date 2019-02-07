@@ -1,0 +1,34 @@
+policies:
+  - name: s3-service-limit-audit
+    resource: s3 
+    description: |
+      Cloud Custodian S3 Service Limit Audit
+    comment: |
+      Periodically check S3 service limit
+    mode:
+      type: periodic
+      role: arn:aws:iam::<account_id>:role/CloudCustodian
+      schedule: "rate(1 day)"
+      timeout: 300
+    filters:
+      - not:
+        - "tag:Name": "NoOneWillEverUseThisName"
+      - type: value
+        value_type: resource_count
+        op: gt
+        value: 200 
+    actions:
+      - type: notify
+        template: s3-service-limit-audit.html
+        slack_template: slack-s3-service-limit-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'S3 Service Limit Audit: S3 Service Limit Exceeded'
+        to:
+           - <email_address>
+           - slack://#<channel>
+        owner_absent_contact:
+           - <email_address>
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/<account_id>/cloud-cloudcustodian

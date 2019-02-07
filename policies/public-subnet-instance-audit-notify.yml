@@ -1,0 +1,25 @@
+policies:
+  - name: public-subnet-instance-audit-notification 
+    resource: ec2 
+    mode:
+      type: ec2-instance-state
+      role: arn:aws:iam::485020822820:role/CloudCustodianRole
+      events:
+        - pending
+    filters:
+      - type: subnet 
+        key: "tag:Location"
+        value: "Internet" 
+    actions:
+      - type: notify
+        template: default.html
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'Cloud Custodian: EC2 Instance Launched in Public Subnet'
+        to:
+          - david.lin.ctr@tri.global, peter.richmond@tri.global, mike.garrison@tri.global
+        owner_absent_contact:
+          - david.lin.ctr@tri.global
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/485020822820/david-lin-ctr-iesandbox-cloudcustodian
