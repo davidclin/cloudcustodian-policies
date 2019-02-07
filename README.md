@@ -4,12 +4,12 @@
 
 | Policy | Description |
 |--------|-------------|
-| [offhours.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/offhours.yml)<br> | Starts and stops instances during offhours via Lambda function. Instances filtered on presence of maid_offhours tag or StartAfterHours/StopAfterHours custom tags. [(See Offhour Examples)](#offhours) |
-| [unused-sgroup-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/unused-sgroup-audit.yml)<br> | Retrieves all unused security groups that match regex, deletes them, then sends notifications.  |
-| [s3-public-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/s3-public-audit.yml)<br> | Sends notification when public S3 bucket is created.  |
-| [copy-instance-tags.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/copy-instance-tags.yml)<br> | Periodically copies tags from EC2 instances to respective EBS volumes. |
-| [public-instance-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/public-instance-audit.yml)<br> | Sends notification when EC2 instance is launched with a Public IP address or attached to a Public subnet. |
-| [mfa-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/mfa-audit.yml) | Sends reminder to Slack channel so users who are in the Administrators group don't forget to enable MFA to comply with business security policies. If MFA remains disabled after 5 days of the user create date, console access is disabled and access keys are deleted. |
+| [offhours.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/offhours.yml)<br> | Starts and stops instances during offhours via Lambda function. Instances filtered on presence of maid_offhours tag or StartAfterHours/StopAfterHours custom tags. [(See Offhour Examples)](#offhours) |
+| [unused-sgroup-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/unused-sgroup-audit.yml)<br> | Retrieves all unused security groups that match regex, deletes them, then sends notifications.  |
+| [s3-public-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/s3-public-audit.yml)<br> | Sends notification when public S3 bucket is created.  |
+| [copy-instance-tags.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/copy-instance-tags.yml)<br> | Periodically copies tags from EC2 instances to respective EBS volumes. |
+| [public-instance-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/public-instance-audit.yml)<br> | Sends notification when EC2 instance is launched with a Public IP address or attached to a Public subnet. |
+| [mfa-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/mfa-audit.yml) | Sends reminder to Slack channel so users who are in the Administrators group don't forget to enable MFA to comply with business security policies. If MFA remains disabled after 5 days of the user create date, console access is disabled and access keys are deleted. |
 | [termination-protection-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/termination-protection-audit.yml) | Sends email and Slack notification when EC2 instances in whitelist are found with termination protection disabled. |
 | [team-tag-ec2-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/team-tag-ec2-audit.yml) | Retrieves all EC2 instances with absent or empty Team tag and sends notification.	 |
 | [team-tag-s3-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/team-tag-s3-audit.yml) | Retrieves all S3 buckets with absent or empty Team tag and sends notification. |
