@@ -26,6 +26,8 @@
 [iam-user-tagged-resources-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-tagged-resources-audit.yml) | Retrieves list of AWS resources that below to tag:Owner |
 
 ## Shell Scripts
+| Script | Description |
+|--------|-------------|
 [report.sh](https://github.com/davidclin/cloudcustodian-policies/blob/master/scripts/report.sh) | Invokes iam-user-tagged-resources-audit.yml then writes reports to file.|
 
 
