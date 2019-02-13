@@ -1,0 +1,166 @@
+ policies:
+ 
+   - name: iam-user-ec2-tagged-resources-report
+     resource: ec2
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+           
+   - name: iam-user-ebs-tagged-resources-report
+     resource: ebs 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+           
+   - name: iam-user-ebs-snapshot-tagged-resources-report
+     resource: ebs-snapshot 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+           
+   - name: iam-user-security-group-tagged-resources-report
+     resource: security-group 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+           
+   - name: iam-user-ami-tagged-resources-report
+     resource: ami 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+          
+   - name: iam-user-dynamodb-table-tagged-resources-report
+     resource: dynamodb-table 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+          
+   - name: iam-user-dynamodb-stream-tagged-resources-report
+     resource: dynamodb-stream
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+          
+   - name: iam-user-dynamodb-backup-tagged-resources-report
+     resource: dynamodb-backup
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+          
+   - name: iam-user-elasticsearch-resources-report
+     resource: elasticsearch 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+          
+   - name: iam-user-elb-tagged-resources-report
+     resource: elb 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+          
+   - name: iam-user-eni-tagged-resources-report
+     resource: eni 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+          
+   - name: iam-user-lambda-tagged-resources-report
+     resource: lambda 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+          
+   - name: iam-user-lambda-layer-tagged-resources-report
+     resource: lambda-layer 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+          
+   - name: iam-user-rds-tagged-resources-report
+     resource: rds 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+          
+   - name: iam-user-s3-tagged-resources-report
+     resource: s3 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+          
+   - name: iam-user-sqs-tagged-resources-report
+     resource: sqs 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+
+   - name: iam-user-sns-tagged-resources-report
+     resource: sns 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+                   
+   - name: iam-user-cfn-tagged-resources-report
+     resource: cfn 
+     filters:
+       - or:
+         - type: value
+           key: tag:Owner
+           op: regex
+           value: .*minh.do.*
+
+
+
