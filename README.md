@@ -23,7 +23,7 @@
 [iam-user-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-audit.yml) | Monitors IAM users not in Ec2InstanceLaunchers group but found with AmazonEC2FullAccess managed policy attached. |
 [iam-role-with-managed-policy-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-role-with-managed-policy-audit.yml) | Monitors IAM roles with the AmazonEC2FullAccess managed policy among others. |
 [iam-user-administrator-access-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-administrator-access-audit.yml) | Monitors non-whitelisted IAM users with Administrator access. |
-[iam-user-tagged-resources-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-tagged-resources-audit.yml) | Retrieves list of AWS resources that below to tag:Owner |
+[iam-user-tagged-resources-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-tagged-resources-audit.yml) | Retrieves list of AWS resources that belong to tag:Owner |
 
 ## Shell Scripts
 | Script | Description |
