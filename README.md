@@ -24,6 +24,7 @@
 [iam-role-with-managed-policy-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-role-with-managed-policy-audit.yml) | Monitors IAM roles with the AmazonEC2FullAccess managed policy among others. |
 [iam-user-administrator-access-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-administrator-access-audit.yml) | Monitors non-whitelisted IAM users with Administrator access. |
 [iam-user-tagged-resources-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-tagged-resources-audit.yml) | Retrieves list of AWS resources that belong to tag:Owner |
+[ec2-health-event.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/ec2-health-event.yml) | Sends email and Slack notifications when an EC2 schedule event occurs. |
 
 ## Shell Scripts
 | Script | Description |
