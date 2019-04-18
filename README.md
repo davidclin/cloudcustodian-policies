@@ -143,6 +143,7 @@ Trust relationship:
 "Service": "lambda.amazonaws.com"
 
 General policy permissions:
+health:DescribeEvents
 iam:PassRole
 iam:ListAccountAliases
 iam:ListUsers
