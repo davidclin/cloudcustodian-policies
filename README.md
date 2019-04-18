@@ -144,6 +144,7 @@ Trust relationship:
 
 General policy permissions:
 health:DescribeEvents
+health:DescribeEventDetails
 iam:PassRole
 iam:ListAccountAliases
 iam:ListUsers
