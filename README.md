@@ -510,6 +510,22 @@ Check role for lambda(s) have adequate permissions<br>
 Remember to update the cloud-custodian-mailer lambda when making changes to a policy that uses notifications<br>
 Clear the cache if you encounter errors due to stale information (rm ~/.cache/cloud-custodian.cache)<br>
 
+# How to decode SQS msg
+<pre>
+Grab one of the email messages in the c7n mailer SQS queue before it gets picked up and then unzip and base64 decode it.
+You can see the entire metadata file with all the available info being passed to the mailer. 
+
+To get the plan text:
+Copy the encoded SQS message into a file (e.g. result)
+Then decode the text using:
+$ cat result | base64 -d > result.zlib
+$ printf "\x1f\x8b\x08\x00\x00\x00\x00\x00" | cat - result.zlib | gzip -dc
+
+The printf is just to pad a proper header for gzip. Otherwise gzip will not be able to uncompress it.
+
+*Taken from https://groups.google.com/d/msg/cloud-custodian/z67zuVApHp0/xX81toqVAgAJ
+</pre>
+
 # Log Messages
 If you see the following CloudWatch log when sending notifications via Slack, ignore it:<br>
 
