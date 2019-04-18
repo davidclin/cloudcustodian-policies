@@ -1,0 +1,34 @@
+policies:
+  - name: ec2-health-event
+    resource: ec2
+    description: |
+      Cloud Custodian EC2 Health Event
+    comments: |
+      Retrieve EC2 instances with scheduled event
+    filters:
+      - type: health-event
+        statuses: [upcoming,open,closed]
+    mode:
+      type: periodic
+      role: arn:aws:iam::123456789:role/CloudCustodian
+      schedule: "cron(0 20 * * ? *)"
+      packages: [boto3, botocore, urllib3]
+    actions:
+      - type: post-finding
+        severity_normalized: 10
+        types:
+          - "Software and Configuration Checks/AWS Security Best Practices"
+      - type: notify
+        template: ec2-health-event.html
+        slack_template: slack-ec2-health-event
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'Upcoming EC2 Scheduled Events'
+        to:
+          - email@example.com
+          - slack://#<slack-channel-name>
+        owner_absent_contact:
+          - email@example.com
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/123456789/cloud-cloudcustodian
