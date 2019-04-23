@@ -1,0 +1,13 @@
+policies:
+  - name: lambda-filter-policy
+    resource: lambda 
+    description: |
+      Retrieve list of Lambda functions that match regex.
+    filters:
+      - or:
+          - "tag:Audit": absent
+          - "tag:Audit": empty
+          - type: value
+            key: Name
+            op: regex
+            value: ".*"

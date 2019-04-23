@@ -1,0 +1,13 @@
+policies:
+  - name: iot-filter-policy
+    resource: iot 
+    description: |
+      Retrieve list of Secrets 
+    filters:
+      - or:
+          - "tag:Audit": absent
+          - "tag:Audit": empty
+          - type: value
+            key: Name
+            op: regex
+            value: ".*"

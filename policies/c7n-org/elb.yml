@@ -1,0 +1,13 @@
+policies:
+  - name: elb-filter-policy
+    resource: elb 
+    description: |
+      Retrieve list of Classic ELBs 
+    filters:
+      - or:
+          - "tag:Audit": absent
+          - "tag:Audit": empty
+          - type: value
+            key: Name
+            op: regex
+            value: ".*"

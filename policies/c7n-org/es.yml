@@ -1,0 +1,12 @@
+policies:
+  - name: es 
+    resource: elasticsearch 
+    description: |
+      Cloud Custodian Elasticsearch 
+    comments: |
+      Retrieve Elasticsearch Attributes 
+    filters:
+      - or: 
+        - "tag:Name": empty 
+        - not:
+          - "tag:Name": empty 

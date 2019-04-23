@@ -1,0 +1,123 @@
+=======================================
+Launch c7n-org based on tags and region
+=======================================
+c7n-org run -s output -c all-accounts.yml -u iam-group.yml -t team:tarsadmin --region us-east-1 
+c7n-org run -s output -c all-accounts.yml -u iam-role.yml -t team:tarsadmin  --region us-east-1
+c7n-org run -s output -c all-accounts.yml -u rest-api.yml -t team:tarsadmin --region all
+c7n-org run -s output -c all-accounts.yml -u app-elb.yml -t team:tarsadmin --region all
+c7n-org run -s output -c all-accounts.yml -u elb.yml -t team:tarsadmin --region all
+c7n-org run -s output -c all-accounts.yml -u iot.yml -t team:tarsadmin --region all
+c7n-org run -s output -c all-accounts.yml -u secrets-manager.yml -t team:tarsadmin --region all
+c7n-org run -s output -c all-accounts.yml -u efs.yml -t team:tarsadmin --region all
+c7n-org run -s output -c all-accounts.yml -u ecs.yml -t team:tarsadmin --region all
+c7n-org run -s output -c all-accounts.yml -u ebs.yml -t team:tarsadmin --region all
+c7n-org run -s output -c all-accounts.yml -u sns.yml -t team:tarsadmin --region all
+c7n-org run -s output -c all-accounts.yml -u ecr.yml -t team:tarsadmin --region all
+c7n-org run -s output -c all-accounts.yml -u dynamodb-table.yml -t team:tarsadmin --region all
+c7n-org run -s output -c all-accounts.yml -u lambda.yml -t team:tarsadmin --region all
+c7n-org run -s output -c all-accounts.yml -u iam.yml -t team:tarsadmin
+c7n-org run -s output -c accounts.yml -u public-instance-audit.yml -t team:sandbox --region us-west-2
+c7n-org run -s output -c accounts.yml -u s3-prevent-bucket-creation.yml -t team:sandbox 
+
+======
+Report
+======
+c7n-org report -c all-accounts.yml -u iam-group.yml -s output --field GroupName=GroupName --field GroupId=GroupId --field Arn=Arn --field CreateDate=CreateDate --region us-east-1
+c7n-org report -c all-accounts.yml -u iam-role.yml -s output --field RoleName=RoleName --field Description=Description --field Arn=Arn --field CreateDate=CreateDate --region us-east-1
+c7n-org report -c all-accounts.yml -u rest-api.yml -s output --field name=name --field id=id --field description=description --field endpointConfiguration[0].types=endpointConfiguration[0].types --field createdDate=createdDate --no-default-fields --region all
+c7n-org report -c all-accounts.yml -u app-elb.yml -s output --field LoadBalancerName=LoadBalancerName --field State.Code=State.Code --field DNSName=DNSName --field Type=Type --field Scheme=Scheme --field LoadBalancerName=LoadBalancerName --field CreatedTime=CreatedTime --no-default-fields
+c7n-org report -c all-accounts.yml -u iot.yml -s output --field thingName=thingName --field thingTypeName=thingTypeName --field thingArn=thingArn --no-default-fields --region all
+c7n-org report -c all-accounts.yml -u secrets-manager.yml -s output --field Name=Name --field Tags.Key=Tags[0].Key --field Tags.Value=Tags[0].Value --field LastChangedDate=LastChangedDate --no-default-fields --region all
+c7n-org report -c all-accounts.yml -u efs.yml -s output --field FileSystemId=FileSystemId --field NumberOfMountTargets=NumberOfMountTargets --field PerformanceMode=PerformanceMode --field SizeInBytes=SizeInBytes.Value --field Tag:Key=Tags[0].Key --field Tag:Value=Tags[0].Value --field CreationTime=CreationTime --no-default-fields --region all
+c7n-org report -c all-accounts.yml -u ecs.yml -s output --field serviceName=serviceName --field status=status --field launchType=launchType --field createdAt=createdAt --field deployments.taskDefinition=deployments[0].taskDefinition --field deployments.updatedAt=deployments[0].updatedAt --no-default-fields --region all
+c7n-org report -c all-accounts.yml -u ebs.yml -s output -field VolumeId=VolumeId --field State=State --field Size=Size --field Attachments.InstanceId=Attachments[0].InstanceId --field Attachments.State=Attachments[0].State --field Attachments.DeleteOnTermination=Attachments[0].DeleteOnTermination --field Attachments.Device=Attachments[0].Device --field VolumeType=VolumeType --field CreateTime=CreateTime --no-default-fields --region all
+c7n-org report -c all-accounts.yml -u sns.yml -s output --no-default-fields --region all
+c7n-org report -c all-accounts.yml -u ecr.yml -s output --no-default-fields --field repositoryName=repositoryName --field createdAt=createdAt --region all
+c7n-org report -c all-accounts.yml -u dynamodb-table.yml -s output --no-default-fields --field TableName=TableName --field region=region --field ItemCount=ItemCount --field TableSizeBytes=TableSizeBytes --field TableStatus=TableStatus --field LatestStreamArn=LatestStreamArn --region all
+c7n-org report -c all-accounts.yml -u lambda.yml -s output --no-default-fields --field FunctionName=FunctionName --field region=region --field LastModified=LastModified --region all
+
+
+========================
+Launch c7n-mailer Lambda
+========================
+c7n-mailer --config /home/ubuntu/cloudcustodian/mailer/mailer.yml --update-lambda && custodian run -c test.yml -s .
+
+
+============================================
+Finding Path to c7n-mailer Default Templates
+============================================
+find ~/ -type f -name "default.html.j2"  (for email)
+find ~/ -type f -name "slack_default.j2" (for Slack)
+
+/home/ubuntu/cloud-custodian/tools/c7n_mailer/msg-templates/
+
+===============================
+Example Custodian Custom Report
+===============================
+custodian report -s output owner-tag-audit.yml --field State=State --field Name=tag:Name --field InstanceId=InstanceId --field Team=tag:Team --field Owner=tag:Owner --no-default-fields
+
+Note: Sometimes a field will have a value preceded with 'tag:' and other times without. Trial and error. :)
+
+
+Another example using JMESpath query (i.e. JSON filtering)
+custodian report -s output vpn.yml --no-default --field Name=tag:Name --field VpnId=VpnConnectionId --format grid --field CustomerGwId=CustomerGatewayId --field OutsideIp="VgwTelemetry[0].OutsideIpAddress" --field Status="VgwTelemetry[0].Status" --field LastStatusChange="VgwTelemetry[0].LastStatusChange"
+
+
+==========================
+Get Jenkins Version Number
+==========================
+java -jar jenkins-cli.jar -s http://localhost:8080/ version
+
+
+===================
+Useful Git Commands
+===================
+git clone -b mailer-test https://github.com/LykinsN/cloud-custodian.git
+git pull  (from directory branch was cloned)
+git branch -a  (to view branch info)
+
+============================
+c7n-mailer Developer Install
+============================
+$ git clone https://github.com/capitalone/cloud-custodian
+$ cd cloud-custodian
+$ virtualenv c7n_mailer
+$ source c7n_mailer/bin/activate
+$ cd tools/c7n_mailer
+$ pip install -r requirements.txt
+$ python setup.py develop
+
+==============================
+Deleting Cloud Custodian Cache
+==============================
+rm ~/.cache/cloud-custodian.cache
+
+
+====================================================
+AWS CLI to Create Dummy Security Groups (IE Sandbox)
+====================================================
+Create security groups in David's VPC IE Sandbox
+export AWS_PROFILE=iesandbox
+aws ec2 create-security-group --group-name launch-wizard-10 --description "david.lin.ctr security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-11 --description "david.lin.ctr security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-12 --description "david.lin.ctr security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-13 --description "david.lin.ctr security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-14 --description "david.lin.ctr security group" --vpc-id vpc-2ea22555
+aws ec2 create-security-group --group-name launch-wizard-15 --description "david.lin.ctr security group" --vpc-id vpc-2ea22555
+
+================================================
+AWS CLI to Create Dummy Security Groups (TRI-NA)
+================================================
+Create security groups in TRI-NA 
+export AWS_PROFILE=default
+aws ec2 create-security-group --group-name launch-wizard-abc --description "david.lin.ctr security group" --vpc-id vpc-b7407ed3
+aws ec2 create-security-group --group-name launch-wizard-def --description "david.lin.ctr security group" --vpc-id vpc-b7407ed3
+aws ec2 create-security-group --group-name launch-wizard-fhi --description "david.lin.ctr security group" --vpc-id vpc-b7407ed3
+aws ec2 create-security-group --group-name launch-wizard-jkl --description "david.lin.ctr security group" --vpc-id vpc-b7407ed3
+aws ec2 create-security-group --group-name launch-wizard-mno --description "david.lin.ctr security group" --vpc-id vpc-b7407ed3
+aws ec2 create-security-group --group-name launch-wizard-pqr --description "david.lin.ctr security group" --vpc-id vpc-b7407ed3
+
+=============
+Custom Report
+=============
+custodian report --format grid -s output public-instance-whitelist.yml --field KeyName=KeyName --field PublicIpAddress=PublicIpAddress --no-default-fields --field InstanceId=InstanceId --field VpcId=VpcId --field tag:SubnetId=SubnetId

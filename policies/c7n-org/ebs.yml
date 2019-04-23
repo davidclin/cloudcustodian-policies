@@ -1,0 +1,13 @@
+policies:
+  - name: ebs-filter-policy
+    resource: ebs 
+    description: |
+      Retrieve list of EBS that match regex.
+    filters:
+      - or:
+          - "tag:Audit": absent
+          - "tag:Audit": empty
+          - type: value
+            key: Name
+            op: regex
+            value: ".*"

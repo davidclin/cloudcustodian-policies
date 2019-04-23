@@ -1,0 +1,13 @@
+policies:
+  - name: app-elb-filter-policy
+    resource: app-elb 
+    description: |
+      Retrieve list of Network and Application Load Balancers 
+    filters:
+      - or:
+          - "tag:Audit": absent
+          - "tag:Audit": empty
+          - type: value
+            key: Name
+            op: regex
+            value: ".*"

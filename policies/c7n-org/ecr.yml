@@ -1,0 +1,13 @@
+policies:
+  - name: ecr-filter-policy
+    resource: ecr 
+    description: |
+      Retrieve list of ECR functions that match regex.
+    filters:
+      - or:
+          - "tag:Audit": absent
+          - "tag:Audit": empty
+          - type: value
+            key: Name
+            op: regex
+            value: ".*"

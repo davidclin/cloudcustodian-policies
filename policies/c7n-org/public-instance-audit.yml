@@ -1,0 +1,43 @@
+policies:
+  - name: public-instance-audit
+    resource: ec2
+    description: |
+      Cloud Custodian Public Instance Audit 
+    comments: |
+      Retrieve list of all instances that
+      - are not in whitelist
+      - attached to a public subnet
+      - have public IP address 
+    mode:
+      type: ec2-instance-state
+      events:
+        - pending
+    filters:
+      - not:
+          - type: value
+            key: "tag:Name"
+            value: (VPN|Bastion|OpenVPN-Test)
+            op: regex
+      - or:
+        - type: subnet
+          key: "tag:Name"
+          op: regex
+          value: ".*pub"
+        - type: value
+          key: "PublicIpAddress"
+          value: not-null
+    actions:
+      - type: notify
+        template: public-instance-audit.html
+        slack_template: slack-public-instance-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'Security Audit: Public EC2 Instance Launched'
+        to:
+          - email@address.com 
+          - slack://#<slack-channel>
+        owner_absent_contact:
+          - email@address.com 
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/1234567890/cloud-cloudcustodian

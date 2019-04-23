@@ -1,0 +1,13 @@
+policies:
+  - name: iam-group-filter-policy
+    resource: iam-group
+    description: |
+      Retrieve list of IAM groups 
+    filters:
+      - or:
+          - "tag:Audit": absent
+          - "tag:Audit": empty
+          - type: value
+            key: Name
+            op: regex
+            value: ".*"

@@ -1,0 +1,7 @@
+accounts:
+- account_id: '1234567890'
+  email: email@address.com 
+  name: Sandbox 
+  role: arn:aws:iam::1234567890:role/OrganizationAccountAccessRole
+  tags:
+  - team:sandbox

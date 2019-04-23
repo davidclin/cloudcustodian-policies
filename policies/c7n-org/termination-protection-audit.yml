@@ -1,0 +1,36 @@
+policies:
+  - name: termination-protection-audit
+    resource: ec2
+    description: |
+      Cloud Custodian EC2 Termination Protection Audit
+    comment: |
+      Periodically check for white listed EC2 instances that
+      do not have termination protection enabled.
+      Send email/Slack notification.
+    mode: 
+      type: periodic
+      schedule: "rate(5 minutes)" 
+    query: 
+      - instance-state-name: running
+    filters:
+      - not:
+          - type: termination-protected
+      - or:
+          - "tag:Name": Cloud Custodian Production
+          - "tag:Name": GHE
+          - "tag:Name": david.lin.Bastion
+    actions:
+      - type: notify
+        template: termination-protection-audit.html
+        slack_template: slack-termination-protection-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'Security Audit: White Listed Instance(s) found with Termination Protection Disabled'
+        to:
+          - email@address.com 
+          - slack://#<slack-channel>
+        owner_absent_contact:
+          -  email@address.com
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/1234567890/cloud-cloudcustodian

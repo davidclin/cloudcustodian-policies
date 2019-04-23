@@ -1,0 +1,13 @@
+policies:
+  - name: efs-filter-policy
+    resource: efs 
+    description: |
+      Retrieve list of EFS that match regex.
+    filters:
+      - or:
+          - "tag:Audit": absent
+          - "tag:Audit": empty
+          - type: value
+            key: Name
+            op: regex
+            value: ".*"

@@ -1,0 +1,13 @@
+policies:
+  - name: rest-api-filter-policy
+    resource: rest-api 
+    description: |
+      Retrieve list of REST APIs 
+    filters:
+      - or:
+          - "tag:Audit": absent
+          - "tag:Audit": empty
+          - type: value
+            key: Name
+            op: regex
+            value: ".*"

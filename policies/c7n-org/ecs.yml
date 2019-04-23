@@ -1,0 +1,9 @@
+policies:
+  - name: ecs-filter-policy
+    resource: ecs-service
+    description: |
+      Retrieve list of ECS clusters 
+    filters:
+        - or:
+            - "tag:Audit": absent
+            - "tag:Audit": empty

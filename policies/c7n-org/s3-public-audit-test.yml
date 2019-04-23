@@ -1,0 +1,9 @@
+policies:
+  - name: s3-public-audit
+    description: |
+      Cloud Custodian Public S3 Audit
+    comments: |
+      Retrieve list of public S3 buckets
+    resource: s3
+    filters:
+      - type: global-grants

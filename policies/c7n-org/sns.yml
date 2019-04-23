@@ -1,0 +1,13 @@
+policies:
+  - name: sns-filter-policy
+    resource: sns 
+    description: |
+      Retrieve list of SNS that match regex.
+    filters:
+      - or:
+          - "tag:Audit": absent
+          - "tag:Audit": empty
+          - type: value
+            key: Name
+            op: regex
+            value: ".*"

@@ -1,0 +1,6 @@
+policies:
+  - name: s3-retrieve-global-grants
+    resource: s3
+    filters:
+      - type: global-grants
+

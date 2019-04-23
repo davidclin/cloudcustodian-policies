@@ -1,0 +1,29 @@
+policies:
+  - name: copy-instance-tags 
+    resource: ebs
+    description: |
+      Cloud Custodian Copy Instance Tag to Volume
+    comment: |
+      Copy instance tags to respective instance's ebs volume.
+    mode:
+      type: periodic
+      role: arn:aws:iam::1234567890:role/CloudCustodian
+      schedule: "rate(15 minutes)"
+    filters:
+      - type: value
+        key: "Attachments[0].Device" 
+        value: not-null
+    actions:
+      - type: copy-instance-tags
+        tags:
+          - Name 
+      - type: copy-instance-tags
+        tags:
+          - Owner 
+      - type: copy-instance-tags
+        tags:
+          - Team 
+      - type: copy-instance-tags
+        tags:
+          - Backup
+            
