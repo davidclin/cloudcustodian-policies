@@ -155,6 +155,9 @@ iam:ListAttachedRolePolicies
 iam:GetCredentialReport
 iam:GenerateCredentialReport
 iam:ListAttachedUserPolicies
+iam:ListPolicies
+iam:ListPolicyVersions
+iam:GetPolicyVersions
 iam:GetPolicy
 ses:SendEmail
 ses:SendRawEmail
