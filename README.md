@@ -25,6 +25,7 @@
 [iam-user-administrator-access-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-administrator-access-audit.yml) | Monitors non-whitelisted IAM users with Administrator access. |
 [iam-user-tagged-resources-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-tagged-resources-audit.yml) | Retrieves list of AWS resources that belong to tag:Owner |
 [ec2-health-event.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/ec2-health-event.yml) | Sends email and Slack notifications when an EC2 schedule event occurs. |
+[iam-policy-account-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-policy-account-audit.yml) | Sends email and Slack notifications when an IAM policy is found with escalated permissions. |
 
 ## Shell Scripts
 | Script | Description |
