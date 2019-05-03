@@ -1,0 +1,39 @@
+policies:
+
+  - name: iam-policy-CreatePolicyVersion-account-audit
+    resource: iam-policy
+    description: |
+      Cloud Custodian IAM Policy account:* and account:EnableRegion Audit
+    comment: |
+      Send email/Slack notification if IAM policy contains account:*  or account:EnableRegion action.
+      Note, this policy will NOT work out of the box and requires the iam.py site-package be modified
+      to match on specific actions.
+    mode:
+      type: cloudtrail
+      role: arn:aws:iam::1234567890:role/CloudCustodian
+      events:
+          - source: iam.amazonaws.com
+            event: CreatePolicyVersion
+            ids: 'requestParameters.policyArn'
+      packages: [boto3, botocore, urllib3]
+    filters:
+      - type: has-allow-all
+    actions:
+      - type: post-finding
+        severity_normalized: 10
+        types:
+          - "Software and Configuration Checks/AWS Security Best Practices"
+      - type: notify
+        template: iam-policy-account-audit.html
+        slack_template: slack-iam-policy-account-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'Security Audit: IAM policies found with account:* action'
+        to:
+          - foo@company.com
+          - slack://#<slack-channel-goes-here>
+        owner_absent_contact:
+          - foo@company.com
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/1234567890/cloud-cloudcustodian
