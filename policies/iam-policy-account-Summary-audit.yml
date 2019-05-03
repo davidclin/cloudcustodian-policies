@@ -1,0 +1,38 @@
+policies:
+
+  - name: iam-policy-Summary-account-audit
+    resource: iam-policy
+    description: |
+      Cloud Custodian IAM Policy account:* Audit
+    comment: |
+      Periodically check IAM policies and send
+      email/Slack notification if contains account:* action
+      This policy does NOT work out of the box and requires
+      a modification to the iam.py site-package for the has-allow-all filter
+      if you want to match on policies with actions that are NOT "*".
+    mode:
+      type: periodic
+      role: arn:aws:iam::1234567890:role/CloudCustodian
+      schedule: "rate(1 day)"
+      packages: [boto3, botocore, urllib3]
+    filters:
+      - type: has-allow-all
+    actions:
+      - type: post-finding
+        severity_normalized: 10
+        types:
+          - "Software and Configuration Checks/AWS Security Best Practices"
+      - type: notify
+        template: iam-policy-account-audit-summary.html
+        slack_template: slack-iam-policy-account-audit-summary
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'Security Audit: IAM policies found with account:* action'
+        to:
+          - foo@company.com
+          - slack://#<slack-channel-goes-here>
+        owner_absent_contact:
+          - foo@company.com
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/1234567890/cloud-cloudcustodian
