@@ -2,11 +2,11 @@
    "attachments":[
       {
          "fallback":"Cloud Custodian Policy Violation",
-         "title":"IAM Policy Audit",
+         "title":"IAM Policy Audit - Summary",
          "color":"danger",
          "fields":[
             {
-               "title":"IAM policy created or modified containing the account:* action or account:EnableRegion",
+               "title":"IAM policies found containing the account:* or account:EnableRegion action",
                "value":"{%- for resource in resources -%}
                         {{ format_resource(resource, policy['resource']) }}
                         {%- endfor -%}"
