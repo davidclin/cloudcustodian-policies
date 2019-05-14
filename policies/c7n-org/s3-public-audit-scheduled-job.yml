@@ -1,0 +1,42 @@
+policies:
+  - name: s3-public-audit
+    description: |
+      Cloud Custodian Public S3 Audit
+    comments: |
+      Send notification when public S3 bucket is found
+    resource: s3
+    mode:
+      type: periodic
+      schedule: "rate(6 hours)"
+      timeout: 300
+    filters:
+        - not:
+            - type: value
+              key: Name
+              value: white-listed-public-bucket
+        - or:
+            - type: has-statement
+              statements:
+                  - Effect: Allow
+                    Action: 's3:*'
+                    Principal: '*'
+            - type: has-statement
+              statements:
+                  - Effect: Allow
+                    Action: 's3:GetObject'
+                    Principal: '*'
+    actions:
+      - type: notify
+        template: s3-public-audit.html
+        template_format: 'html'
+        slack_template: slack-s3-public-audit
+        priority_header: '5'
+        subject: 'Security Audit: Public S3 Bucket Found'
+        to:
+          - email@domain.com
+          - slack://#my-slack-channel-name
+        owner_absent_contact:
+          - email@domain.com
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/XXXXXXXXXXXX/cloud-cloudcustodian
