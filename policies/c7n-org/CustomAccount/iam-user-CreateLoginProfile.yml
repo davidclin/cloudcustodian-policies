@@ -1,0 +1,39 @@
+policies:
+
+  - name: iam-user-CreateLoginProfile-audit
+    resource: iam-user
+    description: |
+      Cloud Custodian IAM User Management Console Event Audit
+    comment: |
+      Monitor re-activation of IAM user management console
+      email/Slack notification if contains account:* action
+    mode:
+      type: cloudtrail
+      events:
+          - source: iam.amazonaws.com
+            event: CreateLoginProfile
+            ids: 'requestParameters.userName'
+    filters:
+      - or:
+          - type: value
+            key: UserName
+            value: 'iam-username-1'
+          - type: value
+            key: UserName
+            value: 'iam-username-2'
+
+    actions:
+      - type: notify
+        template: iam-user-CreateLoginProfile-audit.html
+        slack_template: slack-iam-user-CreateLoginProfile-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'Security Audit: IAM User Console Access Found Reabled in Account'
+        to:
+          - name@company.com
+          - slack://#slack-channel-goes-here
+        owner_absent_contact:
+          - name@company.com
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/XXXXXXXXXXXX/cloud-cloudcustodian
