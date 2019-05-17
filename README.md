@@ -166,6 +166,7 @@ iam:ListPolicies
 iam:ListPolicyVersions
 iam:GetPolicyVersions
 iam:GetPolicy
+iam:GetUser
 ses:SendEmail
 ses:SendRawEmail
 lambda:CreateFunction
