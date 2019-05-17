@@ -1,0 +1,31 @@
+policies:
+
+  - name: iam-user-UpdateAccessKey-offboarding-audit
+    resource: iam-user
+    description: |
+      Cloud Custodian IAM User UpdateAccessKey Event Audit for Offboarding
+    comment: |
+      Monitor de-activation of IAM user access keys
+      Slack notification if contains account:* action
+    mode: 
+      type: cloudtrail 
+      role: arn:aws:iam::XXXXXXXXXXXX:role/CloudCustodian
+      events:
+          - source: iam.amazonaws.com
+            event: UpdateAccessKey 
+            ids: 'requestParameters.userName'
+    filters:
+      - type: event 
+        key: 'detail.requestParameters.status' 
+        value: 'Inactive' 
+    actions:
+      - type: notify
+        slack_template: slack-iam-user-UpdateAccessKey-offboarding-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'IAM User Access Key Deactivated'
+        to:
+          - slack://#it-offboarding
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/XXXXXXXXXXXX/cloud-cloudcustodian
