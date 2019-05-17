@@ -29,8 +29,8 @@
 [iam-policy-account-Summary-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-policy-account-Summary-audit.yml) | Sends email and Slack summary notifications of IAM policies with escalated permissions |
 [iam-policy-CreatePolicy-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-policy-CreatePolicy-audit.yml) | Sends email and Slack summary notifications of IAM Policies with escalated permissions based on CreatePolicy CloudTrail event. Requires a custom iam.py c7n_mailer site-package which can be obtained in the custom-site-packages directory of this repo. |
 [iam-policy-CreatePolicyVersion-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-policy-CreatePolicy-audit.yml) | Sends email and Slack summary notifications of IAM Policies with escalated permissions based on CreatePolicyVersion CloudTrail event. Requires a custom iam.py c7n_mailer site-package which can be obtained in the custom-site-packages directory of this repo. |
-[iam-user-UpdateAccessKey-offboarding-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-UpdateAccessKey-offboarding-audit.yml) | Sends Slack notifications when IAM user's access key(s) get deactivated |
-[iam-user-DeleteLoginProfile-offboarding-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-DeleteLoginProfile-offboarding-audit.yml) | Sends Slack notifications when IAM user's management console gets disabled |
+[iam-user-UpdateAccessKey-offboarding.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-UpdateAccessKey-offboarding.yml) | Sends Slack notifications when IAM user's access key(s) get deactivated |
+[iam-user-DeleteLoginProfile-offboarding.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-DeleteLoginProfile-offboarding.yml) | Sends Slack notifications when IAM user's management console gets disabled |
 
 
 ## Shell Scripts
