@@ -28,7 +28,7 @@ policies:
         slack_template: slack-iam-user-CreateLoginProfile-audit
         template_format: 'html'
         priority_header: '5'
-        subject: 'Security Audit: IAM User Console Access Found Reabled in Account'
+        subject: 'Security Audit: IAM User Console Access Found Reenabled in Account'
         to:
           - name@company.com
           - slack://#slack-channel-goes-here
