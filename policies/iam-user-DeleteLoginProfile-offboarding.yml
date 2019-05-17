@@ -1,0 +1,28 @@
+policies:
+
+  - name: iam-user-DeleteLoginProfile-audit
+    resource: iam-user
+    description: |
+      Cloud Custodian IAM User Management Console Event Audit
+    comment: |
+      Monitor Disablement of IAM user management console  
+      Slack notification if contains account:* action
+    mode: 
+      type: cloudtrail 
+      role: arn:aws:iam::XXXXXXXXXXXX:role/CloudCustodian
+      events:
+          - source: iam.amazonaws.com
+            event: DeleteLoginProfile 
+            ids: 'requestParameters.userName'
+    actions:
+      - type: notify
+        template: iam-user-DeleteLoginProfile-offboarding-audit.html
+        slack_template: slack-iam-user-DeleteLoginProfile-offboarding-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'IAM User Console Access Disabled'
+        to:
+          - slack://#it-offboarding
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/XXXXXXXXXXXX/cloud-cloudcustodian
