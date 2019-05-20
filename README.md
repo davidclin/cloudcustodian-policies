@@ -538,6 +538,8 @@ The printf is just to pad a proper header for gzip. Otherwise gzip will not be a
 *Taken from https://groups.google.com/d/msg/cloud-custodian/z67zuVApHp0/xX81toqVAgAJ
 </pre>
 
+If you're using VIM to create the text file and getting an error "base64: invalid input", try pasting the encoded SQS message into a different text editor like nano instead. 
+
 # Log Messages
 If you see the following CloudWatch log when sending notifications via Slack, ignore it:<br>
 
