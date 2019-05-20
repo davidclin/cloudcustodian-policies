@@ -6,10 +6,14 @@
          "color":"danger",
          "fields":[
             {
-               "title":"IAM User Console Management Disabled",
+               "title":"Management console disabled for IAM User",
                "value":"{%- for resource in resources -%}
                         {{ format_resource(resource, policy['resource']) }}
                         {%- endfor -%}"
+            },
+            {
+               "title":"Management console disabled by",
+               "value":"{{ event.detail.userIdentity.userName }}"
             },
             {
                "title":"Account ID",
