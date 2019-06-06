@@ -1,0 +1,44 @@
+policies:
+  - name: acm-certificate-audit
+    resource: acm-certificate 
+    description: |
+      Retrieve list of ACM certificates and
+      send notifications if expiration reaches
+      given threshold
+    filters:
+      - or:
+          - "tag:Audit": absent
+          - "tag:Audit": empty
+          - type: value
+            key: Name
+            op: regex
+            value: ".*"
+      - type: value
+        key: NotAfter
+        op: less-than
+        value_type: expiration 
+        value: 60 
+    mode:
+      type: periodic
+      role: arn:aws:iam::XXXXXXXXXXXX:role/CloudCustodian
+      schedule: "rate(12 days)"
+      packages: [boto3, botocore, urllib3]
+    actions:
+      - type: post-finding
+        severity_normalized: 10
+        types:
+          - "Software and Configuration Checks/AWS Security Best Practices"
+      - type: notify
+        template: acm-certificate-audit.html
+        slack_template: slack-acm-certificate-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'ACM Certificate about to expire'
+        to:
+          - cloudcustodianadmins@company.com
+          - slack://#my-slack-channel
+        owner_absent_contact:
+          - cloudcustodianadmin@company.com
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/XXXXXXXXXXXX/cloud-cloudcustodian
