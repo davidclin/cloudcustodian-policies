@@ -767,6 +767,102 @@ Slack Template Example:
 },
 ```
 
+# Customizing Slack Message Templates Using Jinja2 Filters
+The following example taken from the default Slack message template (slack_default.j2) that returns output of resources looks like this:
+
+```
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian Policy Violation",
+         "title":"Custodian",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"Resources",
+               "value":"{%- for resource in resources -%}
+                        {{ format_resource(resource, policy['resource']) | replace('\\"', '"') | replace('"', '\\"'
+) }}
+                        {%- endfor -%}"
+            },
+            {
+               "title":"Account",
+               "value":"{{ account }}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Violation Description",
+               "value":"{{ action['violation_desc'] }}"
+            },
+            {
+               "title":"Action Description",
+               "value":"{{ action['action_desc'] }}"
+            }
+         ]
+      }
+   ],
+   {%- if not recipient.startswith('https://') %}
+   "channel":"{{ recipient }}",
+   {%- endif -%}
+   "username":"Custodian"
+}
+
+```
+
+Sometimes the information returned by the for loop is too verbose and you are only interested in rendering specific key/value pairs.
+
+To extract specific keys from the output of resources, use Jinja2 filters instead.
+
+Here's an example used by the acm-certificate-audit.yml policy:
+```
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian ACM Certificate Audit",
+         "title":"ACM Certificate Audit",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"Description",
+               "value":"ACM certificate(s) found nearing their expiration date <60 days"
+            },
+            {
+               "title":"Domain Name(s)",
+               "value":"{{ resources | selectattr('DomainName') | map(attribute='DomainName') | list }}"
+            },
+            {
+               "title":"Expiration Date(s)",
+               "value":"{{ resources | selectattr('NotAfter') | map(attribute='NotAfter') | list }}"
+            },
+            {
+               "title":"Certificate Arn(s)",
+               "value":"{{ resources | selectattr('CertificateArn') | map(attribute='CertificateArn') | list }}"
+            },
+            {
+               "title":"Account ID",
+               "value":"{{ account_id }}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Action Description",
+               "value":"See email notification for details."
+            }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
+```
+
+
+
 # General Policy Notes
 Cloud Custodian policies can be run
   - serverless as separate Lambdas per account per region
