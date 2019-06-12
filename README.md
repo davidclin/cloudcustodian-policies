@@ -325,6 +325,47 @@ aws.security-group:
 </details>
 
 # Artifacts
+# Getting Started
+<details>
+<summary>Example info returned for an EC2 health event</summary>
+
+```
+{
+    "account": "XXXXXXXXXXXX",
+    "region": "us-east-1",
+    "detail": {
+        "eventDescription": [
+            {
+                "latestDescription": "EC2 has detected degradation of the underlying hardware hosting your Amazon EC2 instance associated with this event in the us-east-1 region. Due to this degradation your instance could already be unreachable. We will stop your instance after 2019-06-26 15:00 UTC.\\n\\nYou can find more information about maintenance events scheduled for your EC2 instances in the AWS Management Console (https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#Events)\\n\\n* What will happen to my instance?\\nYour instance will be stopped after the specified retirement date. You can start it again at any time after it’s stopped. Any data on local instance-store volumes will be lost when the instance is stopped or terminated.\\n\\n* What do I need to do?\\nWe recommend that you stop and start the instance which will migrate the instance to a new host. Please note that any data on your local instance-store volumes will not be preserved when you stop and start your instance. For more information about stopping and starting your instance, and what to expect when your instance is stopped, such as the effect on public, private and Elastic IP addresses associated with your instance, see Stop and Start Your Instance in the EC2 User Guide (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html). However, if you do not need this instance, you can stop it at any time yourself or wait for EC2 to stop it after the retirement date.\\n\\n* Why is EC2 retiring my instance?\\nEC2 may schedule instances for retirement in cases where there is an unrecoverable issue with the underlying hardware. For more information about scheduled retirement events please see the EC2 user guide (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-retirement.html). To avoid single points of failure within critical applications, please refer to our architecture center for more information on implementing fault-tolerant architectures: (http://aws.amazon.com/architecture)\\n\\nIf you have any questions or concerns, you can contact the AWS Support Team on the community forums and via AWS Premium Support at: (http://aws.amazon.com/support)",
+                "language": "en_US"
+            }
+        ],
+        "service": "EC2",
+        "eventTypeCode": "AWS_EC2_PERSISTENT_INSTANCE_RETIREMENT_SCHEDULED",
+        "affectedEntities": [
+            {
+                "entityValue": "i-XXXXXXXXXXXXXXX",
+                "tags": {}
+            }
+        ],
+        "startTime": "Wed, 26 Jun 2019 15:00:00 GMT",
+        "eventTypeCategory": "scheduledChange",
+        "endTime": "Wed, 26 Jun 2019 15:00:00 GMT",
+        "eventArn": "arn:aws:health:us-east-1::event/EC2/AWS_EC2_PERSISTENT_INSTANCE_RETIREMENT_SCHEDULED/AWS_EC2_PERSISTENT_INSTANCE_RETIREMENT_SCHEDULED4e63a1f4-b043-4543-88fa-53f30aeb295b"
+    },
+    "detail-type": "AWS Health Event",
+    "source": "aws.health",
+    "version": "0",
+    "time": "2019-06-26T15:00:00Z",
+    "debug": true,
+    "id": "c0b8b90d-eafd-c6fd-0203-568c3c2fdc79",
+    "resources": [
+        "i-XXXXXXXXXXXXXXXXX" <-- This is an instance ID
+    ]
+}
+```
+</details>
+
 <details>
 <summary>security-groups-unused.yml</summary>
 
