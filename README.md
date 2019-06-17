@@ -367,6 +367,35 @@ aws.security-group:
 </details>
 
 <details>
+<summary>Example of EC2 info returned for variable `resources` to Slack template</summary>
+
+<pre>
+[{
+u'Monitoring': {u'State': u'disabled'}, 
+u'Hypervisor': u'xen', 
+u'PublicDnsName': u'', 
+u'State': {u'Code': 16, u'Name': u'running'}, 
+u'EbsOptimized': True, 
+u'LaunchTime': u'2019-06-14T18:19:47+00:00', 
+u'PrivateIpAddress': u'10.100.8.111', 
+u'ProductCodes': [], 
+u'VpcId': u'vpc-b7407ed3', 
+u'CpuOptions': {u'CoreCount': 16, u'ThreadsPerCore': 2}, 
+u'StateTransitionReason': u'', 
+u'InstanceId': u'i-XXXXXXXXXXXXXXXXX', 
+u'EnaSupport': True, 
+u'ImageId': u'ami-XXXXXXXXXXXXXXXXX', 
+u'PrivateDnsName': u'ip-10-100-8-111.ec2.internal', 
+u'KeyName': u'davids-sample-keyname', 
+u'SecurityGroups': [{u'GroupName': u'launch-wizard-6', u'GroupId': u'sg-XXXXXXXXXXXXXXXXX'}], 
+u'ClientToken': u'', 
+u'SubnetId': u'subnet-0a38466e', 
+u'InstanceType': u'p3.8xlarge', 
+u'NetworkInterfaces': [{u'Status': u'in-use', u'MacAddress': u'XX:XX:XX:XX:XX:XX', u'SourceDestCheck': True, u'VpcId': u'vpc-XXXXXXXX', u'Description': u'Primary network interface', u'NetworkInterfaceId': u'eni-XXXXXXXXXXXXXXXXX', u'PrivateIpAddresses': [{u'PrivateDnsName': u'ip-10-100-8-111.ec2.internal', u'Primary': True, u'PrivateIpAddress': u'10.100.8.111'}], u'PrivateDnsName': u'ip-10-100-8-111.ec2.internal', u'Attachment': {u'Status': u'attached', u'DeviceIndex': 0, u'DeleteOnTermination': True, u'AttachmentId': u'eni-attach-076666ed57bd1c918', u'AttachTime': u'2019-06-14T18:19:47+00:00'}, u'Groups': [{u'GroupName': u'launch-wizard-6', u'GroupId': u'sg-0f74a46e92b348155'}], u'Ipv6Addresses': [], u'OwnerId': u'<aws_account_id_appears_here>', u'SubnetId': u'subnet-0a38466e', u'PrivateIpAddress': u'10.100.8.111'}], u'SourceDestCheck': True, u'Placement': {u'GroupName': u'', u'Tenancy': u'default', u'AvailabilityZone': u'us-east-1d'}, u'CapacityReservationSpecification': {u'CapacityReservationPreference': u'open'}, u'c7n:MatchedFilters': [u'tag:Team', u'tag:Team'], u'BlockDeviceMappings': [{u'DeviceName': u'/dev/sda1', u'Ebs': {u'Status': u'attached', u'DeleteOnTermination': True, u'VolumeId': u'vol-04a5b8d53229ab212', u'AttachTime': u'2019-06-14T18:19:47+00:00'}…
+</pre>
+</details>
+
+<details>
 <summary>security-groups-unused.yml</summary>
 
 <pre>
