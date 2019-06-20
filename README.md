@@ -32,6 +32,7 @@
 [iam-user-UpdateAccessKey-offboarding.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-UpdateAccessKey-offboarding.yml) | Sends Slack notifications when IAM user's access key(s) get deactivated |
 [iam-user-DeleteLoginProfile-offboarding.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-DeleteLoginProfile-offboarding.yml) | Sends Slack notifications when IAM user's management console gets disabled |
 [acm-certificate-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/acm-certificate-audit.yml) | Retrieves list of ACM certificates with expiration dates less than 60 days and sends email/Slack notification |
+[ec2-garbage-collection-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/ec2-garbage-collection-audit.yml) | Terminate instances with user defined name tag and age greater than 1 hour. Send email/Slack notifications. |
 
 
 ## Shell Scripts
