@@ -1,0 +1,40 @@
+policies:
+  - name: ec2-garbage-collection-audit
+    resource: ec2 
+    description: |
+      Cloud Custodian EC2 Garbage Collection 
+    comments: |
+      Terminate EC2 instances that have been running longer than specified age 
+    filters:
+        - type: value
+          key: tag:Name 
+          op: regex
+          value: ^InstanceNameGoesHere$
+        - type: instance-age 
+          op: gt 
+          hours: 1
+    mode:
+      type: periodic
+      role: arn:aws:iam::XXXXXXXXXXXX:role/CloudCustodian
+      schedule: "rate(30 minutes)"
+      packages: [boto3, botocore, urllib3]
+    actions:
+      - terminate
+      - type: post-finding
+        severity_normalized: 10
+        types:
+          - "Software and Configuration Checks/AWS Security Best Practices"
+      - type: notify
+        template: ec2-garbage-collection-audit.html
+        slack_template: slack-ec2-garbage-collection-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'EC2 Packer Builder Reaper Audit'
+        to:
+          - cloudcustodianadmins@company.com
+          - slack://#<slack-channel-name-goes-here>
+        owner_absent_contact:
+          - cloudcustodianadmins@company.com
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/XXXXXXXXXXXX/cloud-cloudcustodian
