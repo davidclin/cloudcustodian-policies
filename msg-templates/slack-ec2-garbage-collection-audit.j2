@@ -1,0 +1,29 @@
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian Policy Violation",
+         "title":"EC2 Packer Builder Reaper Audit",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"Packer Builder Instance(s) found with age greater than 1 hour",
+	       "value":"{{ resources | selectattr('InstanceId') | map(attribute='InstanceId') | list }}"
+            },
+            {
+               "title":"Account ID",
+               "value":"{{ account_id }}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Action Description",
+               "value":"All Packer Builder instances older than 1 hr have been deleted. This notification is informational only. No action is required on your part."
+            }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
