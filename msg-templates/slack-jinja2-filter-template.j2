@@ -1,0 +1,41 @@
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian ACM Certificate Audit",
+         "title":"ACM Certificate Audit",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"Description",
+               "value":"ACM certificate(s) found nearing their expiration date <60 days"
+            },
+            {
+               "title":"Domain Name(s)",
+               "value":"{{ resources | selectattr('DomainName') | map(attribute='DomainName') | list }}"
+            },
+            {
+               "title":"Expiration Date(s)",
+               "value":"{{ resources | selectattr('NotAfter') | map(attribute='NotAfter') | list }}"
+            },
+            {
+               "title":"Certificate Arn(s)",
+               "value":"{{ resources | selectattr('CertificateArn') | map(attribute='CertificateArn') | list }}"
+            },
+            {
+               "title":"Account ID",
+               "value":"{{ account_id }}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Action Description",
+               "value":"See email notification for details."
+            }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
