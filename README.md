@@ -782,7 +782,7 @@ Example:
 2018-07-19 18:09:04,633: c7n_org:INFO Policy resource counts Counter({'c7n-org-public-instance-audit': 17})
 ```
 
-- c7n_org includes a tool that auto generates the config file c7n-org uses for accounts using the aws organizations API.
+- c7n_org includes a tool that auto generates the config file c7n-org uses for accounts using the aws organizations API. [( link )](https://cloudcustodian.io/docs/tools/c7n-org.html)
 - To run policies across multiple AWS accounts, create roles in the cross-accounts that trust a 'primary/governance' account and from the primary/governance account create an instance profile that has the STS assume role to switch to N other accounts.
 - To send email/Slack notifications using the existing SQS mailer queue, add permission to the SQS mailer queue that allows cross-accounts.
 - c7n-org gets credentials from the [default] section of the ~/.aws/credentials and ~/.aws/config files.
