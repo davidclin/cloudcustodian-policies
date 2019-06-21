@@ -790,6 +790,27 @@ Example:
 - The cache file can handle multiple regions but you need a separate cache for each account (i.e. --cache /home/custodian/.accountname.cache)
 - Policies can be run locally on EC2 instance or via Lambdas (or containers on k8s/ECS although I haven't tried this)
 
+Example Trust Relationship Policy for role OrganizationAccountAccessRole in cross account:
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::&ltaccount_id_where_c7n-org_is_invoked&gt:root",
+          "arn:aws:iam::&ltaccount_id_where_c7n-org_is_invokded&gt:role/CloudCustodian"
+        ],
+        "Service": [
+          "lambda.amazonaws.com"
+        ]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+</pre>
 
 # Cross-Account Questions
 - How are Lambda policies run across accounts?
