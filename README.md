@@ -932,7 +932,24 @@ Here's an example used by the acm-certificate-audit.yml policy:
 }
 ```
 
+# c7n-mailer sendgrid Traceback
+If you encounter the following traceback related to sendgrid, make sure you're using the latest version.
 
+sendgrid had a major rev thats backwards incompatible; the latest mailer uses the latest version of sendgrid
+
+Traceback
+<pre>
+...
+File "/home/ubuntu/cloud-custodian/tools/c7n_mailer/c7n_mailer/azure/sendgrid_delivery.py", line 20, in <module>
+    from sendgrid.helpers.mail import Mail, To, From
+</pre>
+
+Fix
+<pre>
+$ pip freeze | grep sendgrid
+$ pip list --outdated
+$ pip install sendgrid -U
+</pre>
 
 # General Policy Notes
 Cloud Custodian policies can be run
