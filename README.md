@@ -33,6 +33,8 @@
 [iam-user-DeleteLoginProfile-offboarding.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-DeleteLoginProfile-offboarding.yml) | Sends Slack notifications when IAM user's management console gets disabled |
 [acm-certificate-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/acm-certificate-audit.yml) | Retrieves list of ACM certificates with expiration dates less than 60 days and sends email/Slack notification |
 [ec2-garbage-collection-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/ec2-garbage-collection-audit.yml) | Terminate instances with user defined name tag and age greater than 1 hour. Send email/Slack notifications. |
+[acm-certificate-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/acm-certificate-audit.yml) | Send notifications when ACM certificates with expiration dates less than 60 days are matched. |
+[acm-certificate-cross-accounts-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/c7n-org/acm-certificate-cross-accounts-audit.yml) | c7n-org policy used to send notifications when ACM certificates with expiration dates less than 60 days are matched. |
 
 
 ## Shell Scripts
