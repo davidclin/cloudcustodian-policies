@@ -1,0 +1,10 @@
+policies:
+  - name: lambda-filter-policy
+    resource: lambda 
+    description: |
+      Retrieve list of Lambda functions that match regex.
+    filters:
+      - type: value
+        key: FunctionName
+        op: regex
+        value: .*acm.* 
