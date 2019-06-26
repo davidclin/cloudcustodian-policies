@@ -35,8 +35,10 @@
 [ec2-garbage-collection-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/ec2-garbage-collection-audit.yml) | Terminate instances with user defined name tag and age greater than 1 hour. Send email/Slack notifications. |
 [acm-certificate-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/acm-certificate-audit.yml) | Send notifications when ACM certificates with expiration dates less than 60 days are matched. |
 [acm-certificate-cross-accounts-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/c7n-org/acm-certificate-cross-account-audit.yml) | c7n-org policy used to send notifications when ACM certificates with expiration dates less than 60 days are matched. |
-[auto-team-tag.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/auto-team-tag.yml) | Auto tag the Team tag based on owner. |
+[auto-team-tag.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/auto-team-tag.yml) | Auto tag EC2 instance with Team tag based on owner. |
+[autotag-owner.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/autotag-owner.yml) | Auto tag EC2 instance based on owner. |
 
+https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/autotag-owner.yml
 
 ## Shell Scripts
 | Script | Description |
