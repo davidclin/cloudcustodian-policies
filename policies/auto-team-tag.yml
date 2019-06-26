@@ -1,0 +1,29 @@
+policies:
+  - name: tag-team-infra
+    resource: ec2
+    comment: |
+      Cloud Custodian EC2 Team tag based on the owner
+    filters:
+      - "tag:Team": absent
+      - type: value
+        key: "tag:Owner"
+        value: (.*david\.lin|.*john\.doe)
+        op: regex
+    actions:
+      - type: tag
+        key: "Team"
+        value: "InfrastuctureTeam"
+  - name: tag-team-it
+    resource: ec2
+    comment: |
+      Cloud Custodian EC2 Team tag based on the owner
+    filters:
+      - "tag:Team": absent
+      - type: value
+        key: "tag:Owner"
+        value: (.*harry\.potter)
+        op: regex
+    actions:
+      - type: tag
+        key: "Team"
+        value: "WizardsTeam"
