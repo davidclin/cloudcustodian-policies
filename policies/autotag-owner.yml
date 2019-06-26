@@ -1,0 +1,26 @@
+policies:
+  - name: autotag-copy
+    resource: ec2
+    comment: |
+      Copy autotag to test-owner if absent
+    filters:
+      - "tag:AutoTag_Creator": not-null
+      - or:
+        - "tag:Owner": empty
+        - "tag:Owner": absent
+    actions:
+      - type: copy-tag
+        current_key: AutoTag_Creator
+        new_key: Owner
+
+  - name: strip-tag
+    resource: ec2
+    comment: |
+      Strip Copy autotag to owner if absent
+    filters:
+      - "tag:Owner": not-null
+    actions:
+      - type: normalize-tag
+        key: Owner
+        action: remove
+        value: "arn:aws:iam::123456789012:"
