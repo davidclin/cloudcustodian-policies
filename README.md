@@ -38,7 +38,6 @@
 [auto-team-tag.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/auto-team-tag.yml) | Auto tag EC2 instance with Team tag based on owner. |
 [autotag-owner.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/autotag-owner.yml) | Auto tag EC2 instance based on owner. |
 
-https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/autotag-owner.yml
 
 ## Shell Scripts
 | Script | Description |
