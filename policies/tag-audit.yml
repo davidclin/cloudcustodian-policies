@@ -1,0 +1,19 @@
+policies:
+  - name: tag-audit
+    resource: ec2
+    comment: |
+      Retrieve list of all resources that match tag
+      Note, ec2 is used as an example, but any resource that supports tags
+      can be used. Simply replace the resource with the appropriate name.
+      For example, replace ec2 with security-group if you want to filter
+      against tagged security groups.
+    filters:
+      - "tag:Team": absent
+      - type: value
+        key: "tag:Owner"
+        value: (.*mike\.garrison|.*amir\.kibbar|.*jon\.voigt|.*chris\.varnerin|.*nikos\.michalakis)
+        op: regex
+#    actions:
+#      - type: tag
+#        key: "Team"
+#        value: "Cloud"
