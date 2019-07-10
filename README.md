@@ -37,6 +37,7 @@
 [acm-certificate-cross-accounts-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/c7n-org/acm-certificate-cross-account-audit.yml) | c7n-org policy used to send notifications when ACM certificates with expiration dates less than 60 days are matched. |
 [auto-team-tag.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/auto-team-tag.yml) | Auto tag EC2 instance with Team tag based on owner. |
 [autotag-owner.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/autotag-owner.yml) | Auto tag EC2 instance based on owner. |
+[sgroup-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/sgroup-audit.yml) | Retrieves all sgroups that match filter. The in-line documentation for the security-groups resource is buggy but this policy works as expected for ingress rules. Egress rules were not tested.|
 
 
 ## Shell Scripts
