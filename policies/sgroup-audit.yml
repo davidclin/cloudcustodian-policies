@@ -1,0 +1,19 @@
+policies:
+  - name: sgroup-audit
+    resource: aws.security-group
+    description: |
+      Cloud Custodian Security Groups Audit
+    comments: |
+      Retrieve Security Groups that Match Filter
+    filters:
+      - type: ingress
+        Cidr:
+          value_type: cidr
+          op: in
+          value: 10.120.0.0/16
+      - not:
+        - type: ingress
+          Cidr:
+            value_type: cidr
+            op: in
+            value: 10.121.0.0/16
