@@ -39,6 +39,7 @@
 [autotag-owner.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/autotag-owner.yml) | Auto tag EC2 instance based on owner. |
 [sgroup-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/sgroup-audit.yml) | Retrieves all sgroups that match filter. The in-line documentation for the security-groups resource is buggy but this policy works as expected for ingress rules. Egress rules were not tested.|
 [tag-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/tag-audit.yml) | Retrieves list of resources that match tag. |
+[subnet-ip-address-usage-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/subnet-ip-address-usage-audit.yml) | Sends notication via SES/Slack when private subnets in specified regions reach below 10 available IP addresses in specified region |
 
 ## Shell Scripts
 | Script | Description |
