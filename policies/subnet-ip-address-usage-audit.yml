@@ -1,0 +1,54 @@
+policies:
+  - name: subnet-ip-address-usage-audit 
+    resource: subnet 
+    description: |
+      Cloud Custodian Subnet IP Address Audit
+    comments: |
+      Periodically retrieve list of private subnets for specific availability zones.
+      Generate email and Slack notifications when AvailableIpAddressCount
+      is less-than 10 for specified regions.
+    mode: 
+      type: periodic
+      role: arn:aws:iam::123456789012:role/CloudCustodian
+      schedule: "rate(1 hour)"
+      packages: [boto3, botocore, urllib3]
+    filters:
+      - type: value
+        key: State
+        value: "available"
+      - type: value
+        key: AvailableIpAddressCount
+        value: 10  
+        op: less-than
+      - or:
+        - type: value
+          key: AvailabilityZone
+          value: "us-east-1a"
+        - type: value
+          key: AvailabilityZone
+          value: "us-east-1c"
+        - type: value
+          key: AvailabilityZone
+          value: "us-east-1d"
+      - type: value
+        key: MapPublicIpOnLaunch
+        value: false
+    actions:
+      - type: post-finding
+        severity_normalized: 10
+        types:
+          - "Software and Configuration Checks/AWS Security Best Practices"
+      - type: notify
+        template: subnet-ip-address-usage-audit.html
+        slack_template: slack-subnet-ip-address-usage-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'Subnet Audit: Subnets running low on IP addresses'
+        to:
+          - cloudcustodianadmins@domain.com
+          - slack://#custodian-alerts
+        owner_absent_contact:
+          - cloudcustodianadmins@domain.com
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/123456789012/cloud-cloudcustodian
