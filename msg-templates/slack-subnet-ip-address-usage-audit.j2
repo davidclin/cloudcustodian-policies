@@ -1,0 +1,41 @@
+{
+   "attachments":[
+      {
+         "fallback":"Subnet IP Address Usage Audit",
+         "title":"Subnet IP Address Usage Audit",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"Account ID",
+               "value":"{{ account_id }}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"SubnetId(s)",
+               "value":"{{ resources | selectattr('SubnetId') | map(attribute='SubnetId') | list }}"
+            },
+            {
+               "title":"AvailableIpAddressCount(s)",
+               "value":"{{ resources | selectattr('AvailableIpAddressCount') | map(attribute='AvailableIpAddressCount') | list }}"
+            },
+            {
+               "title":"CidrBlock(s)",
+               "value":"{{ resources | selectattr('CidrBlock') | map(attribute='CidrBlock') | list }}"
+            },
+            {
+               "title":"AvailabilityZone(s)",
+               "value":"{{ resources | selectattr('AvailabilityZone') | map(attribute='AvailabilityZone') | list }}"
+            },
+            {
+               "title":"Action Description",
+               "value":"See email notification for more details."
+            }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
