@@ -618,6 +618,19 @@ The printf is just to pad a proper header for gzip. Otherwise gzip will not be a
 
 If you're using VIM to create the text file and getting an error "base64: invalid input", try pasting the encoded SQS message into a different text editor like nano instead. 
 
+# How to retrieve value(s) from 'resources' from SQS msg and include it custom Slack msg
+<pre>
+Sometimes the parameter you want to report in Slack is burried in 'resources'.
+You can use the "How to decode SQS msg" section above to get the parameter then add lines similar to below
+in your Slack template:
+
+Example of extracting the SubnetId from the output of 'resources':
+{
+  "title":"SubnetId(s)",
+  "value":"{{ resources | selectattr('SubnetId') | map(attribute='SubnetId') | list }}"
+}
+</pre>
+
 # Log Messages
 If you see the following CloudWatch log when sending notifications via Slack, ignore it:<br>
 
