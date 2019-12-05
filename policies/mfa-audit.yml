@@ -6,8 +6,7 @@ policies:
       in the group 'Administrators' and send notification
       if MFA is not enabled after 3 days of the create date.
       Send notification via SES and Slack.
-      This policy must be run as a cron job until lambda support
-      with group filtering is supported.
+      Requires 'iam:ListGroupsForUser' permissions.
     resource: iam-user
     filters:
       - type: credential
