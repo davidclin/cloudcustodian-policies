@@ -2,14 +2,16 @@
    "attachments":[
       {
          "fallback":"Cloud Custodian Policy Violation",
-         "title":"IAM Users in Administrators Group with MFA Disabled Audit",
+         "title":"IAM Users in Administrators Group with MFA Disabled",
          "color":"danger",
          "fields":[
             {
                "title":"IAM User Name(s)",
-               "value":"{%- for resource in resources -%}
-                        {{ format_resource(resource, policy['resource']) }}
-                        {%- endfor -%}"
+               "value":"{{ resources | selectattr('UserName') | map(attribute='UserName') | list }}"
+            },
+            {
+               "title":"Create Date",
+               "value":"{{ resources | selectattr('CreateDate') | map(attribute='CreateDate') | list }}"
             },
             {
                "title":"Account",
@@ -21,7 +23,7 @@
             },
             {
                "title":"Action Description",
-               "value":"Console access disabled. Access keys deleted. Email notification sent."
+               "value":"Console access disabled. Access keys deleted. Please work with user if access is still required and make sure MFA gets enabled.
             }
          ]
       }
