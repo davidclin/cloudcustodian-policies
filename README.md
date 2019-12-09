@@ -155,6 +155,8 @@ slack_token: xoxb-bot_token_string_goes_here
 <pre>
 Note: Based on your use case, additional permissions may be needed. 
 Cloud Custodian will generate a msg if that is the case after invocation.
+When in doubt, exercise the principle of least privilege and incrementally
+add permissions only as needed.
 
 Trust relationship:
 "Service": "lambda.amazonaws.com"
