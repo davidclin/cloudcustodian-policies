@@ -1,5 +1,14 @@
 # This section of code should be used to replace the has-allow-all function
 # in the /cloud-custodian/c7n/resources/iam.py file
+#
+# Usage:
+#
+# 1) Backup original ~/cloud-custodian/c7n/resources/iam.py
+# 2) Update iam.py with section below (search for has-allow-all)
+# 3) Rebuild site-package
+# 4) cd ~/cloud-custodian
+#    python setup.py install
+# 5) Test
 
     schema = type_schema('has-allow-all')
     permissions = ('iam:ListPolicies', 'iam:ListPolicyVersions')
