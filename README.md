@@ -102,6 +102,10 @@ $ custodian
 *** Upgrade AWS CLI ***
 $ sudo pip install awscli --upgrade
 
+*** Upgrade c7n-mailer runtime ***
+Step 1 - Add following line to mailer.yml:
+         runtime: python3.7
+Step 2 - $ c7n-mailer --config mailer.yml --update-lambda
 ```
 For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalone/cloud-custodian)
 </details>
