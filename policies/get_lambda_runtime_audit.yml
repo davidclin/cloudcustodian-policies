@@ -1,0 +1,15 @@
+policies:
+  - name: lambda_runtime_audit
+    resource: lambda
+    description: |
+      Cloud Custodian Lambda Runtime Audit
+    comments: |
+      Retrieve list of all Lambdas
+    filters:
+      - or:
+        - "tag:Team": absent
+        - "tag:Team": empty
+      - type: value
+        key: Runtime
+        op: regex
+        value: .*nodejs.*
