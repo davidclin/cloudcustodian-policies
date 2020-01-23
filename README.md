@@ -871,6 +871,20 @@ Example Trust Relationship Policy for role OrganizationAccountAccessRole in cros
 }
 </pre>
 
+# How to generate the c7n-org config file for accounts using the AWS org API
+<pre>
+$ source c7n_org/bin/activate
+$ cd /home/ubuntu/cloud-custodian/tools/c7n_org/scripts/
+$ python orgaccounts.py -f accounts.yml
+
+Copy the file accounts.yml to the appropriate directory where your c7n-org policies live.
+
+Usage examples:
+$ export policy="<name_of_custodian_yaml_policy_goes_here>"
+$ c7n-org run -s output -c accounts.yml -u $policy --region all
+$c7n-org run -s output -c all-accounts.yml -u $policy -t team:devops --region us-east-1
+</pre>
+
 # Cross-Account Questions
 - How are Lambda policies run across accounts?
   The same but you need to remove ```role:``` under the mode section.
