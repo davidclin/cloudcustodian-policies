@@ -40,6 +40,8 @@
 [sgroup-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/sgroup-audit.yml) | Retrieves all sgroups that match filter. The in-line documentation for the security-groups resource is buggy but this policy works as expected for ingress rules. Egress rules were not tested.|
 [tag-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/tag-audit.yml) | Retrieves list of resources that match tag. |
 [subnet-ip-address-usage-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/subnet-ip-address-usage-audit.yml) | Sends notication via SES/Slack when private subnets in specified regions reach below 10 available IP addresses in specified region |
+[get_lambda_runtime_audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/get_lambda_runtime_audit.yml) | Retrieves lambdas based on runtime |
+
 
 ## Shell Scripts
 | Script | Description |
