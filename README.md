@@ -645,8 +645,6 @@ Example of extracting the SubnetId from the output of 'resources':
 }
 
 </pre>
-custodian report -s output ssm-managed-instance.yml --no-default-fields --field InstanceId=InstanceId --field PlatformName=PlatformName --field PlatformType=PlatformType
-</pre>
 
 # How to get parameters for a given resource
 The trick here is to create a filter that will be true when using a type of "value" followed by
@@ -670,7 +668,7 @@ policies:
 
 Example report for above policy
 <pre>
-custodian report -s output ssm-managed-instance.yml --no-default-fields --field InstanceId=InstanceId --field PlatformName=PlatformName --field PlatformType=PlatformType
+$ custodian report -s output ssm-managed-instance.yml --no-default-fields --field InstanceId=InstanceId --field PlatformName=PlatformName --field PlatformType=PlatformType
 </pre>
 
 # Log Messages
