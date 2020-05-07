@@ -52,6 +52,7 @@
 ## Policies in Test
 | Policy | Description |
 |--------|-------------|
+| [ssm-managed-instance.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/ssm-managed-instance.yml) | Retrieves SSM managed instance attributes |
 | [ec2.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/ec2.yml) | Retrieves instances that match on specified tag name and instance type.  |
 | [elasticsearch-find-all-domains.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/elasticsearch-find-all-domains.yml) | Finds Elasticsearch domaina and retrieves attributes.  |
 | [new-user-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/new-user-audit.yml) | Retrieves iam users in specified group with MFA disabled in the last 30 days  |
