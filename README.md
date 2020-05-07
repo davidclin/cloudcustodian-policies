@@ -645,6 +645,26 @@ Example of extracting the SubnetId from the output of 'resources':
 }
 </pre>
 
+# How to get parameters for a given resource
+The trick here is to create a filter that will be true when using a type of "value" followed by
+a key/value pair that doesn't exist. You can then go to the output resources file to get the
+parameters you can then query against to refine your policy.
+
+<pre>
+policies:
+  - name: ssm-managed-instance
+    resource: ssm-managed-instance
+    description: |
+      Cloud Custodian SSM Managed Instances
+    comments: |
+      Retrieve SSM Managed Instance Attributes
+    filters:
+      - not:
+        - type: value
+          key: foo
+          value: "foo"
+</pre>
+
 # Log Messages
 If you see the following CloudWatch log when sending notifications via Slack, ignore it:<br>
 
