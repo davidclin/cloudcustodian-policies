@@ -643,6 +643,9 @@ Example of extracting the SubnetId from the output of 'resources':
   "title":"SubnetId(s)",
   "value":"{{ resources | selectattr('SubnetId') | map(attribute='SubnetId') | list }}"
 }
+
+</pre>
+custodian report -s output ssm-managed-instance.yml --no-default-fields --field InstanceId=InstanceId --field PlatformName=PlatformName --field PlatformType=PlatformType
 </pre>
 
 # How to get parameters for a given resource
@@ -663,6 +666,11 @@ policies:
         - type: value
           key: foo
           value: "foo"
+</pre>
+
+Example report for above policy
+<pre>
+custodian report -s output ssm-managed-instance.yml --no-default-fields --field InstanceId=InstanceId --field PlatformName=PlatformName --field PlatformType=PlatformType
 </pre>
 
 # Log Messages
