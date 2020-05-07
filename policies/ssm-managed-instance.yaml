@@ -1,0 +1,12 @@
+policies:
+  - name: ssm-managed-instance
+    resource: ssm-managed-instance
+    description: |
+      Cloud Custodian SSM Managed Instances
+    comments: |
+      Retrieve All SSM Managed Instance Attributes
+    filters:
+      - not:
+        - type: value
+          key: foo
+          value: "foo"
