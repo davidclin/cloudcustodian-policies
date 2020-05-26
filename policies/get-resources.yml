@@ -1,0 +1,4 @@
+policies:
+
+- name: report-all-ec2s
+  resource: ec2
