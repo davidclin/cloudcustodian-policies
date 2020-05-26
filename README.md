@@ -4,6 +4,7 @@
 
 | Policy | Description |
 |--------|-------------|
+| [get-resources.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/get-resources.yml)<br> | Vanilla policy with no filter or actions defined. Used to quickly generate resources.json file to view all parameters available for given resource and generate a custom report against. 
 | [offhours.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/offhours.yml)<br> | Starts and stops instances during offhours via Lambda function. Instances filtered on presence of maid_offhours tag or StartAfterHours/StopAfterHours custom tags. [(See Offhour Examples)](#offhours) |
 | [unused-sgroup-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/unused-sgroup-audit.yml)<br> | Retrieves all unused security groups that match regex, deletes them, then sends notifications.  |
 | [s3-public-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/s3-public-audit.yml)<br> | Sends notification when public S3 bucket is created.  |
