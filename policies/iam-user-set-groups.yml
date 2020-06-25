@@ -1,0 +1,12 @@
+policies:
+- name: iam-user-set-group
+  resource: iam-user
+  filters:
+    - type: value
+      key: UserName
+      value: iam-user-1|iam-user-2|iam-user-3
+      op: regex
+  actions:
+    - type: set-groups
+      state: add
+      group: MyIAMGroupName
