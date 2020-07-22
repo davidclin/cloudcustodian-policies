@@ -907,6 +907,8 @@ $ cd /home/ubuntu/cloud-custodian/tools/c7n_org/scripts/
 $ python orgaccounts.py -f accounts.yml
 
 Copy the file accounts.yml to the appropriate directory where your c7n-org policies live.
+Worst case scenario, if the python scripts fails, perform a fresh install of c7n-org and repeat above.
+See https://pypi.org/project/c7n-org/
 
 Usage examples:
 $ export policy="<name_of_custodian_yaml_policy_goes_here>"
