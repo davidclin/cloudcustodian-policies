@@ -85,6 +85,41 @@
 <summary>Quick Install</summary>
 
 ```
+*** Linux ***
+$ sudo apt-get install python3-venv
+$ python3 -m venv custodian
+$ source custodian/bin/activate
+$ pip install pip --upgrade           #Upgrade pip
+$ pip install setuptools --upgrade    #Upgrade setuptools
+(custodian) $ pip install c7n         #Install AWS package
+(custodian) $ pip install c7n-mailer  #Install mailer
+(custodian) $ pip install c7n-org     #Install c7n-org
+
+Note: 
+When c7n-mailer is installed using pip: 
+
+#Find the msg-templates directory
+sudo find / -name default.j2  
+
+#Copy email/Slack templates from this repo to the c7n_mailer/msg-templates directory
+cp ~/cloudcustodian/msg-templates/*.* ~/custodian/lib/python3.6/site-packages/c7n_mailer/msg-templates/   
+
+#Copy/update the mailer.yml from this repo to the c7n-mailer mailer directory
+3) cp ~/cloudcustodian/policies/mailer.yml to /home/ubuntu/cloudcustodian/mailer/mailer.yml
+
+
+*** Verify Installation ***
+$ c7n-mailer
+$ custodian
+$ c7n-org
+```
+For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalone/cloud-custodian)
+</details>
+
+<details>
+<summary>Quick Install (Deprecated; for historical purposes)</summary>
+
+```
 *** Install repository***
 $ git clone https://github.com/capitalone/cloud-custodian
 
