@@ -1,0 +1,32 @@
+policies:
+  - name: iam-mfa-audit
+    description: |
+      Cloud Custodian IAM User MFA Audit
+    comments: |
+      Retrieve list of all IAM users in the group 'Administrators'
+      who have not enabled MFA and send notifications. 
+    resource: iam-user
+    mode:
+      type: periodic
+      schedule: "rate(1 day)"
+    filters:
+      - not:
+        - type: credential
+          key: mfa_active
+          value: true 
+      - type: group
+        key: GroupName
+        value: Administrators 
+    actions:
+      - type: notify
+        template: mfa-audit.html
+        template_format: 'html'
+        slack_template: slack-mfa-audit
+        priority_header: '5'
+        subject: 'Cloud Custodian: IAM User Admins Audit'
+        to: 
+          - custodianadmins@email.com 
+          - slack://#test-alerts
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/111111111111/cloud-cloudcustodian
