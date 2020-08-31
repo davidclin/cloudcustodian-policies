@@ -1,0 +1,27 @@
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian Policy Violation",
+         "title":"Security Audit: Detected Admins with MFA Disabled",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"IAM User(s)",
+               "value":"{%- for resource in resources -%}
+                        {{ format_resource(resource, policy['resource']) }}
+                        {%- endfor -%}"
+            },
+            {
+               "title":"Account ID",
+               "value":"{{ account_id }}"
+            },
+            {
+               "title":"Action",
+               "value":"Please work with user(s) to enable MFA."
+            }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
