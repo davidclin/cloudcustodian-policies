@@ -1,0 +1,42 @@
+policies:
+  - name: cfn-garbage-collection-audit 
+    resource: aws.cfn 
+    description: |
+      Cloud Custodian CloudFormation Stack Garbage Collection 
+    comments: |
+      Retrieve Delete old CloudFormation stacks matching given string 
+    mode: 
+      type: periodic
+      schedule: "rate(1 day)"
+      role: arn:aws:iam::111111111111:role/cloud_custodian_role_in_cross_account
+    filters:
+      - type: value
+        key: StackName 
+        op: regex
+        value: ".*your_string_goes_here.*"
+      - type: value
+        key: CreationTime
+        op: greater-than 
+        value_type: age
+        value: 3 
+    actions:
+      - type: delete
+        force: true
+      - type: post-finding
+        severity_normalized: 10
+        types:
+          - "Software and Configuration Checks/AWS Security Best Practices"
+      - type: notify
+        template: cfn-garbage-collection-audit.html
+        slack_template: slack-cfn-garbage-collection-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'CloudFormation Garbage Collection Audit'
+        to:
+          - custodianadmins@email.com
+          - slack://#channel_name
+        owner_absent_contact:
+          - custodianadmins@email.com
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/111111111111/cloud-cloudcustodian
