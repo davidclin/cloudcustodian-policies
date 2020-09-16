@@ -1,0 +1,37 @@
+============================================
+Finding Path to c7n-mailer Default Templates
+============================================
+find ~/ -type f -name "default.html.j2"  (for email)
+find ~/ -type f -name "slack_default.j2" (for Slack)
+
+===============================
+All possible msg template paths
+===============================
+/home/ubuntu/cloud-custodian/tools/c7n_mailer/tests/test-templates/slack_default.j2
+/home/ubuntu/cloud-custodian/tools/c7n_mailer/c7n_mailer/msg-templates/slack_default.j2
+/home/ubuntu/junk/lib/python3.6/site-packages/c7n_mailer/msg-templates/slack_default.j2
+/home/ubuntu/custodian/lib/python3.6/site-packages/c7n_mailer/msg-templates/slack_default.j2
+
+========================================================
+Copy templates to all possible msg templates directories
+========================================================
+export slack_template="slack_template_filename_goes_here"
+export email_template="email_template_filename_goes_here"
+
+cp $email_template /home/ubuntu/cloud-custodian/tools/c7n_mailer/tests/test-templates/
+cp $email_template /home/ubuntu/cloud-custodian/tools/c7n_mailer/c7n_mailer/msg-templates/
+cp $email_template /home/ubuntu/junk/lib/python3.6/site-packages/c7n_mailer/msg-templates/
+cp $email_template /home/ubuntu/custodian/lib/python3.6/site-packages/c7n_mailer/msg-templates/
+
+cp $slack_template /home/ubuntu/cloud-custodian/tools/c7n_mailer/tests/test-templates/
+cp $slack_template /home/ubuntu/cloud-custodian/tools/c7n_mailer/c7n_mailer/msg-templates/
+cp $slack_template /home/ubuntu/junk/lib/python3.6/site-packages/c7n_mailer/msg-templates/
+cp $slack_template /home/ubuntu/custodian/lib/python3.6/site-packages/c7n_mailer/msg-templates/
+
+============================================
+Update msg templates using c7n-mailer Lambda
+============================================
+export policy="policy_filename_goes_here"
+
+from ~/cloudcustodian/policies directory run:
+c7n-mailer --config /home/ubuntu/cloudcustodian/mailer/mailer.yml --update-lambda && custodian run -c $policy -s .
