@@ -264,6 +264,7 @@ es:ListDomainsNames
 es:ListTags
 es:AddTags
 cloudwatch:DescribeAlarmsForMetric
+cloudwatch:PutMetricAlarm
 </pre>
 </details>
 
