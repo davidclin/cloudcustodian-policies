@@ -263,6 +263,7 @@ es:DescribeElasticsearchDomains
 es:ListDomainsNames
 es:ListTags
 es:AddTags
+cloudwatch:DescribeAlarmsForMetric
 </pre>
 </details>
 
