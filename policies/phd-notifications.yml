@@ -14,7 +14,7 @@ policies:
         key: "lastUpdatedTime"
         op: less-than
         value_type: age
-        value: 30 
+        value: 1 
     actions:
       - type: notify
         slack_template: slack-phd-notifications
