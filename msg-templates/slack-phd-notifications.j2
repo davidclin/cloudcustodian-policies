@@ -1,0 +1,29 @@
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian Personal Health Dashboard (PHD)",
+         "title":"Personal Health Dashboard (PHD) Notification",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"Account ID",
+               "value":"{{ account_id }}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Service(s)",
+               "value":"{{ resources | selectattr('service') | map(attribute='service') | list }}"
+            },
+            {
+               "title":"Action",
+               "value":"See Personal Health Dashboard 'Other notifications' tab @ phd.aws.amazon.com for more info."
+            }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}

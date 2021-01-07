@@ -1,0 +1,27 @@
+policies:
+  - name: phd-notifications 
+    resource: health-event 
+    description: |
+      Cloud Custodian Personal Health Dashboard (PHD) Notifications 
+    comments: |
+      Send alert when PHD notification is found  
+    mode:
+      type: periodic
+      role: arn:aws:iam::929292782238:role/CloudCustodian
+      schedule: "rate(1 day)"
+    filters:
+      - type: value 
+        key: "lastUpdatedTime"
+        op: less-than
+        value_type: age
+        value: 30 
+    actions:
+      - type: notify
+        slack_template: slack-phd-notifications
+        priority_header: '5'
+        subject: 'Personal Health Dashboard Notification(s)'
+        to:
+          - slack://#ie-alerts
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/929292782238/cloud-cloudcustodian
