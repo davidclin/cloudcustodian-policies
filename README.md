@@ -644,6 +644,36 @@ and obeys rules set forth in the corresponding value pair per [Cloud Custodian O
 ```
 </details>
 
+# AWS resources that support the "health-event" filter
+<details>
+
+<pre>
+aws.acm-certificate
+aws.app-elb
+aws.cache-cluster
+aws.directconnect
+aws.directory
+aws.dms-instance
+aws.dynamodb-table
+aws.ec2
+aws.efs
+aws.elb
+aws.emr
+aws.rds
+aws.storage-gateway
+
+For more information on the health-event resource filter, 
+see https://cloudcustodian.io/docs/aws/resources/aws-common-filters.html#aws-common-filters-health-event
+
+Note, the health-event resource filter is not to be confused with the resource aws.health-event.
+The resource aws.health-event is useful but doesn't catch service issues.
+The resource aws.health-event is useful for catching 'Other Notifications' that get reported in the Personal Health Dashboard (PHD).
+
+For more information on the resource aws.health-event,
+see https://cloudcustodian.io/docs/aws/resources/health-event.html
+</pre>
+</details>
+
 # Troubleshooting Tips
 Use 'custodian validate' to find syntax errors<br>
 Check 'name' of policy doesn't contain spaces<br>
