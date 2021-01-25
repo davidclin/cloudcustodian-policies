@@ -1,0 +1,12 @@
+policies:
+  - name: ec2-publicipaddress-audit
+    resource: ec2
+    description: |
+      Cloud Custodian Public Ipaddress Audit
+    comments: |
+      Retrieve list of all instances that
+      - have public IP address matching value
+    filters:
+        - type: value
+          key: "PublicIpAddress"
+          value: "x.x.x.x"
