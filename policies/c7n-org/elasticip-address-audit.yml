@@ -1,0 +1,11 @@
+policies:
+  - name: elastic-ip
+    resource: elastic-ip
+    description: |
+      Cloud Custodian Elastic IP Audit
+    comments: |
+      Retrieve info
+    filters:
+      - type: value
+        key: PublicIp
+        value: "x.x.x.x"
