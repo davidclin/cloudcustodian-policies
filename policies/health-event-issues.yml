@@ -1,0 +1,33 @@
+policies:
+  - name: health-event-issues
+    resource: health-event
+    mode:
+      type: periodic
+      role: arn:aws:iam::123456789123:role/CloudCustodian
+      schedule: "cron(0 5 * * ? *)"
+    filters:
+      - type: value
+        key: eventTypeCategory
+        value: issue
+      - type: value
+        key: statusCode
+        value: open
+    actions:
+       - type: post-finding
+         severity_normalized: 10
+         types:
+           - "Software and Configuration Checks/AWS Security Best Practices"
+       - type: notify
+         template: phd-issue.html
+         slack_template: slack-phd-issue
+         template_format: 'html'
+         priority_header: '5'
+         subject: 'Personal Health Dashboard - Operational Issue Notification'
+         to:
+           - cloudcustodianadmins@email.com
+           - slack://#alerts
+         owner_absent_contact:
+           - cloudcustodianadmins@email.com
+         transport:
+           type: sqs
+           queue: https://sqs.us-east-1.amazonaws.com/123456789123/cloud-cloudcustodian
