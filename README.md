@@ -4,6 +4,7 @@
 
 | Policy | Description |
 |--------|-------------|
+| [health-event-issues.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/health-event-issues.yml)<br> | Sends Slack and email notification when Personal Health Dashboard Operational Issues are found. Useful to get early visibility into AWS reported service outages. 
 | [phd-notifications.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/phd-notifications.yml)<br> | Sends Slack notification when Personal Health Dashboard 'Other notifications' are found less than 1 day old. 
 | [get-resources.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/get-resources.yml)<br> | Vanilla policy with no filter or actions defined. Used to quickly generate resources.json file to view all parameters available for given resource and generate a custom report against. 
 | [cfn-garbage-collection-audit.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/c7n-org/cfn-garbage-collection-audit.yml)<br> | Policy that garbage collects old CloudFormation stacks after specific number of days and that match a user specified string. Useful for destroying CloudFormation stacks that should be short lived such as lab, training, or test environments. 
