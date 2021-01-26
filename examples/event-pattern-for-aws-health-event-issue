@@ -1,0 +1,16 @@
+{
+  "source": [
+    "aws.health"
+  ],
+  "detail-type": [
+    "AWS Health Event"
+  ],
+  "detail": {
+    "service": [
+      "HEALTH"
+    ],
+    "eventTypeCategory": [
+      "issue"
+    ]
+  }
+}
