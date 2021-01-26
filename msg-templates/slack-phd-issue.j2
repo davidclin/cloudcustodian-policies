@@ -1,0 +1,29 @@
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian Personal Health Dashboard (PHD) Operational Issue",
+         "title":"Personal Health Dashboard (PHD) Operational Notification",
+         "color":"danger",
+         "fields":[
+            {
+               "title":"Account ID",
+               "value":"{{ account_id }}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Service(s)",
+               "value":"{{ resources | selectattr('service') | map(attribute='service') | list }}"
+            },
+            {
+               "title":"Action",
+               "value":"See Personal Health Dashboard 'Open issues' tab @ phd.aws.amazon.com for more info. Note, you may need to click the View event log to see details."
+            }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
