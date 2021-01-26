@@ -1,0 +1,20 @@
+  {
+    "arn": "arn:aws:health:us-east-1::event/INTERNETCONNECTIVITY/AWS_INTERNETCONNECTIVITY_OPERATIONAL_ISSUE/AWS_INTERNETCONNECTIVITY_OPERATIONAL_ISSUE_XOIUP_161168
+1635",
+    "service": "INTERNETCONNECTIVITY",
+    "eventTypeCode": "AWS_INTERNETCONNECTIVITY_OPERATIONAL_ISSUE",
+    "eventTypeCategory": "issue",
+    "region": "us-east-1",
+    "startTime": "2021-01-26T17:20:35.521000+00:00",
+    "lastUpdatedTime": "2021-01-26T17:23:08.321000+00:00",
+    "statusCode": "open",
+    "eventScopeCode": "PUBLIC",
+    "Description": "External Network Connectivity Issues\n\n[09:20 AM PST] We are investigating connectivity issues with an internet provider, mainly affecting the
+ East Coast of the United States, outside of the AWS Network. We are investigating the issue with the external provider.",
+    "AffectedEntities": [
+      {
+        "entityValue": "UNKNOWN",
+        "lastUpdatedTime": "2021-01-26T17:23:08.321000+00:00"
+      }
+    ]
+  }
