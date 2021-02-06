@@ -1,3 +1,24 @@
+===========================
+Path to orgaccounts.py file
+===========================
+/home/ubuntu/cloud-custodian/tools/c7n_org/scripts/orgaccounts.py
+How: sudo find / -name orgaccounts.py
+
+python orgaccounts.py -f accounts.yml
+
+======================================
+Security Audit for Public IP Addresses
+======================================
+custodian run -s output test-elastic-ip-all.yml --region all
+custodian report -s output test-elastic-ip-all.yml --region all --format grid > elastic-ip-all.log
+
+custodian run -s output test-ec2-publicipaddress-all.yml --region all
+custodian report -s output test-ec2-publicipaddress-all.yml --region all --format grid --field PublicIp=PublicIp > ec2-public-ip.log
+
+Tip: Copy to clipboard and reduce font size
+
+
+
 =======================================
 Launch c7n-org based on tags and region
 =======================================
