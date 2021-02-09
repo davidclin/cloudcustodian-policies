@@ -40,9 +40,16 @@ c7n-org run -s output -c all-accounts.yml -u iam.yml -t team:tarsadmin
 c7n-org run -s output -c accounts.yml -u public-instance-audit.yml -t team:sandbox --region us-west-2
 c7n-org run -s output -c accounts.yml -u s3-prevent-bucket-creation.yml -t team:sandbox 
 
-======
-Report
-======
+
+===================
+c7n Report Examples
+===================
+
+custodian report -s output test.yml --field NetworkInterfaces.VpcId=VpcId --field SubnetId=SubnetId --field KeyName=KeyName --field tag:AutoTag_Creator=tag:AutoTag_Creator
+
+=======================
+c7n-org Report Examples
+=======================
 c7n-org report -c all-accounts.yml -u iam-group.yml -s output --field GroupName=GroupName --field GroupId=GroupId --field Arn=Arn --field CreateDate=CreateDate --region us-east-1
 c7n-org report -c all-accounts.yml -u iam-role.yml -s output --field RoleName=RoleName --field Description=Description --field Arn=Arn --field CreateDate=CreateDate --region us-east-1
 c7n-org report -c all-accounts.yml -u rest-api.yml -s output --field name=name --field id=id --field description=description --field endpointConfiguration[0].types=endpointConfiguration[0].types --field createdDate=createdDate --no-default-fields --region all
