@@ -1,3 +1,20 @@
+If you want this rule to get triggered for all AWS services, 
+you will not be able to use "detail" such as "eventTypeCategory" [1]. 
+Therefore, the pattern to monitor all AWS Health events is:
+
+
+{
+  "source": [
+    "aws.health"
+  ],
+  "detail-type": [
+    "AWS Health Event"
+  ]
+}
+
+If you want this to get triggered for a specific service (e.g. ELB), you can change it to the following:
+
+
 {
   "source": [
     "aws.health"
@@ -7,7 +24,7 @@
   ],
   "detail": {
     "service": [
-      "HEALTH"
+      "ELASTICLOADBALANCING"
     ],
     "eventTypeCategory": [
       "issue"
