@@ -120,6 +120,26 @@ For more info, check out [Cloud Custodian in GitHub](https://github.com/capitalo
 </details>
 
 <details>
+<summary>Quick Upgrade</summary>
+
+```
+*** Linux ***
+$ source custodian/bin/activate
+$ pip list --outdated                 #List outdated modules
+$ pip install pip --upgrade           #Upgrade pip
+$ pip install setuptools --upgrade    #Upgrade setuptools
+$ pip install c7n --upgrade           #Upgrade c7n
+$ pip install c7n-mailer --upgrade    #Upgrade c7n-mailer
+
+Note: 
+Repeat for source 'c7n_org/bin/activate' 
+
+*** Verify Upgrade ***
+$ pip list --outdated                 #c7n, c7n-mailer, setuptools, and c7n-org should not appear in output
+```
+</details>
+
+<details>
 <summary>Quick Install (Deprecated; for historical purposes)</summary>
 
 ```
