@@ -3,12 +3,12 @@
 # ===========
 # DESCRIPTION
 # ===========
-# This script is used as part of an company's offboarding process to
-# retrieve a list of IAM users across all AWS accounts under the AWS org.
+# This script is used as part of the TRI offboarding process to
+# retrieve a list of IAM users across all AWS accounts under the TRI org.
 #
 # This script uses c7n-org's orgaccounts.py script to generate a yml file named
 # offboading-orgaccounts.yml which contains the list of all known AWS accounts
-# under the AWS org.
+# under the TRI org.
 #
 # The offboarding-orgaccounts.yml file is then used by c7n-org to
 # search against all IAM users and write the results to file.
@@ -32,16 +32,21 @@ C7NORGPATH="/home/ubuntu/cloudcustodian/policies/c7n-org"
 
 
 echo "Creating $ORGACCOUNTSFILE file. This will take a minute..."
-python $ORGACCOUNTSPATH/orgaccounts.py -f $ORGACCOUNTSPATH/$ORGACCOUNTSFILE
+#python $ORGACCOUNTSPATH/orgaccounts.py -f $ORGACCOUNTSPATH/$ORGACCOUNTSFILE
+python $ORGACCOUNTSPATH/orgaccounts.py -f /home/ubuntu/$ORGACCOUNTSFILE
 echo "offboarding-orgaccounts.yml file successfully created!"
 
 echo "Retrieving list of all IAM users across org..."
 echo "You will be taken into a VIM session upon completion"
 echo "Use the forward slash '/' to search file against IAM user(s)"
+read -p "Press enter to continue..."
+
 source "/home/ubuntu/c7n_org/bin/activate"
 c7n-org run -s output -c $ORGACCOUNTSPATH/$ORGACCOUNTSFILE -u $C7NORGPATH/offboarding-iam-users-audit.yml
-c7n-org report -c  $ORGACCOUNTSPATH/$ORGACCOUNTSFILE -u $C7NORGPATH/offboarding-iam-users-audit.yml -s output --region us-east-1 > /home/ubuntu/cloudcustodian/policies/c7n-org/offboar
-ding-iam-users-audit.txt
-vim $C7NORGPATH/iam-users-in-cross-accounts.txt
+#c7n-org report -c  $ORGACCOUNTSPATH/$ORGACCOUNTSFILE -u $C7NORGPATH/offboarding-iam-users-audit.yml -s output --region us-east-1 > /home/ubuntu/cloudcustodian/policies/c7n
+-org/offboarding-iam-users-audit.txt
+c7n-org report -c  /home/ubuntu/$ORGACCOUNTSFILE -u $C7NORGPATH/offboarding-iam-users-audit.yml -s output --region all > /home/ubuntu/offboarding-iam-users-audit.txt
+vim /home/ubuntu/offboarding-iam-users-audit.txt
 echo "IAM user audit across accounts completed"
-echo "If you would like to see the results again, see file $C7NORGPATH/offboarding-iam-users-audit.txt"
+echo "If you would like to see the results again, see file /home/ubuntu/offboarding-iam-users-audit.txt"
+echo "To get the account name to account ID mapping, see file /home/ubuntu/offboarding-orgaccounts.yml"
