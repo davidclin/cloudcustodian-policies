@@ -4,6 +4,7 @@
 
 | Policy | Description |
 |--------|-------------|
+| [iam-user-DeleteAccessKey.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/iam-user-DeleteAccessKey.yml)<br> | Sends Slack notification when an IAM user is deleted along with its AWS access key id for auditing purposes. 
 | [health-event-issues.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/health-event-issues.yml)<br> | Sends Slack and email notification when Personal Health Dashboard Operational Issues are found. Useful to get early visibility into AWS reported service outages. \| [(Optional) Replace periodic polling with event driven CW Rule Event Pattern](https://github.com/davidclin/cloudcustodian-policies/blob/master/examples/event-pattern-for-aws-health-event-issue) \| [resources.json example output](https://github.com/davidclin/cloudcustodian-policies/blob/master/examples/example-output-from-health-event-issues)
 | [phd-notifications.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/phd-notifications.yml)<br> | Sends Slack notification when Personal Health Dashboard 'Other notifications' are found less than 1 day old. 
 | [get-resources.yml](https://github.com/davidclin/cloudcustodian-policies/blob/master/policies/get-resources.yml)<br> | Vanilla policy with no filter or actions defined. Used to quickly generate resources.json file to view all parameters available for given resource and generate a custom report against. 
