@@ -1,0 +1,39 @@
+{
+   "attachments":[
+      {
+         "fallback":"Cloud Custodian Policy Violation",
+         "title":"IAM User Access Key Audit",
+         "color":"danger",
+         "fields":[
+      {
+         "title":"Access key Deleted for IAM User",
+         "value":"{%- for resource in resources -%}
+                  {{ format_resource(resource, policy['resource']) }}
+                  {%- endfor -%}"
+      },
+			{
+         "title":"AccessKeyId",
+         "value":"{{ resources | selectattr('UserId') | map(attribute='UserId') | list }}"
+      },
+	    {
+	       "title":"Changed by",
+	       "value":"{{ event.detail.userIdentity.userName }}"
+	    },
+            {
+               "title":"Account ID",
+               "value":"{{ account_id }}"
+            },
+            {
+               "title":"Region",
+               "value":"{{ region }}"
+            },
+            {
+               "title":"Action Description",
+               "value":"This is informational only. No action required. "
+            }
+         ]
+      }
+   ],
+   "channel":"{{ recipient }}",
+   "username":"Custodian"
+}
