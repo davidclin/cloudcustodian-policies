@@ -1,0 +1,30 @@
+policies:
+  - name: iam-user-DeleteAccessKey-audit
+    resource: iam-user
+    description: |
+      Cloud Custodian IAM User DeleteAccessKey Event Audit 
+    comment: |
+      Monitor deletion of IAM user access keys
+      Slack notification if contains account:* action
+    mode: 
+      type: cloudtrail 
+      role: arn:aws:iam::123456789123:role/CloudCustodian
+      events:
+          - source: iam.amazonaws.com
+            event: DeleteAccessKey 
+            ids: 'requestParameters.userName'
+    filters:
+      - type: event 
+        key: 'detail.eventName' 
+        value: 'DeleteAccessKey' 
+    actions:
+      - type: notify
+        slack_template: slack-iam-user-DeleteAccessKey-audit
+        template_format: 'html'
+        priority_header: '5'
+        subject: 'IAM User Access Key Deleted'
+        to:
+          - slack://#slack-channel-name-goes-here
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/123456789123/cloud-cloudcustodian
